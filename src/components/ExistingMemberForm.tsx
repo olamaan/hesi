@@ -1,239 +1,159 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // src/components/ExistingMemberForm.tsx
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 type Match = { _id: string; title: string; countryTitle?: string }
-type Area  = { _id: string; title: string }
 
-export default function ExistingMemberForm() {
+type SearchResponse = { matches: Match[] }
+type RequestLinkResponse = { ok: boolean; sent?: boolean; previewUrl?: string; error?: string }
+
+function getErrMessage(e: unknown): string {
+  return e instanceof Error ? e.message : typeof e === 'string' ? e : 'Unknown error'
+}
+
+export default function ExistingMemberStart() {
+  const [q, setQ] = useState('')
   const [email, setEmail] = useState('')
-  const [loadingFind, setLoadingFind] = useState(false)
+  const [results, setResults] = useState<Match[]>([])
+  const [postId, setPostId] = useState('')
+  const [loading, setLoading] = useState(false)     // sending link
+  const [searching, setSearching] = useState(false) // live search
   const [error, setError] = useState<string | null>(null)
+  const [sent, setSent] = useState<{ previewUrl?: string } | null>(null)
 
-  const [matches, setMatches] = useState<Match[]>([])
-  const [areas, setAreas] = useState<Area[]>([])
-  const [postId, setPostId] = useState<string>('')
-
-  // areaId -> { checked, contribution, website }
-  const [picked, setPicked] = useState<Record<string, { checked: boolean; contribution: string; website: string }>>({})
-
-  const [submitting, setSubmitting] = useState(false)
-  const [success, setSuccess] = useState<{ created: string[]; skipped: string[] } | null>(null)
-
-  async function onFind() {
-    setError(null)
-    setLoadingFind(true)
-    setMatches([])
-    setAreas([])
-    setPostId('')
-    try {
-      const res = await fetch(`/api/members/lookup?email=${encodeURIComponent(email)}`)
-      const data = await res.json()
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || 'Lookup failed')
+  useEffect(() => {
+    const t = setTimeout(async () => {
+      setError(null)
+      const term = q.trim()
+      if (!term) {
+        setResults([])
+        setSearching(false)
+        return
       }
-      setMatches(data.matches || [])
-      setAreas(data.areas || [])
-      // preselect when exactly one match
-      if ((data.matches || []).length === 1) setPostId(data.matches[0]._id)
-      // prime picked map (keep any text user typed if re-run)
-      const nextPicked: typeof picked = { ...picked }
-      for (const a of data.areas || []) {
-        if (!nextPicked[a._id]) nextPicked[a._id] = { checked: false, contribution: '', website: '' }
+      try {
+        setSearching(true)
+        const res = await fetch(`/api/members/search?q=${encodeURIComponent(term)}`)
+        const data = (await res.json()) as SearchResponse
+        setResults(Array.isArray(data.matches) ? data.matches : [])
+      } catch (e: unknown) {
+        setError('Search failed')
+      } finally {
+        setSearching(false)
       }
-      setPicked(nextPicked)
-    } catch (e: any) {
-      setError(e?.message || 'Something went wrong')
-    } finally {
-      setLoadingFind(false)
-    }
-  }
+    }, 250)
+    return () => clearTimeout(t)
+  }, [q])
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSend(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError(null)
-
-    if (!email.trim()) { setError('Please enter your email.'); return }
-    if (!postId) { setError('Please select your institution.'); return }
-
-    // build selections
-    const selections = Object.entries(picked)
-      .filter(([, v]) => v.checked)
-      .map(([areaId, v]) => ({
-        areaId,
-        contribution: v.contribution.trim(),
-        website: v.website.trim() || undefined,
-      }))
-
-    if (selections.length === 0) { setError('Please pick at least one Priority Area.'); return }
-    if (selections.some(s => s.contribution.length < 10)) {
-      setError('Each selected Priority Area needs a short contribution (at least 10 characters).')
-      return
-    }
-
+    if (!postId) return setError('Select your institution.')
+    if (!email)  return setError('Enter your email.')
     try {
-      setSubmitting(true)
-      const res = await fetch('/api/priority/apply', {
+      setLoading(true)
+      const res = await fetch('/api/priority/request-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, postId, selections }),
+        body: JSON.stringify({ postId, email }),
       })
-      const data = await res.json()
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || 'Submit failed')
-      }
-      setSuccess({ created: data.created || [], skipped: data.skipped || [] })
-    } catch (e: any) {
-      setError(e?.message || 'Something went wrong')
+      const data = (await res.json()) as RequestLinkResponse
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send link')
+      setSent({ previewUrl: data.previewUrl })
+    } catch (e: unknown) {
+      setError(getErrMessage(e))
     } finally {
-      setSubmitting(false)
+      setLoading(false)
     }
   }
 
-  if (success) {
+  if (sent) {
     return (
       <div className="alert">
-        <p><strong>Thanks!</strong> Your Priority Area membership application has been submitted.</p>
-        {success.created.length > 0 && <p>Created: {success.created.length} application(s).</p>}
-        {success.skipped.length > 0 && (
-          <p>Skipped (already applied): {success.skipped.length}.</p>
+        <p><strong>Check your email!</strong> We sent you a sign-in link to apply for Priority Area membership.</p>
+        {sent.previewUrl && (
+          <p className="muted">Dev preview: <a href={sent.previewUrl}>Open form</a></p>
         )}
-        <p>Our team will review and publish approved memberships.</p>
       </div>
     )
   }
 
+  const showNotFound = q.trim().length > 0 && !searching && results.length === 0
+
   return (
-    <form className="joinForm" onSubmit={onSubmit}>
-      {error && (
-        <div className="alert alert--warn">
-          <strong>Heads up:</strong> {error}
-        </div>
-      )}
+    <section>
+      <h2>Existing members — request a link</h2>
+      <form className="joinForm" onSubmit={onSend}>
+        {error && <div className="alert alert--warn">{error}</div>}
 
-      {/* Step 1: locate institution by email */}
-      <fieldset className="joinFieldset">
-        <legend className="joinLegend">Find your institution</legend>
+        <fieldset className="joinFieldset">
+          <legend className="joinLegend">Your institution</legend>
 
-        <label className="joinLabel">
-          <span className="joinLabel__text">Your email <span className="req">*</span></span>
-          <input
-            className="joinInput"
-            type="email"
-            inputMode="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@university.edu"
-          />
-        </label>
+          <label className="joinLabel">
+            <span className="joinLabel__text">Type your institution name</span>
+            <input
+              className="joinInput"
+              value={q}
+              onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setQ(ev.target.value)}
+              placeholder="Start typing…"
+              aria-autocomplete="list"
+              aria-busy={searching}
+            />
+          </label>
+
+          {searching && <div className="muted">Searching…</div>}
+
+          {showNotFound && (
+            <div className="alert alert--warn">
+              Your organization/institution was not found. Please try again.
+            </div>
+          )}
+
+          {results.length > 0 && (
+            <label className="joinLabel">
+              <span className="joinLabel__text">Select from results</span>
+              <select
+                className="joinSelect"
+                value={postId}
+                onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => setPostId(ev.target.value)}
+              >
+                <option value="">— Choose —</option>
+                {results.map(r => (
+                  <option key={r._id} value={r._id}>
+                    {r.title}{r.countryTitle ? ` — ${r.countryTitle}` : ''}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </fieldset>
+
+        <fieldset className="joinFieldset">
+          <legend className="joinLegend">Your email</legend>
+          <label className="joinLabel">
+            <span className="joinLabel__text">Email on record for this institution</span>
+            <input
+              className="joinInput"
+              type="email"
+              inputMode="email"
+              value={email}
+              onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setEmail(ev.target.value)}
+              placeholder="you@university.edu"
+            />
+          </label>
+          <p className="muted">Must match one of the emails listed on the member profile.</p>
+        </fieldset>
 
         <div className="joinActions">
-          <button type="button" className="filter-search__button" onClick={onFind} disabled={loadingFind || !email}>
-            {loadingFind ? 'Searching…' : 'Find my institution'}
+          <button className="returnButton" disabled={loading || !postId || !email}>
+            {loading ? 'Sending…' : 'Email me a link'}
           </button>
+          <Link className="joinCancel" href="/">Cancel</Link>
         </div>
-
-        {matches.length === 0 && !loadingFind && email && (
-          <p className="muted">No institution found for that email yet. You may need to use the email that’s listed on your member page, or <a href="/join">join as a new member</a>.</p>
-        )}
-
-        {matches.length > 0 && (
-          <label className="joinLabel">
-            <span className="joinLabel__text">Select your institution <span className="req">*</span></span>
-            <select
-              className="joinSelect"
-              value={postId}
-              onChange={(e) => setPostId(e.target.value)}
-              required
-            >
-              <option value="">— Choose —</option>
-              {matches.map(m => (
-                <option key={m._id} value={m._id}>
-                  {m.title}{m.countryTitle ? ` — ${m.countryTitle}` : ''}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
-      </fieldset>
-
-      {/* Step 2: choose Priority Areas and describe contribution */}
-      <fieldset className="joinFieldset">
-        <legend className="joinLegend">Priority Area memberships</legend>
-        {areas.length === 0 ? (
-          <p className="muted">Pick your institution first to continue.</p>
-        ) : (
-          <div className="paList">
-            {areas.map(a => {
-              const state = picked[a._id] || { checked: false, contribution: '', website: '' }
-              return (
-                <div key={a._id} className={`paItem ${state.checked ? 'is-active' : ''}`}>
-                  <div className="paItem__head">
-                    <input
-                      id={`pa-${a._id}`}
-                      type="checkbox"
-                      checked={state.checked}
-                      onChange={(e) => {
-                        setPicked(prev => ({
-                          ...prev,
-                          [a._id]: { ...(prev[a._id] || { contribution: '', website: '' }), checked: e.target.checked }
-                        }))
-                      }}
-                    />
-                    <label className="paTitle" htmlFor={`pa-${a._id}`}>{a.title}</label>
-                  </div>
-
-                  {state.checked && (
-                    <div className="paDetail">
-                      <label className="joinLabel">
-                        <span className="joinLabel__text">Contribution (what you’ll do)</span>
-                        <textarea
-                          className="joinTextarea"
-                          rows={3}
-                          value={state.contribution}
-                          onChange={(e) =>
-                            setPicked(prev => ({
-                              ...prev,
-                              [a._id]: { ...(prev[a._id] || { checked: true }), checked: true, contribution: e.target.value, website: state.website }
-                            }))
-                          }
-                          placeholder="Briefly describe your planned contributions or activities for this Priority Area."
-                        />
-                      </label>
-
-                      <label className="joinLabel">
-                        <span className="joinLabel__text">Related link (optional)</span>
-                        <input
-                          className="joinInput"
-                          type="url"
-                          inputMode="url"
-                          value={state.website}
-                          onChange={(e) =>
-                            setPicked(prev => ({
-                              ...prev,
-                              [a._id]: { ...(prev[a._id] || { checked: true }), checked: true, contribution: state.contribution, website: e.target.value }
-                            }))
-                          }
-                          placeholder="https://example.org/your-program"
-                        />
-                      </label>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </fieldset>
-
-      <div className="joinActions">
-        <button className="returnButton" disabled={submitting || !postId}>
-          {submitting ? 'Submitting…' : 'Submit application'}
-        </button>
-       
-      </div>
-    </form>
+      </form>
+    </section>
   )
 }

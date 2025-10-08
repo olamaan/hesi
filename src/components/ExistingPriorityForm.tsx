@@ -1,8 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
 'use client'
+
+type Area = { _id: string; title: string }
+type Membership = {
+  _id?: string
+  priorityArea: { _ref: string }
+  contribution?: string
+  since?: string | null
+  website?: string | null
+  status?: 'submitted' | 'published' | 'declined'
+}
+type PrefillResponse =
+  | { ok: true; post: { _id: string; title: string }; areas: Area[]; memberships: Membership[] }
+  | { ok: false; error: string }
+type SubmitResponse = { ok: boolean; error?: string }
+
+function getErrMessage(e: unknown): string {
+  return e instanceof Error ? e.message : typeof e === 'string' ? e : 'Unknown error'
+}
 
 import { useEffect, useMemo, useState } from 'react'
 
-type Area = { _id: string; title: string; description?: string }
 type Existing = { _id: string; areaId: string; contribution?: string; since?: string; website?: string; status?: string }
 
 export default function ExistingPriorityForm({ postIdOrToken }: { postIdOrToken: string }) {
