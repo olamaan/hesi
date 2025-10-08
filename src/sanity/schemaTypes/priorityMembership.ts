@@ -1,6 +1,7 @@
 // src/sanity/schemaTypes/priorityMembership.ts
 import {defineType, defineField} from 'sanity'
 import {LinkIcon} from '@sanity/icons'
+import type { SanityClient } from '@sanity/client'
 
 type PMDoc = {
   _id?: string
@@ -15,19 +16,25 @@ export const priorityMembership = defineType({
   icon: LinkIcon,
 
   validation: (Rule) =>
-    Rule.custom(async (rawDoc, ctx) => {
+    Rule.custom(async (rawDoc, context) => {
       const doc = rawDoc as PMDoc
       const postId = doc.post?._ref
       const areaId = doc.priorityArea?._ref
       if (!postId || !areaId) return true
 
-      // ctx.getClient is not strongly typed in the helper types, so cast ctx
-      const client = (ctx as any).getClient({apiVersion: '2024-10-01'})
-      const exists: number = await client.fetch(
+      // Type the schema context’s getClient without using `any`
+      const client = (context as unknown as {
+        getClient: (opts: { apiVersion: string }) => SanityClient
+      }).getClient({ apiVersion: '2024-10-01' })
+
+      const exists = await client.fetch<number>(
         'count(*[_type=="priorityMembership" && post._ref==$p && priorityArea._ref==$a && _id != $id])',
-        {p: postId, a: areaId, id: doc._id}
+        { p: postId, a: areaId, id: doc._id }
       )
-      return exists ? 'This university is already a member of that Priority Area.' : true
+
+      return exists > 0
+        ? 'This university is already a member of that Priority Area.'
+        : true
     }),
 
   fields: [
@@ -35,14 +42,14 @@ export const priorityMembership = defineType({
       name: 'post',
       title: 'University',
       type: 'reference',
-      to: [{type: 'post'}],
+      to: [{ type: 'post' }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'priorityArea',
       title: 'Priority Area',
       type: 'reference',
-      to: [{type: 'priorityArea'}],
+      to: [{ type: 'priorityArea' }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -52,8 +59,8 @@ export const priorityMembership = defineType({
       rows: 5,
       validation: (Rule) => Rule.required().min(10),
     }),
-    defineField({name: 'since', title: 'Member since', type: 'date'}),
-    defineField({name: 'website', title: 'Related link', type: 'url'}),
+    defineField({ name: 'since', title: 'Member since', type: 'date' }),
+    defineField({ name: 'website', title: 'Related link', type: 'url' }),
     defineField({
       name: 'status',
       title: 'Status',
@@ -61,9 +68,9 @@ export const priorityMembership = defineType({
       initialValue: 'submitted',
       options: {
         list: [
-          {title: 'Submitted', value: 'submitted'},
-          {title: 'Published', value: 'published'},
-          {title: 'Declined', value: 'declined'},
+          { title: 'Submitted', value: 'submitted' },
+          { title: 'Published', value: 'published' },
+          { title: 'Declined', value: 'declined' },
         ],
         layout: 'radio',
       },
