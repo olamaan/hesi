@@ -1,11 +1,8 @@
-export const dynamic = 'force-dynamic' // or: export const revalidate = 0
-
+// src/app/(site)/page.tsx
+import type { PageProps } from 'next'
 import HomeHero from '@/components/HomeHero'
 
-export default function Page({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  return <HomeHero searchParams={searchParams} />
+export default async function Page({ searchParams }: PageProps) {
+  const sp = await searchParams
+  return <HomeHero searchParams={sp} />
 }
