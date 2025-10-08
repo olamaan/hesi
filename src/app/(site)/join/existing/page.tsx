@@ -7,9 +7,10 @@ import { redirect } from 'next/navigation'
  
 redirect('/join') // temporarily disabled
  
-
+ 
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 type Match = { _id: string; title: string; countryTitle?: string }
 
@@ -35,7 +36,7 @@ export default function ExistingMemberStart() {
       try {
         setSearching(true)
         const res = await fetch(`/api/members/search?q=${encodeURIComponent(term)}`)
-        const data = await res.json()
+        const data = (await res.json()) as { matches?: Match[] }
         setResults(data.matches || [])
       } catch {
         setError('Search failed')
@@ -46,7 +47,7 @@ export default function ExistingMemberStart() {
     return () => clearTimeout(t)
   }, [q])
 
-  async function onSend(e: React.FormEvent) {
+  async function onSend(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError(null)
     if (!postId) return setError('Select your institution.')
@@ -58,11 +59,12 @@ export default function ExistingMemberStart() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ postId, email }),
       })
-      const data = await res.json()
+      const data = (await res.json()) as { ok?: boolean; error?: string; previewUrl?: string }
       if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send link')
       setSent({ previewUrl: data.previewUrl })
-    } catch (e: any) {
-      setError(e?.message || 'Failed to send link')
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Failed to send link'
+      setError(message)
     } finally {
       setLoading(false)
     }
@@ -98,7 +100,6 @@ export default function ExistingMemberStart() {
               onChange={(e) => setQ(e.target.value)}
               placeholder="Start typing…"
               aria-autocomplete="list"
-              aria-expanded={results.length > 0}
               aria-busy={searching}
             />
           </label>
@@ -150,9 +151,10 @@ export default function ExistingMemberStart() {
           <button className="returnButton" disabled={loading || !postId || !email}>
             {loading ? 'Sending…' : 'Email me a link'}
           </button>
-          <a className="joinCancel" href="/">Cancel</a>
+          <Link className="joinCancel" href="/">Cancel</Link>
         </div>
       </form>
     </section>
   )
 }
+
