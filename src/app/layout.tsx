@@ -1,4 +1,6 @@
 // src/app/layout.tsx
+/* eslint-disable @next/next/no-css-tags */
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { Oswald, Roboto } from 'next/font/google'
