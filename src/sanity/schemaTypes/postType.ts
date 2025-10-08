@@ -84,19 +84,20 @@ defineField({
       validation: r => r.required(),
     }),
   ],
+
   preview: {
     select: {
       title: 'title',
-     
       status: 'status',
-     
-      country: 'country.title',
+      country: 'country->title',
     },
-    prepare({title, media, status, region, country}) {
-      const parts = [status && status[0].toUpperCase() + status.slice(1), region, country].filter(Boolean)
-      return { title, media, subtitle: parts.join(' • ') }
+    prepare({ title, status, country }) {
+      const statusCap = status ? status.charAt(0).toUpperCase() + status.slice(1) : ''
+      const subtitle = [statusCap, country].filter(Boolean).join(' • ')
+      return { title, subtitle }
     },
   },
+
   orderings: [
     { name: 'datejoinedDesc', title: 'Date joined (new → old)', by: [{ field: 'datejoined', direction: 'desc' }] },
     { name: 'titleAsc', title: 'Title (A → Z)', by: [{ field: 'title', direction: 'asc' }] },
