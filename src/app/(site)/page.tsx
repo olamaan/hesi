@@ -11,3 +11,4 @@ export default async function Page({
   const sp = (await searchParams) ?? {}
   return <HomeHero searchParams={sp} />
 }
+
