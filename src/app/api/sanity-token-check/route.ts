@@ -1,4 +1,6 @@
 // src/app/api/sanity-token-check/route.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { NextResponse } from 'next/server'
 
 export async function GET() {

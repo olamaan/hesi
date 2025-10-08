@@ -1,4 +1,6 @@
 // src/app/api/priority/apply/route.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import { apiVersion } from '@/sanity/env' // adjust import if needed
