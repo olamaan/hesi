@@ -1,21 +1,29 @@
 // src/sanity/schemaTypes/priorityMembership.ts
 import {defineType, defineField} from 'sanity'
-import {LinkIcon} from '@sanity/icons' // ⬅️ replace HandshakeIcon
+import {LinkIcon} from '@sanity/icons'
+
+type PMDoc = {
+  _id?: string
+  post?: { _ref?: string }
+  priorityArea?: { _ref?: string }
+}
 
 export const priorityMembership = defineType({
   name: 'priorityMembership',
   title: 'Priority Membership',
   type: 'document',
-  icon: LinkIcon, // ⬅️ updated
+  icon: LinkIcon,
 
-  // Optional: prevent duplicate (post + area) pairs
   validation: (Rule) =>
-    Rule.custom(async (doc, ctx) => {
-      const postId = doc?.post?._ref
-      const areaId = doc?.priorityArea?._ref
+    Rule.custom(async (rawDoc, ctx) => {
+      const doc = rawDoc as PMDoc
+      const postId = doc.post?._ref
+      const areaId = doc.priorityArea?._ref
       if (!postId || !areaId) return true
-      const client = ctx.getClient({apiVersion: '2024-10-01'})
-      const exists = await client.fetch(
+
+      // ctx.getClient is not strongly typed in the helper types, so cast ctx
+      const client = (ctx as any).getClient({apiVersion: '2024-10-01'})
+      const exists: number = await client.fetch(
         'count(*[_type=="priorityMembership" && post._ref==$p && priorityArea._ref==$a && _id != $id])',
         {p: postId, a: areaId, id: doc._id}
       )
