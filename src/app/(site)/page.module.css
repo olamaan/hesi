@@ -1,0 +1,49 @@
+.container {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  color: #111;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: .75rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+.meta {
+  font-size: .85rem;
+  color: #6b7280;
+  margin-top: .25rem;
+}
+
+.header, .footer {
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.nav {
+  max-width: 720px;
+  margin: 0 auto;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}

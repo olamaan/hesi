@@ -1,0 +1,195 @@
+{"_id":"country-afghanistan-afg","_type":"country","title":"Afghanistan"}
+{"_id":"country-albania-alb","_type":"country","title":"Albania"}
+{"_id":"country-algeria-dza","_type":"country","title":"Algeria"}
+{"_id":"country-andorra-and","_type":"country","title":"Andorra"}
+{"_id":"country-angola-ago","_type":"country","title":"Angola"}
+{"_id":"country-antigua-and-barbuda-atg","_type":"country","title":"Antigua and Barbuda"}
+{"_id":"country-argentina-arg","_type":"country","title":"Argentina"}
+{"_id":"country-armenia-arm","_type":"country","title":"Armenia"}
+{"_id":"country-australia-aus","_type":"country","title":"Australia"}
+{"_id":"country-austria-aut","_type":"country","title":"Austria"}
+{"_id":"country-azerbaijan-aze","_type":"country","title":"Azerbaijan"}
+{"_id":"country-bahamas-bhs","_type":"country","title":"Bahamas"}
+{"_id":"country-bahrain-bhr","_type":"country","title":"Bahrain"}
+{"_id":"country-bangladesh-bgd","_type":"country","title":"Bangladesh"}
+{"_id":"country-barbados-brb","_type":"country","title":"Barbados"}
+{"_id":"country-belarus-blr","_type":"country","title":"Belarus"}
+{"_id":"country-belgium-bel","_type":"country","title":"Belgium"}
+{"_id":"country-belize-blz","_type":"country","title":"Belize"}
+{"_id":"country-benin-ben","_type":"country","title":"Benin"}
+{"_id":"country-bhutan-btn","_type":"country","title":"Bhutan"}
+{"_id":"country-bolivia-bol","_type":"country","title":"Bolivia"}
+{"_id":"country-bosnia-and-herzegovina-bih","_type":"country","title":"Bosnia and Herzegovina"}
+{"_id":"country-botswana-bwa","_type":"country","title":"Botswana"}
+{"_id":"country-brazil-bra","_type":"country","title":"Brazil"}
+{"_id":"country-brunei-brn","_type":"country","title":"Brunei"}
+{"_id":"country-bulgaria-bgr","_type":"country","title":"Bulgaria"}
+{"_id":"country-burkina-faso-bfa","_type":"country","title":"Burkina Faso"}
+{"_id":"country-burundi-bdi","_type":"country","title":"Burundi"}
+{"_id":"country-cambodia-khm","_type":"country","title":"Cambodia"}
+{"_id":"country-cameroon-cmr","_type":"country","title":"Cameroon"}
+{"_id":"country-canada-can","_type":"country","title":"Canada"}
+{"_id":"country-cape-verde-cpv","_type":"country","title":"Cape Verde"}
+{"_id":"country-central-african-republic-caf","_type":"country","title":"Central African Republic"}
+{"_id":"country-chad-tcd","_type":"country","title":"Chad"}
+{"_id":"country-chile-chl","_type":"country","title":"Chile"}
+{"_id":"country-china-chn","_type":"country","title":"China"}
+{"_id":"country-colombia-col","_type":"country","title":"Colombia"}
+{"_id":"country-comoros-com","_type":"country","title":"Comoros"}
+{"_id":"country-costa-rica-cri","_type":"country","title":"Costa Rica"}
+{"_id":"country-croatia-hrv","_type":"country","title":"Croatia"}
+{"_id":"country-cuba-cub","_type":"country","title":"Cuba"}
+{"_id":"country-cyprus-cyp","_type":"country","title":"Cyprus"}
+{"_id":"country-czechia-cze","_type":"country","title":"Czechia"}
+{"_id":"country-denmark-dnk","_type":"country","title":"Denmark"}
+{"_id":"country-djibouti-dji","_type":"country","title":"Djibouti"}
+{"_id":"country-dominica-dma","_type":"country","title":"Dominica"}
+{"_id":"country-dominican-republic-dom","_type":"country","title":"Dominican Republic"}
+{"_id":"country-dr-congo-cod","_type":"country","title":"DR Congo"}
+{"_id":"country-ecuador-ecu","_type":"country","title":"Ecuador"}
+{"_id":"country-egypt-egy","_type":"country","title":"Egypt"}
+{"_id":"country-el-salvador-slv","_type":"country","title":"El Salvador"}
+{"_id":"country-equatorial-guinea-gnq","_type":"country","title":"Equatorial Guinea"}
+{"_id":"country-eritrea-eri","_type":"country","title":"Eritrea"}
+{"_id":"country-estonia-est","_type":"country","title":"Estonia"}
+{"_id":"country-eswatini-swz","_type":"country","title":"Eswatini"}
+{"_id":"country-ethiopia-eth","_type":"country","title":"Ethiopia"}
+{"_id":"country-fiji-fji","_type":"country","title":"Fiji"}
+{"_id":"country-finland-fin","_type":"country","title":"Finland"}
+{"_id":"country-france-fra","_type":"country","title":"France"}
+{"_id":"country-gabon-gab","_type":"country","title":"Gabon"}
+{"_id":"country-gambia-gmb","_type":"country","title":"Gambia"}
+{"_id":"country-georgia-geo","_type":"country","title":"Georgia"}
+{"_id":"country-germany-deu","_type":"country","title":"Germany"}
+{"_id":"country-ghana-gha","_type":"country","title":"Ghana"}
+{"_id":"country-greece-grc","_type":"country","title":"Greece"}
+{"_id":"country-grenada-grd","_type":"country","title":"Grenada"}
+{"_id":"country-guatemala-gtm","_type":"country","title":"Guatemala"}
+{"_id":"country-guinea-gin","_type":"country","title":"Guinea"}
+{"_id":"country-guinea-bissau-gnb","_type":"country","title":"Guinea-Bissau"}
+{"_id":"country-guyana-guy","_type":"country","title":"Guyana"}
+{"_id":"country-haiti-hti","_type":"country","title":"Haiti"}
+{"_id":"country-honduras-hnd","_type":"country","title":"Honduras"}
+{"_id":"country-hungary-hun","_type":"country","title":"Hungary"}
+{"_id":"country-iceland-isl","_type":"country","title":"Iceland"}
+{"_id":"country-india-ind","_type":"country","title":"India"}
+{"_id":"country-indonesia-idn","_type":"country","title":"Indonesia"}
+{"_id":"country-iran-irn","_type":"country","title":"Iran"}
+{"_id":"country-iraq-irq","_type":"country","title":"Iraq"}
+{"_id":"country-ireland-irl","_type":"country","title":"Ireland"}
+{"_id":"country-israel-isr","_type":"country","title":"Israel"}
+{"_id":"country-italy-ita","_type":"country","title":"Italy"}
+{"_id":"country-ivory-coast-civ","_type":"country","title":"Ivory Coast"}
+{"_id":"country-jamaica-jam","_type":"country","title":"Jamaica"}
+{"_id":"country-japan-jpn","_type":"country","title":"Japan"}
+{"_id":"country-jordan-jor","_type":"country","title":"Jordan"}
+{"_id":"country-kazakhstan-kaz","_type":"country","title":"Kazakhstan"}
+{"_id":"country-kenya-ken","_type":"country","title":"Kenya"}
+{"_id":"country-kiribati-kir","_type":"country","title":"Kiribati"}
+{"_id":"country-kuwait-kwt","_type":"country","title":"Kuwait"}
+{"_id":"country-kyrgyzstan-kgz","_type":"country","title":"Kyrgyzstan"}
+{"_id":"country-laos-lao","_type":"country","title":"Laos"}
+{"_id":"country-latvia-lva","_type":"country","title":"Latvia"}
+{"_id":"country-lebanon-lbn","_type":"country","title":"Lebanon"}
+{"_id":"country-lesotho-lso","_type":"country","title":"Lesotho"}
+{"_id":"country-liberia-lbr","_type":"country","title":"Liberia"}
+{"_id":"country-libya-lby","_type":"country","title":"Libya"}
+{"_id":"country-liechtenstein-lie","_type":"country","title":"Liechtenstein"}
+{"_id":"country-lithuania-ltu","_type":"country","title":"Lithuania"}
+{"_id":"country-luxembourg-lux","_type":"country","title":"Luxembourg"}
+{"_id":"country-madagascar-mdg","_type":"country","title":"Madagascar"}
+{"_id":"country-malawi-mwi","_type":"country","title":"Malawi"}
+{"_id":"country-malaysia-mys","_type":"country","title":"Malaysia"}
+{"_id":"country-maldives-mdv","_type":"country","title":"Maldives"}
+{"_id":"country-mali-mli","_type":"country","title":"Mali"}
+{"_id":"country-malta-mlt","_type":"country","title":"Malta"}
+{"_id":"country-marshall-islands-mhl","_type":"country","title":"Marshall Islands"}
+{"_id":"country-mauritania-mrt","_type":"country","title":"Mauritania"}
+{"_id":"country-mauritius-mus","_type":"country","title":"Mauritius"}
+{"_id":"country-mexico-mex","_type":"country","title":"Mexico"}
+{"_id":"country-micronesia-fsm","_type":"country","title":"Micronesia"}
+{"_id":"country-moldova-mda","_type":"country","title":"Moldova"}
+{"_id":"country-monaco-mco","_type":"country","title":"Monaco"}
+{"_id":"country-mongolia-mng","_type":"country","title":"Mongolia"}
+{"_id":"country-montenegro-mne","_type":"country","title":"Montenegro"}
+{"_id":"country-morocco-mar","_type":"country","title":"Morocco"}
+{"_id":"country-mozambique-moz","_type":"country","title":"Mozambique"}
+{"_id":"country-myanmar-mmr","_type":"country","title":"Myanmar"}
+{"_id":"country-namibia-nam","_type":"country","title":"Namibia"}
+{"_id":"country-nauru-nru","_type":"country","title":"Nauru"}
+{"_id":"country-nepal-npl","_type":"country","title":"Nepal"}
+{"_id":"country-netherlands-nld","_type":"country","title":"Netherlands"}
+{"_id":"country-new-zealand-nzl","_type":"country","title":"New Zealand"}
+{"_id":"country-nicaragua-nic","_type":"country","title":"Nicaragua"}
+{"_id":"country-niger-ner","_type":"country","title":"Niger"}
+{"_id":"country-nigeria-nga","_type":"country","title":"Nigeria"}
+{"_id":"country-north-korea-prk","_type":"country","title":"North Korea"}
+{"_id":"country-north-macedonia-mkd","_type":"country","title":"North Macedonia"}
+{"_id":"country-norway-nor","_type":"country","title":"Norway"}
+{"_id":"country-oman-omn","_type":"country","title":"Oman"}
+{"_id":"country-pakistan-pak","_type":"country","title":"Pakistan"}
+{"_id":"country-palau-plw","_type":"country","title":"Palau"}
+{"_id":"country-palestine-pse","_type":"country","title":"Palestine"}
+{"_id":"country-panama-pan","_type":"country","title":"Panama"}
+{"_id":"country-papua-new-guinea-png","_type":"country","title":"Papua New Guinea"}
+{"_id":"country-paraguay-pry","_type":"country","title":"Paraguay"}
+{"_id":"country-peru-per","_type":"country","title":"Peru"}
+{"_id":"country-philippines-phl","_type":"country","title":"Philippines"}
+{"_id":"country-poland-pol","_type":"country","title":"Poland"}
+{"_id":"country-portugal-prt","_type":"country","title":"Portugal"}
+{"_id":"country-qatar-qat","_type":"country","title":"Qatar"}
+{"_id":"country-republic-of-the-congo-cog","_type":"country","title":"Republic of the Congo"}
+{"_id":"country-romania-rou","_type":"country","title":"Romania"}
+{"_id":"country-russia-rus","_type":"country","title":"Russia"}
+{"_id":"country-rwanda-rwa","_type":"country","title":"Rwanda"}
+{"_id":"country-saint-kitts-and-nevis-kna","_type":"country","title":"Saint Kitts and Nevis"}
+{"_id":"country-saint-lucia-lca","_type":"country","title":"Saint Lucia"}
+{"_id":"country-saint-vincent-and-the-grenadines-vct","_type":"country","title":"Saint Vincent and the Grenadines"}
+{"_id":"country-samoa-wsm","_type":"country","title":"Samoa"}
+{"_id":"country-san-marino-smr","_type":"country","title":"San Marino"}
+{"_id":"country-s-o-tom-and-pr-ncipe-stp","_type":"country","title":"São Tomé and Príncipe"}
+{"_id":"country-saudi-arabia-sau","_type":"country","title":"Saudi Arabia"}
+{"_id":"country-senegal-sen","_type":"country","title":"Senegal"}
+{"_id":"country-serbia-srb","_type":"country","title":"Serbia"}
+{"_id":"country-seychelles-syc","_type":"country","title":"Seychelles"}
+{"_id":"country-sierra-leone-sle","_type":"country","title":"Sierra Leone"}
+{"_id":"country-singapore-sgp","_type":"country","title":"Singapore"}
+{"_id":"country-slovakia-svk","_type":"country","title":"Slovakia"}
+{"_id":"country-slovenia-svn","_type":"country","title":"Slovenia"}
+{"_id":"country-solomon-islands-slb","_type":"country","title":"Solomon Islands"}
+{"_id":"country-somalia-som","_type":"country","title":"Somalia"}
+{"_id":"country-south-africa-zaf","_type":"country","title":"South Africa"}
+{"_id":"country-south-korea-kor","_type":"country","title":"South Korea"}
+{"_id":"country-south-sudan-ssd","_type":"country","title":"South Sudan"}
+{"_id":"country-spain-esp","_type":"country","title":"Spain"}
+{"_id":"country-sri-lanka-lka","_type":"country","title":"Sri Lanka"}
+{"_id":"country-sudan-sdn","_type":"country","title":"Sudan"}
+{"_id":"country-suriname-sur","_type":"country","title":"Suriname"}
+{"_id":"country-sweden-swe","_type":"country","title":"Sweden"}
+{"_id":"country-switzerland-che","_type":"country","title":"Switzerland"}
+{"_id":"country-syria-syr","_type":"country","title":"Syria"}
+{"_id":"country-tajikistan-tjk","_type":"country","title":"Tajikistan"}
+{"_id":"country-tanzania-tza","_type":"country","title":"Tanzania"}
+{"_id":"country-thailand-tha","_type":"country","title":"Thailand"}
+{"_id":"country-timor-leste-tls","_type":"country","title":"Timor-Leste"}
+{"_id":"country-togo-tgo","_type":"country","title":"Togo"}
+{"_id":"country-tonga-ton","_type":"country","title":"Tonga"}
+{"_id":"country-trinidad-and-tobago-tto","_type":"country","title":"Trinidad and Tobago"}
+{"_id":"country-tunisia-tun","_type":"country","title":"Tunisia"}
+{"_id":"country-t-rkiye-tur","_type":"country","title":"Türkiye"}
+{"_id":"country-turkmenistan-tkm","_type":"country","title":"Turkmenistan"}
+{"_id":"country-tuvalu-tuv","_type":"country","title":"Tuvalu"}
+{"_id":"country-uganda-uga","_type":"country","title":"Uganda"}
+{"_id":"country-ukraine-ukr","_type":"country","title":"Ukraine"}
+{"_id":"country-united-arab-emirates-are","_type":"country","title":"United Arab Emirates"}
+{"_id":"country-united-kingdom-gbr","_type":"country","title":"United Kingdom"}
+{"_id":"country-united-states-usa","_type":"country","title":"United States"}
+{"_id":"country-uruguay-ury","_type":"country","title":"Uruguay"}
+{"_id":"country-uzbekistan-uzb","_type":"country","title":"Uzbekistan"}
+{"_id":"country-vanuatu-vut","_type":"country","title":"Vanuatu"}
+{"_id":"country-vatican-city-vat","_type":"country","title":"Vatican City"}
+{"_id":"country-venezuela-ven","_type":"country","title":"Venezuela"}
+{"_id":"country-vietnam-vnm","_type":"country","title":"Vietnam"}
+{"_id":"country-yemen-yem","_type":"country","title":"Yemen"}
+{"_id":"country-zambia-zmb","_type":"country","title":"Zambia"}
+{"_id":"country-zimbabwe-zwe","_type":"country","title":"Zimbabwe"}
