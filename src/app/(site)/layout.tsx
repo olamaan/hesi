@@ -10,6 +10,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       {/* Header Logo + Intro */}
       <div className="container">
         <a href="https://sdgs.un.org/">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/desa_logo.svg" className="library_desa_logo" alt="UN DESA" />
         </a>
 
