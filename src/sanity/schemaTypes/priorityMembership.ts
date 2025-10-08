@@ -1,11 +1,12 @@
+// src/sanity/schemaTypes/priorityMembership.ts
 import {defineType, defineField} from 'sanity'
-import {HandshakeIcon} from '@sanity/icons'
+import {LinkIcon} from '@sanity/icons' // ⬅️ replace HandshakeIcon
 
 export const priorityMembership = defineType({
   name: 'priorityMembership',
   title: 'Priority Membership',
   type: 'document',
-  icon: HandshakeIcon,
+  icon: LinkIcon, // ⬅️ updated
 
   // Optional: prevent duplicate (post + area) pairs
   validation: (Rule) =>
@@ -26,35 +27,25 @@ export const priorityMembership = defineType({
       name: 'post',
       title: 'University',
       type: 'reference',
-      to: [{ type: 'post' }],
-      validation: (Rule) => Rule.required()
+      to: [{type: 'post'}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'priorityArea',
       title: 'Priority Area',
       type: 'reference',
-      to: [{ type: 'priorityArea' }],
-      validation: (Rule) => Rule.required()
+      to: [{type: 'priorityArea'}],
+      validation: (Rule) => Rule.required(),
     }),
-
-    // Extra fields that belong to the relationship:
     defineField({
       name: 'contribution',
       title: 'Contribution (what they do in this Priority Area)',
       type: 'text',
       rows: 5,
-      validation: (Rule) => Rule.required().min(10)
+      validation: (Rule) => Rule.required().min(10),
     }),
-    defineField({
-      name: 'since',
-      title: 'Member since',
-      type: 'date'
-    }),
-    defineField({
-      name: 'website',
-      title: 'Related link',
-      type: 'url'
-    }),
+    defineField({name: 'since', title: 'Member since', type: 'date'}),
+    defineField({name: 'website', title: 'Related link', type: 'url'}),
     defineField({
       name: 'status',
       title: 'Status',
@@ -62,13 +53,13 @@ export const priorityMembership = defineType({
       initialValue: 'submitted',
       options: {
         list: [
-          { title: 'Submitted', value: 'submitted' },
-          { title: 'Published', value: 'published' },
-          { title: 'Declined',  value: 'declined'  },
+          {title: 'Submitted', value: 'submitted'},
+          {title: 'Published', value: 'published'},
+          {title: 'Declined', value: 'declined'},
         ],
-        layout: 'radio'
+        layout: 'radio',
       },
-      validation: (Rule) => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
   ],
 
@@ -76,13 +67,13 @@ export const priorityMembership = defineType({
     select: {
       post: 'post.title',
       area: 'priorityArea.title',
-      status: 'status'
+      status: 'status',
     },
     prepare(sel) {
       return {
         title: sel.post || '(University)',
-        subtitle: `${sel.area || '(Priority Area)'} — ${sel.status || ''}`
+        subtitle: `${sel.area || '(Priority Area)'} — ${sel.status || ''}`,
       }
-    }
-  }
+    },
+  },
 })
