@@ -1,23 +1,39 @@
-import ExistingPriorityForm from '@/components/ExistingPriorityForm'
+// src/app/(site)/join/existing/apply/page.tsx
+import Link from 'next/link'
 
-export default function ExistingPriorityApply({
+type SP = { [k: string]: string | string[] | undefined }
+
+export default async function ApplyPage({
   searchParams,
 }: {
-  searchParams: { [k: string]: string | string[] | undefined }
+  // Next 15: searchParams may be a Promise in typed props
+  searchParams: Promise<SP> | SP
 }) {
-  // For dev: we accept either ?postId=... or ?token=...
-  const token = Array.isArray(searchParams.token) ? searchParams.token[0] : (searchParams.token || '')
-  const postId = Array.isArray(searchParams.postId) ? searchParams.postId[0] : (searchParams.postId || '')
-  const idOrToken = postId || token
+  // Support both Promise and plain object to be future-proof
+  const sp = typeof (searchParams as Promise<SP>).then === 'function'
+    ? await (searchParams as Promise<SP>)
+    : (searchParams as SP)
 
-  if (!idOrToken) {
-    return <p className="alert alert--warn">Missing token or postId in the URL.</p>
-  }
+  const tokenParam = sp?.token
+  const token = Array.isArray(tokenParam) ? tokenParam[0] : tokenParam || ''
 
   return (
     <section>
-      <h2>Edit Priority Area memberships</h2>
-      <ExistingPriorityForm postIdOrToken={idOrToken} />
+      <h2>Priority Area application</h2>
+
+      {token ? (
+        <p className="muted">
+          Secure link detected. (Form content will go here.)
+        </p>
+      ) : (
+        <div className="alert alert--warn">
+          Missing token. Please request a new link.
+        </div>
+      )}
+
+      <p style={{ marginTop: 12 }}>
+        <Link className="hesiLink" href="/">Back to home</Link>
+      </p>
     </section>
   )
 }
