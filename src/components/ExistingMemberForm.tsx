@@ -232,7 +232,7 @@ export default function ExistingMemberForm() {
         <button className="returnButton" disabled={submitting || !postId}>
           {submitting ? 'Submitting…' : 'Submit application'}
         </button>
-        <a href="/" className="joinCancel">Cancel</a>
+       
       </div>
     </form>
   )

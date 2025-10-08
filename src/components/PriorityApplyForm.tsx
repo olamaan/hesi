@@ -112,7 +112,7 @@ export default function PriorityApplyForm({ postId, email, areas }: { postId: st
 
       <div className="joinActions">
         <button className="returnButton" disabled={submitting}>{submitting ? 'Submitting…' : 'Submit application'}</button>
-        <a href="/" className="joinCancel">Cancel</a>
+        
       </div>
     </form>
   )
