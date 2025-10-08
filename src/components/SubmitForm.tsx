@@ -39,38 +39,35 @@ export default function SubmitForm({
     setErrorMsg(null)
     setPending(true)
 
-    try {
-      const fd = new FormData(ev.currentTarget)
+   try {
+  const fd = new FormData(ev.currentTarget)
 
-      // minimal client-side validation
-      const title = String(fd.get('title') || '').trim()
-      const email = String(fd.get('email') || '').trim()
-      const countryId = String(fd.get('country') || '').trim()
-      if (!title || !email || !countryId) {
-        setErrorMsg('Please fill the required fields (Institution name, Contact email, Country).')
-        setPending(false)
-        return
-      }
+  const title = String(fd.get('title') || '').trim()
+  const email = String(fd.get('email') || '').trim()
+  const countryId = String(fd.get('country') || '').trim()
+  if (!title || !email || !countryId) {
+    setErrorMsg('Please fill the required fields (Institution name, Contact email, Country).')
+    setPending(false)
+    return
+  }
 
-      // NOTE: We now POST the FormData directly — no JSON, no headers.
-      // Your API route (`/api/submit`) that uses request.formData() will accept this.
-      const res = await fetch('/api/submit', {
-        method: 'POST',
-        body: fd,
-      })
+  const res = await fetch('/api/submit', { method: 'POST', body: fd })
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(text || `Request failed (${res.status})`)
+  }
+  const json = await res.json().catch(() => null)
+  setSuccessId((json && json.id) || 'ok')
+} catch (err: unknown) {
+  const msg =
+    err instanceof Error ? err.message :
+    typeof err === 'string' ? err :
+    'Submission failed.'
+  setErrorMsg(msg)
+} finally {
+  setPending(false)
+}
 
-      if (!res.ok) {
-        // try to surface server error text
-        const text = await res.text()
-        throw new Error(text || `Request failed (${res.status})`)
-      }
-      const json = await res.json().catch(() => null)
-      setSuccessId((json && json.id) || 'ok')
-    } catch (err: any) {
-      setErrorMsg(err?.message || 'Submission failed.')
-    } finally {
-      setPending(false)
-    }
   }
 
   if (successId) {
