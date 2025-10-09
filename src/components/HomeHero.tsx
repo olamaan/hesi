@@ -258,8 +258,8 @@ export default async function HomeHero({
         <aside className="filters">
           {/* Results (matching current filters+search) */}
           <div className="results-bar results-bar--stack">
-            <span className={`results-count${total === 0 ? ' is-zero' : ''}`}>{formatNumber(total)}</span>
-            <span className="results-label">results</span>
+            <span className={`results-count${total === 0 ? ' is-zero' : ''}`}>{formatNumber(total)} results</span>
+            <span className="results-label"></span>
           </div>
 
           {/* Sort (segmented control) */}
