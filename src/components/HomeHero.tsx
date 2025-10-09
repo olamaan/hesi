@@ -266,8 +266,8 @@ export default async function HomeHero({
           <div className="filter_menu filter-menu--spaced"><strong>Search by title & country</strong>
           
           
-           {q && (reset
-              <Link className="-link" href={clearSearchHref(sp)} prefetch={false}>
+           {q && (
+              <Link className="reset-link" href={clearSearchHref(sp)} prefetch={false}>
                 Clear
               </Link>
             )}
