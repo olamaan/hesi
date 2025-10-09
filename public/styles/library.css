@@ -414,6 +414,8 @@ margin-bottom: 20px;
 
 /* Pill badge for the count */
 .results-count{
+
+    
   display:inline-flex;
   align-items:center;
   justify-content:center;

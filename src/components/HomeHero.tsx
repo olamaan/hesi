@@ -343,7 +343,17 @@ export default async function HomeHero({
 Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
             <p></p>
             <Link href="/join"><button className="theButton">Join now</button></Link>
+
+               <div className="filter_menu filter-menu--spaced">Note</div>
+
+The HESI Secretariat is currently reviewing all submissions received through the previous sign-up form. We expect to complete the review and process all applications by November 2025.  
+
+
           </div>
+
+
+ 
+
         </aside>
 
         {/* RIGHT: list & pagers */}
