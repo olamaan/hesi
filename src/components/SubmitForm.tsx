@@ -45,8 +45,10 @@ export default function SubmitForm({
   const title = String(fd.get('title') || '').trim()
   const email = String(fd.get('email') || '').trim()
   const countryId = String(fd.get('country') || '').trim()
-  if (!title || !email || !countryId) {
-    setErrorMsg('Please fill the required fields (Institution name, Contact email, Country).')
+  const description = String(fd.get('description') || '').trim()
+
+  if (!title || !email || !countryId || !description) {
+    setErrorMsg('Please fill the required fields (Institution name, Contact email, Country, Description).')
     setPending(false)
     return
   }
@@ -86,11 +88,7 @@ export default function SubmitForm({
 
   return (
     <form className="joinForm" onSubmit={onSubmit} action="/api/submit" method="POST" noValidate>
-      {errorMsg && (
-        <div className="alert alert--warn" role="alert">
-          {errorMsg}
-        </div>
-      )}
+ 
 
       {/* Institution */}
       <fieldset className="joinFieldset">
@@ -150,8 +148,8 @@ export default function SubmitForm({
 
 
         <label className="joinLabel" htmlFor="description">
-          <span className="joinLabel__text">Short description</span>
-          <textarea id="description" name="description" className="joinTextarea" rows={4} />
+          <span className="joinLabel__text">Explain what your institution is doing to promote higher education for sustainable development.<span className="req" aria-hidden>*</span></span>
+          <textarea id="description" name="description" className="joinTextarea" rows={8} />
         </label>
       </fieldset>
 
@@ -200,9 +198,14 @@ export default function SubmitForm({
 </fieldset>
 */}
 
+  {errorMsg && (
+        <div className="alert alert--warn" role="alert">
+          {errorMsg}
+        </div>
+      )}
 
       <div className="joinActions">
-        <button className="returnButton" type="submit" disabled={pending}>
+        <button className="theButton" type="submit" disabled={pending}>
           {pending ? 'Submitting…' : 'Submit'}
         </button>
         
