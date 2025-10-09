@@ -492,17 +492,33 @@ color: #00adef;
  
 
 /* put in your globals.css (or wherever your filters styles live) */
+
 .filter-search {
   display: flex;
+  align-items: center;
   gap: 8px;
   margin-bottom: 12px;
 }
+
+.filter-search__label {
+  display: grid;
+  gap: 4px;
+  min-width: 0; /* allow input to shrink nicely */
+}
+
+.filter-search__labelText {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 .filter-search__input {
   flex: 1;
+  width: 260px;            /* adjust as you like */
   padding: 8px 10px;
   border: 1px solid #DDD;
   border-radius: 6px;
 }
+
 .filter-search__button {
   padding: 8px 12px;
   border: 1px solid #DDD;
@@ -510,25 +526,24 @@ color: #00adef;
   border-radius: 6px;
   cursor: pointer;
 }
-
-
-.filter-search__button:hover {
-  
-    
-  
-  border-color: #00adef;
- 
-}
+.filter-search__button:hover { border-color: #00adef; }
 
 .reset-link {
-  margin-left: 8px;
-  font-size: 0.9em;
-  color: #0077cc;
-  text-decoration: underline;
-  cursor: pointer;
+  
+ 
+  float:right;
+   
 }
+.reset-link:hover { text-decoration: underline; }
+
+/* Push the Clear link to the far right of the row */
+.reset-link--inline { margin-left: auto; }
 
 
+
+ 
+
+ 
 
 .meta-links { list-style: none; margin: 0; padding: 0; }
 .meta-links li { margin: 4px 0; }
