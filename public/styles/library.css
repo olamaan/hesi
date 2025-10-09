@@ -120,6 +120,26 @@ a:hover {
 }
 
 
+
+.hesiBanner__eyebrow_small {
+  display: inline-block;          /* ← hug the text */
+  background: #00adef;            /* blue pill */
+  color: #fff;
+  padding: 8px 12px;              /* space around text */
+  border-radius: 6px;             /* rounded pill */
+  line-height: 1.1;
+  font-family: Oswald;
+  font-weight: 600;
+  font-size: 26px;                /* tweak as you like */
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-decoration: none;          /* just in case */
+  /* optional: keep on one line */
+  /* white-space: nowrap; */
+}
+
+
+
 .hesiBanner__eyebrow {
   display: inline-block;          /* ← hug the text */
   background: #00adef;            /* blue pill */

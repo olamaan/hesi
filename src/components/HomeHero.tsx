@@ -350,7 +350,8 @@ Other UN partners include UNESCO, UN Environment Programme, UN Global Compact’
       {/* RIGHT: list & pagers */}
       <section className="cards">
 
-        <h2>{formatNumber(publishedTotal)} Members</h2>
+
+        <div className="hesiBanner__eyebrow_small">{formatNumber(publishedTotal)} Members</div>
         {/* TOP PAGER */}
 <div className="pager3 pager3--top">
   <div className="pager3__prev">
