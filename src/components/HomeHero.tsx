@@ -342,7 +342,7 @@ export default async function HomeHero({
             <h5>Join HESI</h5>
 Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
             <p></p>
-            <Link href="/join"><button className="theButton">Join & Engage</button></Link>
+            <Link href="/join"><button className="theButton">Join HESI</button></Link>
           </div>
         </aside>
 
