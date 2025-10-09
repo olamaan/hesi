@@ -339,7 +339,7 @@ export default async function HomeHero({
           </div>
 
           <div className="joinBox">
-            <h5>Join HESI</h5>
+            <div className="filter_menu filter-menu--spaced">Join HESI</div>
 Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
             <p></p>
             <Link href="/join"><button className="theButton">Join HESI</button></Link>
