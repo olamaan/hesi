@@ -308,7 +308,7 @@ export default async function HomeHero({
               className="filter-search__input"
               name="q"
               defaultValue={q}
-              placeholder="Type a university name…"
+              placeholder="Type org name/country…"
               aria-label="Search members by title"
             />
             <button className="filter-search__button" type="submit">Search</button>
