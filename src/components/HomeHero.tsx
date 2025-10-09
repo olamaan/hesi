@@ -340,7 +340,7 @@ export default async function HomeHero({
 
           <div className="joinBox">
             <h5>Join HESI</h5>
-            Any higher education institution or interested organization may join HESI.
+Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
             <p></p>
             <Link href="/join"><button className="theButton">Join & Engage</button></Link>
           </div>
