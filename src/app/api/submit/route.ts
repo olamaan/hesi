@@ -1,5 +1,7 @@
 // src/app/api/submit/route.ts
 /* eslint-disable @typescript-eslint/no-explicit-any */
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
@@ -55,7 +57,15 @@ export async function POST(req: Request) {
     const website = normalizeUrl(norm(form.get('website')))
     const focalpoint = norm(form.get('focalpoint'))
 
-    const client = createClient({ projectId, dataset, apiVersion, token, useCdn: false })
+
+    const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset:   process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion,
+  token:     process.env.SANITY_WRITE_TOKEN || process.env.SANITY_API_TOKEN, // must be set in Netlify
+  useCdn: false,
+})
+
 
     // Create Member (post)
     const postDoc: any = {

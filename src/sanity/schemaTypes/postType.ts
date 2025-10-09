@@ -3,9 +3,9 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const postType = defineType({
   name: 'post',               // keep the type id as 'post'
-  title: 'Post',
+  title: 'Member',
   type: 'document',
-  icon: DocumentTextIcon,
+
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: r => r.required() }),
     defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
@@ -40,9 +40,6 @@ defineField({
       return true
     }).unique(), // ensure no duplicates
 }),
-
-
-
 
 
 
@@ -89,7 +86,7 @@ defineField({
     select: {
       title: 'title',
       status: 'status',
-      country: 'country->title',
+    
     },
     prepare({ title, status, country }) {
       const statusCap = status ? status.charAt(0).toUpperCase() + status.slice(1) : ''
