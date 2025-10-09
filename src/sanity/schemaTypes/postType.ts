@@ -11,7 +11,6 @@ export const postType = defineType({
     defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
  
 
-
     defineField({ name: 'datejoined', title: 'Date joined', type: 'date' }), // matches your key
     defineField({ name: 'focalpoint', title: 'Focal point (name)', type: 'string' }), // matches your key
     
@@ -88,9 +87,9 @@ defineField({
       status: 'status',
     
     },
-    prepare({ title, status, country }) {
+    prepare({ title, status }) {
       const statusCap = status ? status.charAt(0).toUpperCase() + status.slice(1) : ''
-      const subtitle = [statusCap, country].filter(Boolean).join(' • ')
+      const subtitle = [statusCap].filter(Boolean).join(' • ')
       return { title, subtitle }
     },
   },
