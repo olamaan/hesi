@@ -2,7 +2,7 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-md navbar-language">
       <div className="container">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="https://www.un.org/">
           <img
             alt=""
             src="https://sdgs.un.org/themes/custom/porto/assets/images/home.svg"
