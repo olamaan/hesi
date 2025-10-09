@@ -262,8 +262,33 @@ export default async function HomeHero({
             <span className="results-label">results</span>
           </div>
 
+          {/* Sort (segmented control) */}
+          <div className="sort-group">
+            <div className="filter_menu filter-menu--spaced"><strong>Sort by</strong></div>
+            <nav className="segmented" role="radiogroup" aria-label="Sort by">
+              <Link
+                href={sortHref(sp, 'joined')}
+                prefetch={false}
+                className={`segmented__item ${sort === 'joined' ? 'is-active' : ''}`}
+                role="radio"
+                aria-checked={sort === 'joined'}
+              >
+                Joined (newest)
+              </Link>
+              <Link
+                href={sortHref(sp, 'title')}
+                prefetch={false}
+                className={`segmented__item ${sort === 'title' ? 'is-active' : ''}`}
+                role="radio"
+                aria-checked={sort === 'title'}
+              >
+                Title (A–Z)
+              </Link>
+            </nav>
+          </div>
+
           {/* Title search */}
-          <div className="filter_menu filter-menu--spaced"><strong>Search by title & country</strong>
+          <div className="filter_menu filter-menu--spaced"><strong>Search by Org & country</strong>
           
           
            {q && (
@@ -290,30 +315,7 @@ export default async function HomeHero({
            
           </form>
 
-          {/* Sort (segmented control) */}
-          <div className="sort-group">
-            <div className="filter_menu filter-menu--spaced"><strong>Sort by</strong></div>
-            <nav className="segmented" role="radiogroup" aria-label="Sort by">
-              <Link
-                href={sortHref(sp, 'joined')}
-                prefetch={false}
-                className={`segmented__item ${sort === 'joined' ? 'is-active' : ''}`}
-                role="radio"
-                aria-checked={sort === 'joined'}
-              >
-                Joined (newest)
-              </Link>
-              <Link
-                href={sortHref(sp, 'title')}
-                prefetch={false}
-                className={`segmented__item ${sort === 'title' ? 'is-active' : ''}`}
-                role="radio"
-                aria-checked={sort === 'title'}
-              >
-                Title (A–Z)
-              </Link>
-            </nav>
-          </div>
+
 
           {/* Regions */}
           <div className="filter_menu filter-menu--spaced"><strong>Filter by region</strong></div>
