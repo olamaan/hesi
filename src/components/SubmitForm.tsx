@@ -89,6 +89,44 @@ export default function SubmitForm({
   return (
     <form className="joinForm" onSubmit={onSubmit} action="/api/submit" method="POST" noValidate>
  
+ 
+ <div className="joinBox">
+<h2>About HESI Membership</h2>
+
+<p>The Higher Education Sustainability Initiative (HESI) is a global, open partnership between several United Nations entities and the higher education community, dedicated to enhancing the role of higher education in advancing sustainable development.</p>
+ 
+ 
+ 
+
+<p>By joining HESI, your institution becomes part of a global community working collaboratively to advance sustainability in higher education and beyond. Members are encouraged to actively contribute to this shared mission by:
+</p>
+ 
+
+<ul className='library_list'>
+<li>Integrating sustainable development into teaching, research, campus operations, and institutional strategies to equip students and future leaders with the knowledge and skills to advance the SDGs.</li>
+<li>Promoting sustainability-focused research and innovation that supports evidence-based policymaking and solutions to global challenges.</li>
+<li>Fostering partnerships and collaboration with peers and stakeholders to strengthen the role of academia in building sustainable and inclusive communities.</li>
+<li>Sharing good practices and progress updates that showcase how your institution contributes to the 2030 Agenda and inspires others in the higher education community.</li>
+</ul>
+
+ 
+
+
+<p>
+  As a member, you are encouraged to engage in HESI activities and initiatives that align with your institution’s priorities and capacities. These include participating in the annual HESI Networking Forum, the HESI Global Forum, the HESI Action Groups, and the communities of practice under the three priority areas of the HESI Partnership Framework:
+</p>
+<ul className='library_list'>
+  <li>Teaching and Learning</li>
+  <li>Research and Innovation</li>
+  <li>Partnerships and Engagement</li>
+</ul>
+<p>
+  Membership is free of charge and open to all higher education institutions committed to advancing sustainability in their core missions.
+</p>
+
+<p>Your participation in HESI reflects a commitment to integrating sustainability into higher education and supporting global collaboration for the Sustainable Development Goals. We look forward to your active engagement in this shared effort.</p>
+
+</div>
 
       {/* Institution */}
       <fieldset className="joinFieldset">
@@ -203,6 +241,8 @@ export default function SubmitForm({
           {errorMsg}
         </div>
       )}
+
+<p>By submitting this form, you consent to the HESI Secretariat and the United Nations Department of Economic and Social Affairs (UN DESA) publishing relevant information about your institution (excluding personal contact details such as email addresses) on the HESI Community platform, and to receiving the HESI monthly newsletter and other relevant updates.</p>
 
       <div className="joinActions">
         <button className="theButton" type="submit" disabled={pending}>

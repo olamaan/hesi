@@ -11,6 +11,10 @@ a:hover {
   text-decoration: underline !important;
 }
 
+ p {
+    font-size: 14px;
+    margin-bottom: 5px;
+ }
  
  .alert { border:1px solid #f3d08b; background:#fff9ea; border-radius:8px; padding:12px 14px; margin:0 0 14px; }
 .alert--warn { border-color:#f3d08b; }
