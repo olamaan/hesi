@@ -93,10 +93,12 @@ export default function SubmitForm({
  <div className="joinBox">
 <h2>About HESI Membership</h2>
 
-<p>The Higher Education Sustainability Initiative (HESI) is a global, open partnership between several United Nations entities and the higher education community, dedicated to enhancing the role of higher education in advancing sustainable development.</p>
  
  
- 
+<p>The Higher Education Sustainability Initiative (HESI), launched in the lead-up to the Rio+20 Conference in 2012 as an open partnership between several United Nations entities and the higher education community, aims to enhance the role of the higher education sector in advancing sustainable development by facilitating multi-stakeholder discussions, actions, and the dissemination of best practices.</p> 
+
+
+
 
 <p>By joining HESI, your institution becomes part of a global community working collaboratively to advance sustainability in higher education and beyond. Members are encouraged to actively contribute to this shared mission by:
 </p>
@@ -121,7 +123,7 @@ export default function SubmitForm({
   <li>Partnerships and Engagement</li>
 </ul>
 <p>
-  Membership is free of charge and open to all higher education institutions committed to advancing sustainability in their core missions.
+  Membership is free of charge and open to all higher education institutions, entities with a mandate to work in higher education, and affiliated partners that work with higher education stakeholders.
 </p>
 
 <p>Your participation in HESI reflects a commitment to integrating sustainability into higher education and supporting global collaboration for the Sustainable Development Goals. We look forward to your active engagement in this shared effort.</p>
