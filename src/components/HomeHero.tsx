@@ -23,6 +23,11 @@ type Item = {
   datejoined?: string
   countryTitle?: string
   regionTitle?: string
+  hasAction?: boolean
+  hasForum?: boolean
+  hasCop?: boolean
+  hasNetwork?: boolean
+  activities?: { _id: string; type: 'action'|'forum'|'cop'|'network'|'other'; title?: string }[]
 }
 
 function toArray(v?: string | string[]): string[] {
@@ -83,7 +88,7 @@ export default async function HomeHero({
 
   const sp = searchParams ?? {}
 
-  // title search (q)
+  // title/country search (q)
   const qRaw = Array.isArray(sp.q) ? sp.q[0] : sp.q
   const q = (qRaw || '').trim()
   const qPattern = q ? `*${q.toLowerCase()}*` : null
@@ -104,88 +109,162 @@ export default async function HomeHero({
   const end = start + perPage
 
   const { items, total, publishedTotal } = await client.fetch<{
-    items: Item[]
-    total: number
-    publishedTotal: number
-  }>(
-    `{
-      "items": select(
-        $sort == "title" =>
-          *[
-            _type == "post" &&
-            lower(status) == "published" &&
-            (
-              $filterRegionIds == null ||
-              country._ref in *[
-                _type == "country" &&
-                defined(region._ref) &&
-                region._ref in $filterRegionIds
-              ]._id
-            ) &&
-   (
-  $qPattern == null ||
-  lower(title) match $qPattern ||
-  lower(country->title) match $qPattern
+  items: Item[]
+  total: number
+  publishedTotal: number
+}>(
+  `{
+    "items": select(
+      $sort == "title" =>
+        *[
+          _type == "post" &&
+          lower(status) == "published" &&
+          (
+            $filterRegionIds == null ||
+            country._ref in *[
+              _type == "country" &&
+              defined(region._ref) &&
+              region._ref in $filterRegionIds
+            ]._id
+          ) &&
+          (
+            $qPattern == null ||
+            lower(title) match $qPattern ||
+            lower(country->title) match $qPattern
+          )
+        ] | order(title asc)[$start...$end]{
+          _id, title, datejoined, description, website,
+          "countryTitle": country->title,
+          "regionTitle": country->region->title,
+
+          // Badge flags
+          "hasAction": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(actionGroup._ref)
+          ]) > 0,
+          "hasForum": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(forum._ref)
+          ]) > 0,
+          "hasCop": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(priorityArea._ref)
+          ]) > 0,
+          "hasNetwork": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(network._ref)
+          ]) > 0,
+
+          // Full activity list (all)
+
+          "activities": *[
+  _type == "memberParticipation" && references(^._id)
+]{
+  "arr": [
+    {"type":"action",  "title": actionGroup->title,  "_id": _id + "-ag"},
+    {"type":"forum",   "title": forum->title,        "_id": _id + "-fo"},
+    {"type":"cop",     "title": priorityArea->title, "_id": _id + "-pa"},
+    {"type":"network", "title": network->title,      "_id": _id + "-ne"}
+  ]
+}["arr"][][defined(title)] | order(type asc, title asc)
+
+
+
+        },
+        *[
+          _type == "post" &&
+          lower(status) == "published" &&
+          (
+            $filterRegionIds == null ||
+            country._ref in *[
+              _type == "country" &&
+              defined(region._ref) &&
+              region._ref in $filterRegionIds
+            ]._id
+          ) &&
+          (
+            $qPattern == null ||
+            lower(title) match $qPattern ||
+            lower(country->title) match $qPattern
+          )
+        ] | order(datejoined desc, _createdAt desc)[$start...$end]{
+          _id, title, datejoined, description, website,
+          "countryTitle": country->title,
+          "regionTitle": country->region->title,
+
+          // Badge flags
+          "hasAction": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(actionGroup._ref)
+          ]) > 0,
+          "hasForum": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(forum._ref)
+          ]) > 0,
+          "hasCop": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(priorityArea._ref)
+          ]) > 0,
+          "hasNetwork": count(*[
+            _type=="memberParticipation" &&
+            member._ref == ^._id &&
+            defined(network._ref)
+          ]) > 0,
+
+          // Full activity list (all)
+
+          "activities": *[
+  _type == "memberParticipation" && references(^._id)
+]{
+  "arr": [
+    {"type":"action",  "title": actionGroup->title,  "_id": _id + "-ag"},
+    {"type":"forum",   "title": forum->title,        "_id": _id + "-fo"},
+    {"type":"cop",     "title": priorityArea->title, "_id": _id + "-pa"},
+    {"type":"network", "title": network->title,      "_id": _id + "-ne"}
+  ]
+}["arr"][][defined(title)] | order(type asc, title asc)
+
+
+
+        }
+    ),
+
+    "total": count(*[
+      _type == "post" &&
+      lower(status) == "published" &&
+      (
+        $filterRegionIds == null ||
+        country._ref in *[
+          _type == "country" &&
+          defined(region._ref) &&
+          region._ref in $filterRegionIds
+        ]._id
+      ) &&
+      (
+        $qPattern == null ||
+        lower(title) match $qPattern ||
+        lower(country->title) match $qPattern
+      )
+    ]),
+
+    "publishedTotal": count(*[
+      _type == "post" &&
+      lower(status) == "published"
+    ])
+  }`,
+  { filterRegionIds, start, end, sort, qPattern }
 )
 
 
-          ] | order(title asc)[$start...$end]{
-            _id, title, datejoined, description, website,
-            "countryTitle": country->title,
-            "regionTitle": country->region->title
-          },
-          *[
-            _type == "post" &&
-            lower(status) == "published" &&
-            (
-              $filterRegionIds == null ||
-              country._ref in *[
-                _type == "country" &&
-                defined(region._ref) &&
-                region._ref in $filterRegionIds
-              ]._id
-            ) &&
-   (
-  $qPattern == null ||
-  lower(title) match $qPattern ||
-  lower(country->title) match $qPattern
-)
 
-          ] | order(datejoined desc, _createdAt desc)[$start...$end]{
-            _id, title, datejoined, description, website,
-            "countryTitle": country->title,
-            "regionTitle": country->region->title
-          }
-      ),
 
-      // matching current filters (+ search)
-      "total": count(*[
-        _type == "post" &&
-        lower(status) == "published" &&
-        (
-          $filterRegionIds == null ||
-          country._ref in *[
-            _type == "country" &&
-            defined(region._ref) &&
-            region._ref in $filterRegionIds
-          ]._id
-        ) &&
-(
-  $qPattern == null ||
-  lower(title) match $qPattern ||
-  lower(country->title) match $qPattern
-)
-
-      ]),
-
-      // all published, regardless of filters/search
-      "publishedTotal": count(*[
-        _type == "post" &&
-        lower(status) == "published"
-      ])
-    }`,
-    { filterRegionIds, start, end, sort, qPattern }
-  )
 
   const shownFrom = total === 0 ? 0 : start + 1
   const shownTo = start + items.length
@@ -194,7 +273,7 @@ export default async function HomeHero({
 
   return (
     <>
-      {/* Hero + right column content you had */}
+      {/* Hero + right column content */}
       <div className="post-two-col">
         <div className="post-main">
           <div className="hesiBanner">
@@ -258,8 +337,8 @@ export default async function HomeHero({
         <aside className="filters">
           {/* Results (matching current filters+search) */}
           <div className="results-bar results-bar--stack">
-            <span className={`results-count${total === 0 ? ' is-zero' : ''}`}>{formatNumber(total)} results</span>
-            <span className="results-label"></span>
+            <span className={`results-count${total === 0 ? ' is-zero' : ''}`}>{formatNumber(total)}</span>
+            <span className="results-label">results</span>
           </div>
 
           {/* Sort (segmented control) */}
@@ -287,17 +366,15 @@ export default async function HomeHero({
             </nav>
           </div>
 
-          {/* Title search */}
-          <div className="filter_menu filter-menu--spaced"><strong>Search by Org & country</strong>
-          
-          
-           {q && (
+          {/* Title/Country search */}
+          <div className="filter_menu filter-menu--spaced" style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+            <strong>Search by Org &amp; country</strong>
+            {q && (
               <Link className="reset-link" href={clearSearchHref(sp)} prefetch={false}>
                 Clear
               </Link>
             )}
-            
-            </div>
+          </div>
           <form className="filter-search" method="get" action="/">
             {/* preserve regions + sort */}
             {selectedRegionIds.map((id) => (
@@ -309,13 +386,10 @@ export default async function HomeHero({
               name="q"
               defaultValue={q}
               placeholder="Type org name/country…"
-              aria-label="Search members by title"
+              aria-label="Search members by title or country"
             />
             <button className="filter-search__button" type="submit">Search</button>
-           
           </form>
-
-
 
           {/* Regions */}
           <div className="filter_menu filter-menu--spaced"><strong>Filter by region</strong></div>
@@ -340,20 +414,13 @@ export default async function HomeHero({
 
           <div className="joinBox">
             <div className="filter_menu filter-menu--spaced">Join HESI</div>
-Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
+            Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
             <p></p>
             <Link href="/join"><button className="theButton">Join now</button></Link>
 
-               <div className="filter_menu filter-menu--spaced">Note</div>
-
-The HESI Secretariat is currently reviewing all submissions received through the previous sign-up form. We expect to complete the review and process all applications by November 2025.  
-
-
+            <div className="filter_menu filter-menu--spaced">Note</div>
+            The HESI Secretariat is currently reviewing all submissions received through the previous sign-up form. We expect to complete the review and process all applications by November 2025.
           </div>
-
-
- 
-
         </aside>
 
         {/* RIGHT: list & pagers */}
@@ -417,26 +484,142 @@ The HESI Secretariat is currently reviewing all submissions received through the
               <li key={it._id} className="row-item">
                 <details className="row-details">
                   <summary className="row-summary">
-                    <div className="row-summary__title">{it.title}</div>
-                    <div className="muted row-summary__meta">
-                      {it.countryTitle ?? '—'}
-                      {formatYear(it.datejoined) ? ` • ${formatYear(it.datejoined)}` : ''}
+                    <div className="row-summary__left">
+                      <div className="row-summary__title">{it.title}</div>
+           
+                    </div>
+
+                    <div className="row-summary__badges">
+
+                      {it.hasForum && (
+                        <img
+                          className="badge-icon"
+                          src="/images/badges/badge_forum.svg"
+                          alt="Forum participant"
+                          loading="lazy"
+                        />
+                      )}
+
+                {it.hasNetwork && (
+                        <img
+                          className="badge-icon"
+                          src="/images/badges/badge_network.svg"
+                          alt="Network participant"
+                          loading="lazy"
+                        />
+                      )}
+
+                      
+                      {it.hasCop && (
+                        <img
+                          className="badge-icon"
+                          src="/images/badges/badge_cop.svg"
+                          alt="Priority Area member"
+                          loading="lazy"
+                        />
+                      )}
+
+      
+
+                      {it.hasAction && (
+                        <img
+                          className="badge-icon"
+                          src="/images/badges/badge_action.svg"
+                          alt="Action Group member"
+                          loading="lazy"
+                        />
+                      )}
+
                     </div>
                   </summary>
 
                   <div className="row-details__body">
+<div className="muted row-summary__meta">
+  {[
+    it.countryTitle ?? '—',
+    formatYear(it.datejoined) || null,
+    it.website ? (
+      <a
+        key="w"
+        className="webLink"
+        href={it.website}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {it.website}
+      </a>
+    ) : null,
+  ]
+    .filter(Boolean)
+    .map((part, i) => (
+      <span key={i} className="meta-bit">
+        {i > 0 && <span className="meta-sep"> | </span>}
+        {part}
+      </span>
+    ))}
+</div>
+
                     {it.description ? (
                       <p className="row-details__text">{it.description}</p>
                     ) : (
-                      <p></p>
+                      <span></span>
                     )}
-                    {it.website && (
-                      <p className="row-details__linkwrap">
-                        <a className="webLink" href={it.website} target="_blank" rel="noopener noreferrer">
-                          {it.website}
-                        </a>
-                      </p>
-                    )}
+                    
+  {(it.activities && it.activities.length > 0) && (() => {
+  const uniq = (xs: (string | undefined)[]) =>
+    Array.from(new Set(xs.filter(Boolean))) as string[]
+
+  const forums   = uniq((it.activities || []).filter(a => a.type === 'forum')  .map(a => a.title))
+  const networks = uniq((it.activities || []).filter(a => a.type === 'network').map(a => a.title))
+  const cops     = uniq((it.activities || []).filter(a => a.type === 'cop')    .map(a => a.title))
+  const actions  = uniq((it.activities || []).filter(a => a.type === 'action') .map(a => a.title))
+
+  const hasAny = forums.length || networks.length || cops.length || actions.length
+  if (!hasAny) return null
+
+  const iconFor = (type: 'forum'|'network'|'cop'|'action') =>
+    type === 'forum'   ? '/images/badges/badge_forum.svg'   :
+    type === 'network' ? '/images/badges/badge_network.svg' :
+    type === 'cop'     ? '/images/badges/badge_cop.svg'     :
+                         '/images/badges/badge_action.svg'
+
+  const Line = ({
+    type,
+    label,
+    items
+  }: {
+    type: 'forum'|'network'|'cop'|'action'
+    label: string
+    items: string[]
+  }) => items.length ? (
+    <div className="row-activities__line">
+      <img
+        className="row-activities__icon"
+        src={iconFor(type)}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+      />
+      <span className="row-activities__type">{label}:</span>{' '}
+      <span className="row-activities__titles">{items.join(', ')}</span>
+    </div>
+  ) : null
+
+  return (
+    <div className="row-activities">
+      <div className="row-activities__label">Active in:</div>
+      <Line type="forum"   label="Forum"         items={forums} />
+      <Line type="network" label="Network"       items={networks} />
+      <Line type="cop"     label="Community of Practice" items={cops} />
+      <Line type="action"  label="Action Group"  items={actions} />
+    </div>
+  )
+})()}
+
+
+
+
+
                   </div>
                 </details>
               </li>
