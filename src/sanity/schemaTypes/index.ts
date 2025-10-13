@@ -11,8 +11,6 @@ import {priorityArea} from './priorityArea'
 import {forum} from './forum'
 import {network} from './network'
 
-import {memberParticipation} from './memberParticipation'
-
  
 import {regionType} from './region'
 import {countryType} from './country'
@@ -21,6 +19,6 @@ import {countryType} from './country'
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [blockContentType, categoryType, postType, authorType, regionType, countryType,  priorityArea,actionGroup,
     forum,
-    memberParticipation,network,
+    network,
     ],
 }

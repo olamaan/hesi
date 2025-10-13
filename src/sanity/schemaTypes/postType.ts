@@ -65,6 +65,36 @@ defineField({
 
 
     defineField({
+  name: 'forums',
+  title: 'Forums',
+  type: 'array',
+  of: [{ type: 'reference', to: [{ type: 'forum' }] }],
+  options: { layout: 'tags' },
+}),
+defineField({
+  name: 'networks',
+  title: 'Networks',
+  type: 'array',
+  of: [{ type: 'reference', to: [{ type: 'network' }] }],
+  options: { layout: 'tags' },
+}),
+defineField({
+  name: 'priorityAreas',
+  title: 'CoP',
+  type: 'array',
+  of: [{ type: 'reference', to: [{ type: 'priorityArea' }] }],
+  options: { layout: 'tags' },
+}),
+defineField({
+  name: 'actionGroups',
+  title: 'Action Groups',
+  type: 'array',
+  of: [{ type: 'reference', to: [{ type: 'actionGroup' }] }],
+  options: { layout: 'tags' },
+}),
+
+
+    defineField({
       name: 'status',
       title: 'Status',
       type: 'string',

@@ -24,6 +24,31 @@ a:hover {
 .dupList__meta { font-size:.95rem; }
 
 
+/* stacked meta list */
+.row-meta__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.row-meta__list--stacked .row-meta__item + .row-meta__item {
+  margin-top: 6px; /* space between rows */
+}
+.row-meta__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-muted, #6b7280);
+  
+ 
+}
+.row-meta__icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.75;
+  flex: 0 0 14px;
+}
+
+
 
 .joinForm { display:grid; gap:16px; }
 .joinFieldset { border:1px solid #e5e5e5; border-radius:8px; padding:12px; background:#fff; }
@@ -375,9 +400,9 @@ margin-top: 20px;
 
 .row-activities { margin-top: 12px;clear:both; }
 .row-activities__label {
-  font-weight: 300;
+  font-weight: 600;
   border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 .row-activities__list {
   list-style: none;
@@ -432,9 +457,10 @@ margin-top: 20px;
 
 {  
 
-border-bottom: 1px solid #00adef;
+border-bottom: 1px solid #e5e5e5;
     float: right;
     padding: 10px;
+    margin-bottom: 10px;
 
 }
 
@@ -452,7 +478,7 @@ border-bottom: 1px solid #00adef;
 
  }
 .row-details__text { 
-     font-size: 13px;
+      
      
 margin-bottom: 20px;
      white-space: pre-wrap; }
