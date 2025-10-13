@@ -1,3 +1,4 @@
+// src/sanity/schemaTypes/memberParticipation.ts
 import {defineType, defineField} from 'sanity'
 import {LinkIcon} from '@sanity/icons'
 
@@ -6,76 +7,78 @@ export const memberParticipation = defineType({
   title: 'Member Participation',
   type: 'document',
   icon: LinkIcon,
-
   fields: [
-    // one-to-one link to a Member (your "post" type)
     defineField({
       name: 'member',
       title: 'Member',
       type: 'reference',
-      to: [{ type: 'post' }],
-      validation: r => r.required(),
-    }),
-
-    // OPTIONAL one-to-one links (pick any that apply)
-    defineField({
-      name: 'actionGroup',
-      title: 'Action Group',
-      type: 'reference',
-      to: [{ type: 'actionGroup' }],
+      to: [{type: 'post'}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'forum',
       title: 'Forum',
       type: 'reference',
-      to: [{ type: 'forum' }],
+      to: [{type: 'forum'}],
+    }),
+    defineField({
+      name: 'network',
+      title: 'Network',
+      type: 'reference',
+      to: [{type: 'network'}],
     }),
     defineField({
       name: 'priorityArea',
       title: 'Priority Area',
       type: 'reference',
-      to: [{ type: 'priorityArea' }],
+      to: [{type: 'priorityArea'}],
     }),
-
-        defineField({
-      name: 'network',
-      title: 'Networking Forum',
-      type: 'reference',
-      to: [{ type: 'network' }],
-    }),
-
-    // (optional) free text about the participation
     defineField({
-      name: 'notes',
-      title: 'Notes',
-      type: 'text',
-      rows: 3,
+      name: 'actionGroup',
+      title: 'Action Group',
+      type: 'reference',
+      to: [{type: 'actionGroup'}],
     }),
   ],
 
-  // Require at least one of actionGroup / forum / priorityArea
+  // Ensure at least one of the four activity refs is selected
   validation: (Rule) =>
-    Rule.custom((doc: any) => {
-      if (doc.actionGroup || doc.forum || doc.priorityArea) return true
-      return 'Pick at least one: Action Group, Forum, or Priority Area'
+    Rule.custom((_value, context) => {
+      type Ref = { _ref?: string } | undefined
+      type Doc = {
+        forum?: Ref
+        network?: Ref
+        priorityArea?: Ref
+        actionGroup?: Ref
+      }
+      const doc = (context as {document?: Doc}).document
+      const hasAny =
+        !!(doc?.forum?._ref ||
+           doc?.network?._ref ||
+           doc?.priorityArea?._ref ||
+           doc?.actionGroup?._ref)
+
+      return hasAny || 'Select at least one activity (Forum / Network / Priority Area / Action Group).'
     }),
 
-  // Prevent duplicate rows for the exact same combo (member + chosen link)
-  // (Three separate guards, evaluated only if the field is present)
-  __experimental_actions: ['create', 'update', 'publish', 'delete'],
   preview: {
     select: {
-      member: 'member.title',
-      ag: 'actionGroup.title',
-      fo: 'forum.title',
-      pa: 'priorityArea.title',
-       nt: 'network.title',
+      memberTitle: 'member->title',
+      forum: 'forum->title',
+      network: 'network->title',
+      pa: 'priorityArea->title',
+      action: 'actionGroup->title',
     },
     prepare(sel) {
-      const via = sel.ag || sel.fo || sel.pa || sel.nt || '—'
+      const parts = [
+        sel.forum && `Forum: ${sel.forum}`,
+        sel.network && `Network: ${sel.network}`,
+        sel.pa && `Priority: ${sel.pa}`,
+        sel.action && `Action: ${sel.action}`,
+      ].filter(Boolean)
       return {
-        title: sel.member || '(Member)',
-        subtitle: `via ${via}`,
+        title: sel.memberTitle || 'Member',
+        subtitle: parts.join(' • ') || 'No activity selected',
       }
     },
   },
