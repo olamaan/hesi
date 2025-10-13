@@ -420,7 +420,7 @@ margin-top: 20px;
 
  .row-activities__text { display: inline-flex; gap: 4px; flex-wrap: wrap; }
 .row-activities__type { font-weight: 600; }
-.badge-icon { width: 18px; height: 18px; }
+.badge-icon { width: 15px; height: 15px; }
 
 
 .row-summary__left { min-width: 0; } /* keep titles wrapping nicely */
