@@ -430,7 +430,13 @@ margin-top: 20px;
 .row-summary__title { font-weight: 600; }
 .row-summary__meta
 
-{ float:right;}
+{  
+
+border-bottom: 1px solid #00adef;
+    float: right;
+    padding: 10px;
+
+}
 
 .row-activities__line { display:flex; align-items:center; gap:6px; margin-top:4px; }
 .row-activities__icon { width:18px; height:18px; flex:0 0 18px; }
