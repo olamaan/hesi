@@ -1,7 +1,49 @@
 // src/components/HomeHero.tsx
 import { unstable_noStore as noStore } from 'next/cache'
 import Link from 'next/link'
-import { client } from '@/sanity/lib/client'
+//import { client } from '@/sanity/lib/client'
+// import { client } from '@/sanity/lib/client'
+import { publicClient as client } from '@/sanity/lib/client'
+
+
+
+type BadgeType = 'forum' | 'network' | 'cop' | 'action'
+
+export function Badge({
+  type,
+  className = '',
+  title,
+}: {
+  type: BadgeType
+  className?: string
+  title?: string
+}) {
+  return (
+    <span
+      className={`badge-circle badge--${type} ${className}`}
+      title={title}
+      aria-label={title}
+    />
+  )
+}
+
+
+
+
+
+// SDG colors
+const SDG = {
+  forum:   '#19486A',
+  network: '#F36D25',
+  cop:     '#C5192D',
+  action:  '#3F7E44',
+} as const
+
+ 
+
+ 
+
+
 
 /** Six canonical regions */
 const CANON = [
@@ -83,7 +125,8 @@ export default async function HomeHero({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  noStore()
+  
+  
 
   const sp = searchParams ?? {}
 
@@ -108,6 +151,8 @@ export default async function HomeHero({
   const end = start + perPage
 
   const { items, total, publishedTotal } = await client.fetch<{
+     next: { revalidate: 60, tags: ['homehero'] },
+
   items: Item[]
   total: number
   publishedTotal: number
@@ -423,30 +468,33 @@ export default async function HomeHero({
             </div>
           </div>
 
-          <ul className="list-plain">
-            {items.map((it) => (
-              <li key={it._id} className="row-item">
-                <details className="row-details">
-                  <summary className="row-summary">
-                    <div className="row-summary__left">
-                      <div className="row-summary__title">{it.title}</div>
-                    </div>
+      <ul className="list-plain">
+  {items.map((it) => (
+    <li key={it._id} className="row-item">
+      <details className="row-details">
+        <summary className="row-summary">
+          <div className="row-summary__left">
+            <div className="row-summary__title">{it.title}</div>
+            {/* your meta rows… */}
+          </div>
 
-                    <div className="row-summary__badges">
-                      {it.hasForum && (
-                        <img className="badge-icon" src="/images/badges/badge_forum.svg" alt="Forum participant" loading="lazy" />
-                      )}
-                      {it.hasNetwork && (
-                        <img className="badge-icon" src="/images/badges/badge_network.svg" alt="Network participant" loading="lazy" />
-                      )}
-                      {it.hasCop && (
-                        <img className="badge-icon" src="/images/badges/badge_cop.svg" alt="Priority Area member" loading="lazy" />
-                      )}
-                      {it.hasAction && (
-                        <img className="badge-icon" src="/images/badges/badge_action.svg" alt="Action Group member" loading="lazy" />
-                      )}
-                    </div>
-                  </summary>
+          {/* ✅ Add this line right before the badges div */}
+          {(() => {
+            const hasAll = !!(it.hasForum && it.hasNetwork && it.hasCop && it.hasAction)
+            return (
+              <div
+                className={`row-summary__badges${hasAll ? ' is-all' : ''}`}
+                role="group"
+                aria-label="Membership badges"
+              >
+                {it.hasForum && <span className="badge-circle badge--forum"   title="Forum participant" aria-label="Forum participant" />}
+                {it.hasNetwork && <span className="badge-circle badge--network" title="Network participant" aria-label="Network participant" />}
+                {it.hasCop && <span className="badge-circle badge--cop"     title="Community of Practice member" aria-label="Community of Practice member" />}
+                {it.hasAction && <span className="badge-circle badge--action"  title="Action Group member" aria-label="Action Group member" />}
+              </div>
+            )
+          })()}
+        </summary>
 
                   <div className="row-details__body">
                     {/* Meta line: country | year | website */}
@@ -502,22 +550,24 @@ export default async function HomeHero({
                       const hasAny = forums.length || networks.length || cops.length || actions.length
                       if (!hasAny) return null
 
-                      const iconFor = (type: 'forum'|'network'|'cop'|'action') =>
-                        type === 'forum'   ? '/images/badges/badge_forum.svg'   :
-                        type === 'network' ? '/images/badges/badge_network.svg' :
-                        type === 'cop'     ? '/images/badges/badge_cop.svg'     :
-                                             '/images/badges/badge_action.svg'
+                   
+const Line = ({
+  type,
+  label,
+  items
+}: {
+  type: 'forum'|'network'|'cop'|'action'
+  label: string
+  items: string[]
+}) => items.length ? (
+  <div className="row-activities__line">
+    <Badge type={type} className="row-activities__badge" title={label} />
+    <span className="row-activities__type">{label}:</span>{' '}
+    <span className="row-activities__titles">{items.join(', ')}</span>
+  </div>
+) : null
 
-                      const Line = ({
-                        type, label, items
-                      }: { type: 'forum'|'network'|'cop'|'action'; label: string; items: string[] }) =>
-                        items.length ? (
-                          <div className="row-activities__line">
-                            <img className="row-activities__icon" src={iconFor(type)} alt="" aria-hidden="true" loading="lazy" />
-                            <span className="row-activities__type">{label}:</span>{' '}
-                            <span className="row-activities__titles">{items.join(', ')}</span>
-                          </div>
-                        ) : null
+
 
                       return (
                         <div className="row-activities">

@@ -16,12 +16,105 @@ a:hover {
     margin-bottom: 5px;
  }
  
+ /* White circle, colored border; star tinted via mask using currentColor */
+.badge-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Put the star inside via a pseudo-element so we can tint it */
+.badge-circle::before {
+  content: "";
+  width: 20px;           /* star size */
+  height: 20px;
+  display: block;
+  background: currentColor; /* star color = border color */
+
+  /* mask for broad support */
+  -webkit-mask-image: url("/images/icons/hesilogo.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-image: url("/images/icons/hesilogo.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* All-rounder override: make every star + border gold */
+.row-summary__badges.is-all .badge-circle {
+  border-color: #C48F00;            /* gold border */
+  background-color: #fff;           /* keep white fill */
+}
+.row-summary__badges.is-all .badge-circle::before {
+  background: #C48F00;              /* gold star (mask) */
+}
+
+/* Optional: add a subtle glow on hover for all-rounders */
+.row-summary__badges.is-all .badge-circle:hover {
+  box-shadow: 0 0 0 3px rgba(196,143,0,0.12);
+}
+
+
+
+/* SDG-ish colors */
+.badge--forum   { color: #19486A; } /* SDG 17 */
+.badge--network { color: #FD6925; } /* SDG 9  */
+.badge--cop     { color: #C5192D; } /* SDG 4  */
+.badge--action  { color: #4C9F38; } /* SDG 3  */
+
+/* (optional) spacing where you use it */
+.row-activities__badge { margin-right: 6px; }
+
+
+ 
+/* Optional: subtle ring */
+ 
+
+
  .alert { border:1px solid #f3d08b; background:#fff9ea; border-radius:8px; padding:12px 14px; margin:0 0 14px; }
 .alert--warn { border-color:#f3d08b; }
 .dupList { list-style:none; margin:8px 0 0; padding:0; display:grid; gap:8px; }
 .dupList__item { border:1px solid #eee; border-radius:6px; padding:8px; background:#fff; }
 .dupList__title { font-weight:600; }
 .dupList__meta { font-size:.95rem; }
+
+
+/* badge spacing in summary row */
+.row-summary__badges {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* make the inline SVGs align nicely with text */
+.hesi-badge {
+  vertical-align: middle;
+}
+
+/* activity lines */
+.row-activities {
+  margin-top: 10px;
+}
+.row-activities__line + .row-activities__line {
+  margin-top: 6px;
+}
+.row-activities__icon {
+  margin-right: 8px;
+}
+.row-activities__type {
+  font-weight: 600;
+}
+
 
 
 /* stacked meta list */
