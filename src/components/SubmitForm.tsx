@@ -46,9 +46,11 @@ export default function SubmitForm({
   const email = String(fd.get('email') || '').trim()
   const countryId = String(fd.get('country') || '').trim()
   const description = String(fd.get('description') || '').trim()
+  const website = String(fd.get('website') || '').trim()
 
-  if (!title || !email || !countryId || !description) {
-    setErrorMsg('Please fill the required fields (Institution name, Contact email, Country, Description).')
+
+  if (!title || !email || !countryId || !description || !website) {
+    setErrorMsg('Please fill the required fields (Institution name, Contact email, Country, Description, Website).')
     setPending(false)
     return
   }
@@ -130,6 +132,12 @@ export default function SubmitForm({
 
 </div>
 
+ <div  aria-live="rude">
+<h2>Notes</h2>
+
+Please note that membership in HESI is institutional and not open to individuals. By submitting this form, you are applying for your institution to become a member of HESI.
+ </div>
+
       {/* Institution */}
       <fieldset className="joinFieldset">
         <legend className="joinLegend">Organization</legend>
@@ -156,7 +164,7 @@ export default function SubmitForm({
         </label>
 
         <label className="joinLabel" htmlFor="website">
-          <span className="joinLabel__text">Website</span>
+          <span className="joinLabel__text">Website <span className="req" aria-hidden>*</span></span>
           <input id="website" name="website" className="joinInput" placeholder="https://…" />
         </label>
 
@@ -164,6 +172,8 @@ export default function SubmitForm({
           <span className="joinLabel__text">
             Contact email(s) <span className="req" aria-hidden>*</span>
           </span>
+
+          Should match institutional website.
           <input
             id="email"
             name="email"

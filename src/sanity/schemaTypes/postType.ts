@@ -8,7 +8,7 @@ export const postType = defineType({
 
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: r => r.required() }),
-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
+    defineField({ name: 'description', title: 'Description', type: 'text', rows: 10 }),
  
 
     defineField({ name: 'datejoined', title: 'Date joined', type: 'date' }), // matches your key
@@ -109,7 +109,12 @@ defineField({
       initialValue: 'submitted',
       validation: r => r.required(),
     }),
+
+       defineField({ name: 'note', title: 'Internal Note', type: 'text', rows: 4 }),
+ 
+
   ],
+
 
   preview: {
     select: {
