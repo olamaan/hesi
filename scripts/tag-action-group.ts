@@ -45,7 +45,7 @@ const CREATE_GROUP = (process.env.CREATE_GROUP ?? 'false') === 'true'
 const GROUP_TITLE = ARG_GROUP || process.env.GROUP_TITLE || 'Education for Green Jobs'
 
 // Inline fallback list if --file is not used (edit or leave empty)
-const INLINE_INPUT_NAMES = [
+const INLINE_INPUT_NAMES: string[] = [
   // 'Example Org 1',
   // 'Example Org 2',
 ]
