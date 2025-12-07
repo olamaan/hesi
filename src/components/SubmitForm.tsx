@@ -132,7 +132,8 @@ export default function SubmitForm({
 
 </div>
 
- <div  aria-live="rude">
+ <div aria-live="polite">
+
 <h2>Notes</h2>
 
 Please note that membership in HESI is institutional and not open to individuals. By submitting this form, you are applying for your institution to become a member of HESI.
