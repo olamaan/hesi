@@ -1,9 +1,21 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import type { PageProps } from 'next'
 import { publicClient as client } from '@/sanity/lib/client'
 
-export default async function MemberPage({ params }: any) {
-  const id = decodeURIComponent(params.id as string)
+type Params = { id: string }
+
+// We accept what Next might pass (some setups type params as Promise-like)
+// and normalize it safely without `any`.
+export default async function MemberPage(
+  props: PageProps<Params> | { params: Params } | { params: Promise<Params> },
+) {
+  const resolvedParams =
+    'params' in props ? await Promise.resolve(props.params as Params | Promise<Params>) : null
+
+  if (!resolvedParams?.id) return notFound()
+
+  const id = decodeURIComponent(resolvedParams.id)
 
   const member = await client.fetch(
     `*[_type == "post" && _id == $id][0]{
@@ -24,7 +36,9 @@ export default async function MemberPage({ params }: any) {
   return (
     <div className="container" style={{ paddingTop: 24, paddingBottom: 48 }}>
       <p style={{ marginBottom: 16 }}>
-        <Link href="/" className="reset-link">← Back to list</Link>
+        <Link href="/" className="reset-link">
+          ← Back to list
+        </Link>
       </p>
 
       <h1>{member.title}</h1>
