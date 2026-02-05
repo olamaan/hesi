@@ -126,7 +126,7 @@ export default async function HomeHero({
   const sort: 'joined' | 'title' = sortParam === 'title' ? 'title' : 'joined'
 
   // pagination
-  const perPage = 20
+  const perPage = 12
   const pageParam = Array.isArray(sp.page) ? sp.page[0] : sp.page
   const page = Math.max(1, Number.parseInt(pageParam ?? '1', 10) || 1)
   const start = (page - 1) * perPage
@@ -393,9 +393,7 @@ export default async function HomeHero({
               <button className="theButton">Join now</button>
             </Link>
 
-            <div className="filter_menu filter-menu--spaced">Note</div>
-            The HESI Secretariat is currently reviewing all submissions received through the previous sign-up form. We
-            expect to complete the review and process all applications by November 2025.
+           
           </div>
         </aside>
 
