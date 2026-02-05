@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { publicClient as client } from '@/sanity/lib/client'
 
-export default async function MemberPage({ params }: { params: { id: string } }) {
-  const id = decodeURIComponent(params.id)
+export default async function MemberPage({ params }: any) {
+  const id = decodeURIComponent(params.id as string)
 
   const member = await client.fetch(
     `*[_type == "post" && _id == $id][0]{
@@ -16,7 +16,7 @@ export default async function MemberPage({ params }: { params: { id: string } })
       "regionTitle": country->region->title
     }`,
     { id },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 60 } },
   )
 
   if (!member) return notFound()
