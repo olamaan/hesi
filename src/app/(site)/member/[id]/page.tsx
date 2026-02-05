@@ -1,21 +1,15 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import type { PageProps } from 'next'
 import { publicClient as client } from '@/sanity/lib/client'
 
 type Params = { id: string }
 
-// We accept what Next might pass (some setups type params as Promise-like)
-// and normalize it safely without `any`.
-export default async function MemberPage(
-  props: PageProps<Params> | { params: Params } | { params: Promise<Params> },
-) {
-  const resolvedParams =
-    'params' in props ? await Promise.resolve(props.params as Params | Promise<Params>) : null
+type Props = {
+  params: Params
+}
 
-  if (!resolvedParams?.id) return notFound()
-
-  const id = decodeURIComponent(resolvedParams.id)
+export default async function MemberPage({ params }: Props) {
+  const id = decodeURIComponent(params.id)
 
   const member = await client.fetch(
     `*[_type == "post" && _id == $id][0]{
