@@ -5,11 +5,12 @@ import { publicClient as client } from '@/sanity/lib/client'
 type Params = { id: string }
 
 type Props = {
-  params: Params
+  params: Promise<Params>
 }
 
 export default async function MemberPage({ params }: Props) {
-  const id = decodeURIComponent(params.id)
+  const { id: rawId } = await params
+  const id = decodeURIComponent(rawId)
 
   const member = await client.fetch(
     `*[_type == "post" && _id == $id][0]{
