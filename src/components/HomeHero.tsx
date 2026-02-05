@@ -24,30 +24,30 @@ export function Badge({
 
 // SDG colors (currently unused but kept in case you hook into them later)
 const SDG = {
-  forum:   '#19486A',
+  forum: '#19486A',
   network: '#F36D25',
-  cop:     '#C5192D',
-  action:  '#3F7E44',
+  cop: '#C5192D',
+  action: '#3F7E44',
 } as const
 
 /** Six canonical regions */
 const CANON = [
-  { id: 'region.africa',        title: 'Africa' },
-  { id: 'region.asia-pacific',  title: 'Asia-Pacific' },
-  { id: 'region.europe',        title: 'Europe' },
-  { id: 'region.lac',           title: 'Latin America and the Caribbean' },
+  { id: 'region.africa', title: 'Africa' },
+  { id: 'region.asia-pacific', title: 'Asia-Pacific' },
+  { id: 'region.europe', title: 'Europe' },
+  { id: 'region.lac', title: 'Latin America and the Caribbean' },
   { id: 'region.north-america', title: 'North America' },
-  { id: 'region.western-asia',  title: 'Western Asia' },
+  { id: 'region.western-asia', title: 'Western Asia' },
 ]
 
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n)
 
-type ActivityType = 'forum'|'network'|'cop'|'action'|'other'
+type ActivityType = 'forum' | 'network' | 'cop' | 'action' | 'other'
 
 type Item = {
   _id: string
   title: string
-  description?: string
+  slug?: string
   website?: string
   datejoined?: string
   countryTitle?: string
@@ -157,17 +157,16 @@ export default async function HomeHero({
               lower(country->title) match $qPattern
             )
           ] | order(title asc)[$start...$end]{
-            _id, title, datejoined, description, website,
+            _id, title, datejoined, website,
+            "slug": slug.current,
             "countryTitle": country->title,
             "regionTitle": country->region->title,
 
-            // Badge flags (safe even if arrays undefined)
             "hasForum":   count(coalesce(forums[], [])) > 0,
             "hasNetwork": count(coalesce(networks[], [])) > 0,
             "hasCop":     count(coalesce(priorityAreas[], [])) > 0,
             "hasAction":  count(coalesce(actionGroups[], [])) > 0,
 
-            // Activities (flattened)
             "activities": [
               ...select(defined(forums)         => forums[]->         {_id, "type":"forum",   title}),
               ...select(defined(networks)       => networks[]->       {_id, "type":"network", title}),
@@ -176,7 +175,6 @@ export default async function HomeHero({
             ]
           },
 
-        // else: sort by datejoined desc, _createdAt desc
         *[
           _type == "post" &&
           lower(status) == "published" &&
@@ -194,7 +192,8 @@ export default async function HomeHero({
             lower(country->title) match $qPattern
           )
         ] | order(datejoined desc, _createdAt desc)[$start...$end]{
-          _id, title, datejoined, description, website,
+          _id, title, datejoined, website,
+          "slug": slug.current,
           "countryTitle": country->title,
           "regionTitle": country->region->title,
 
@@ -237,7 +236,6 @@ export default async function HomeHero({
     }`,
     { filterRegionIds, start, end, sort, qPattern },
     {
-      // This part is what actually informs Next's caching layer
       next: { revalidate: 60, tags: ['homehero'] },
       cache: 'force-cache',
     },
@@ -245,8 +243,7 @@ export default async function HomeHero({
 
   const shownTo = start + items.length
   const totalPages = Math.max(1, Math.ceil(total / perPage))
-  const pageHref = (p: number) =>
-    buildHrefWithParams({ ...sp, page: p > 1 ? String(p) : undefined })
+  const pageHref = (p: number) => buildHrefWithParams({ ...sp, page: p > 1 ? String(p) : undefined })
 
   return (
     <>
@@ -259,9 +256,8 @@ export default async function HomeHero({
               <div className="hesiBanner__container container">
                 <div className="hesiBanner__eyebrow">The HESI Community</div>
                 <div className="hesiBanner__title">
-                  The HESI community consists of UN entities, university networks,
-                  student organizations, and higher education institutions committed to
-                  advancing sustainable development
+                  The HESI community consists of UN entities, university networks, student organizations, and higher
+                  education institutions committed to advancing sustainable development
                 </div>
               </div>
             </div>
@@ -272,7 +268,7 @@ export default async function HomeHero({
           <img
             src="images/HESI-logo-horizontal.png"
             className="library_image"
-            style={{ marginBottom: '10px', marginTop:'0px' }}
+            style={{ marginBottom: '10px', marginTop: '0px' }}
             alt="HESI"
           />
           HESI is chaired by the United Nations Department of Economic and Social Affairs (UN DESA), UN University,
@@ -282,12 +278,7 @@ export default async function HomeHero({
           Partnerships, and UN Academic Impact.
           <p></p>
           <p className="hesi-cta">
-            <a
-              href="https://sdgs.un.org/HESI"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hesiLink"
-            >
+            <a href="https://sdgs.un.org/HESI" target="_blank" rel="noopener noreferrer" className="hesiLink">
               Visit the HESI main website
               <svg
                 className="hesiLink__icon"
@@ -319,7 +310,9 @@ export default async function HomeHero({
 
           {/* Sort (segmented control) */}
           <div className="sort-group">
-            <div className="filter_menu filter-menu--spaced"><strong>Sort by</strong></div>
+            <div className="filter_menu filter-menu--spaced">
+              <strong>Sort by</strong>
+            </div>
             <nav className="segmented" role="radiogroup" aria-label="Sort by">
               <Link
                 href={sortHref(sp, 'joined')}
@@ -363,11 +356,15 @@ export default async function HomeHero({
               placeholder="Type org name/country…"
               aria-label="Search members by title or country"
             />
-            <button className="filter-search__button" type="submit">Search</button>
+            <button className="filter-search__button" type="submit">
+              Search
+            </button>
           </form>
 
           {/* Regions */}
-          <div className="filter_menu filter-menu--spaced"><strong>Filter by region</strong></div>
+          <div className="filter_menu filter-menu--spaced">
+            <strong>Filter by region</strong>
+          </div>
           <div className="theme-filter">
             {CANON.map((r) => {
               const selected = selectedRegionIds.includes(r.id)
@@ -389,12 +386,16 @@ export default async function HomeHero({
 
           <div className="joinBox">
             <div className="filter_menu filter-menu--spaced">Join HESI</div>
-            Be part of a global community of universities, networks, and organizations advancing sustainability through higher education.
+            Be part of a global community of universities, networks, and organizations advancing sustainability through
+            higher education.
             <p></p>
-            <Link href="/join"><button className="theButton">Join now</button></Link>
+            <Link href="/join">
+              <button className="theButton">Join now</button>
+            </Link>
 
             <div className="filter_menu filter-menu--spaced">Note</div>
-            The HESI Secretariat is currently reviewing all submissions received through the previous sign-up form. We expect to complete the review and process all applications by November 2025.
+            The HESI Secretariat is currently reviewing all submissions received through the previous sign-up form. We
+            expect to complete the review and process all applications by November 2025.
           </div>
         </aside>
 
@@ -410,7 +411,9 @@ export default async function HomeHero({
                   ← Previous
                 </Link>
               ) : (
-                <span className="btn-pager" aria-disabled="true">← Previous</span>
+                <span className="btn-pager" aria-disabled="true">
+                  ← Previous
+                </span>
               )}
             </div>
 
@@ -433,12 +436,18 @@ export default async function HomeHero({
 
                 return list.map((p, idx) =>
                   typeof p === 'string' ? (
-                    <span key={`e${idx}`} className="pagination__ellipsis">…</span>
+                    <span key={`e${idx}`} className="pagination__ellipsis">
+                      …
+                    </span>
                   ) : p === page ? (
-                    <span key={p} className="pagination__link is-active" aria-current="page">{p}</span>
+                    <span key={p} className="pagination__link is-active" aria-current="page">
+                      {p}
+                    </span>
                   ) : (
-                    <Link key={p} href={pageHref(p)} prefetch={false} className="pagination__link">{p}</Link>
-                  )
+                    <Link key={p} href={pageHref(p)} prefetch={false} className="pagination__link">
+                      {p}
+                    </Link>
+                  ),
                 )
               })()}
             </nav>
@@ -449,138 +458,140 @@ export default async function HomeHero({
                   Next →
                 </Link>
               ) : (
-                <span className="btn-pager" aria-disabled="true">Next →</span>
+                <span className="btn-pager" aria-disabled="true">
+                  Next →
+                </span>
               )}
             </div>
           </div>
 
           <ul className="list-plain">
-            {items.map((it) => (
-              <li key={it._id} className="row-item">
-                <details className="row-details">
-                  <summary className="row-summary">
-                    <div className="row-summary__left">
-                      <div className="row-summary__title">{it.title}</div>
-                    </div>
+            {items.map((it) => {
+       
 
-                    {(() => {
-                      const hasAll = !!(it.hasForum && it.hasNetwork && it.hasCop && it.hasAction)
-                      return (
-                        <div
-                          className={`row-summary__badges${hasAll ? ' is-all' : ''}`}
-                          role="group"
-                          aria-label="Membership badges"
-                        >
-                          {it.hasForum && (
-                            <span
-                              className="badge-circle badge--forum"
-                              title="Forum participant"
-                              aria-label="Forum participant"
-                            />
-                          )}
-                          {it.hasNetwork && (
-                            <span
-                              className="badge-circle badge--network"
-                              title="Network participant"
-                              aria-label="Network participant"
-                            />
-                          )}
-                          {it.hasCop && (
-                            <span
-                              className="badge-circle badge--cop"
-                              title="Community of Practice member"
-                              aria-label="Community of Practice member"
-                            />
-                          )}
-                          {it.hasAction && (
-                            <span
-                              className="badge-circle badge--action"
-                              title="Action Group member"
-                              aria-label="Action Group member"
-                            />
-                          )}
-                        </div>
-                      )
-                    })()}
-                  </summary>
+              const detailsHref = `/member/${encodeURIComponent(it._id)}`
 
-                  <div className="row-details__body">
-                    {/* Meta line: country | year | website */}
-                    <div className="muted row-summary__meta">
-                      <div className="row-meta">
-                        <ul className="row-meta__list row-meta__list--stacked">
-                          {/* Country */}
-                          <li className="row-meta__item">
-                            <img className="row-meta__icon" src="/images/icons/geo.svg" alt="" aria-hidden="true" />
-                            <span>{it.countryTitle ?? '—'}</span>
-                          </li>
 
-                          {/* Joined year (only if present) */}
-                          {formatYear(it.datejoined) && (
-                            <li className="row-meta__item">
-                              <img className="row-meta__icon" src="/images/icons/calendar.svg" alt="" aria-hidden="true" />
-                              <span>{formatYear(it.datejoined)}</span>
-                            </li>
-                          )}
 
-                          {/* Website (only if present) */}
-                          {it.website && (
-                            <li className="row-meta__item">
-                              <img className="row-meta__icon" src="/images/icons/link.svg" alt="" aria-hidden="true" />
-                              <a className="webLink" href={it.website} target="_blank" rel="noopener noreferrer">
-                                {it.website}
-                              </a>
-                            </li>
-                          )}
-                        </ul>
+              return (
+                <li key={it._id} className="row-item">
+                  <details className="row-details">
+                    <summary className="row-summary">
+                      <div className="row-summary__left">
+            <div className="row-summary__title">
+      
+                {it.title}
+        
+            </div>
+
+              
                       </div>
+
+                      {(() => {
+                        const hasAll = !!(it.hasForum && it.hasNetwork && it.hasCop && it.hasAction)
+                        return (
+                          <div
+                            className={`row-summary__badges${hasAll ? ' is-all' : ''}`}
+                            role="group"
+                            aria-label="Membership badges"
+                          >
+                            {it.hasForum && <span className="badge-circle badge--forum" title="Forum participant" aria-label="Forum participant" />}
+                            {it.hasNetwork && (
+                              <span className="badge-circle badge--network" title="Network participant" aria-label="Network participant" />
+                            )}
+                            {it.hasCop && (
+                              <span className="badge-circle badge--cop" title="Community of Practice member" aria-label="Community of Practice member" />
+                            )}
+                            {it.hasAction && <span className="badge-circle badge--action" title="Action Group member" aria-label="Action Group member" />}
+                          </div>
+                        )
+                      })()}
+                    </summary>
+
+                    <div className="row-details__body">
+                      {/* Meta line: country | year | website */}
+                      <div className="muted row-summary__meta">
+                        <div className="row-meta">
+                          <ul className="row-meta__list row-meta__list--stacked">
+                            <li className="row-meta__item">
+                              <img className="row-meta__icon" src="/images/icons/geo.svg" alt="" aria-hidden="true" />
+                              <span>{it.countryTitle ?? '—'}</span>
+                            </li>
+
+                            {formatYear(it.datejoined) && (
+                              <li className="row-meta__item">
+                                <img className="row-meta__icon" src="/images/icons/calendar.svg" alt="" aria-hidden="true" />
+                                <span>{formatYear(it.datejoined)}</span>
+                              </li>
+                            )}
+
+                            {it.website && (
+                              <li className="row-meta__item">
+                                <img className="row-meta__icon" src="/images/icons/link.svg" alt="" aria-hidden="true" />
+                                <a className="webLink" href={it.website} target="_blank" rel="noopener noreferrer">
+                                  {it.website}
+                                </a>
+                              </li>
+                            )}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Description removed from listing */}
+
+                      {/* Grouped activities */}
+                      {(it.activities && it.activities.length > 0) &&
+                        (() => {
+                          const uniq = (xs: (string | undefined)[]) => Array.from(new Set(xs.filter(Boolean))) as string[]
+
+                          const forums = uniq(it.activities.filter((a) => a.type === 'forum').map((a) => a.title))
+                          const networks = uniq(it.activities.filter((a) => a.type === 'network').map((a) => a.title))
+                          const cops = uniq(it.activities.filter((a) => a.type === 'cop').map((a) => a.title))
+                          const actions = uniq(it.activities.filter((a) => a.type === 'action').map((a) => a.title))
+
+                          const hasAny = forums.length || networks.length || cops.length || actions.length
+                          if (!hasAny) return null
+
+                          const Line = ({
+                            type,
+                            label,
+                            items,
+                          }: {
+                            type: 'forum' | 'network' | 'cop' | 'action'
+                            label: string
+                            items: string[]
+                          }) =>
+                            items.length ? (
+                              <div className="row-activities__line">
+                                <Badge type={type} className="row-activities__badge" title={label} />
+                                <span className="row-activities__type">{label}:</span>{' '}
+                                <span className="row-activities__titles">{items.join(', ')}</span>
+                              </div>
+                            ) : null
+
+                          return (
+                            <div className="row-activities">
+                              <div className="row-activities__label">Active in:</div>
+                              <Line type="forum" label="Forum" items={forums} />
+                              <Line type="network" label="Network" items={networks} />
+                              <Line type="cop" label="Community of Practice" items={cops} />
+                              <Line type="action" label="Action Group" items={actions} />
+                            </div>
+                          )
+                        })()}
+
+                      {detailsHref ? (
+                        <div style={{ marginTop: 12 }}>
+                          <Link href={detailsHref} prefetch={false} className="btn-pager">
+                            View full profile →
+                          </Link>
+                        </div>
+                      ) : null}
                     </div>
-
-                    {it.description ? <p className="row-details__text">{it.description}</p> : <span />}
-
-                    {/* Grouped activities */}
-                    {(it.activities && it.activities.length > 0) && (() => {
-                      const uniq = (xs: (string | undefined)[]) =>
-                        Array.from(new Set(xs.filter(Boolean))) as string[]
-
-                      const forums   = uniq(it.activities.filter(a => a.type === 'forum')  .map(a => a.title))
-                      const networks = uniq(it.activities.filter(a => a.type === 'network').map(a => a.title))
-                      const cops     = uniq(it.activities.filter(a => a.type === 'cop')    .map(a => a.title))
-                      const actions  = uniq(it.activities.filter(a => a.type === 'action') .map(a => a.title))
-
-                      const hasAny = forums.length || networks.length || cops.length || actions.length
-                      if (!hasAny) return null
-
-                      const Line = ({
-                        type,
-                        label,
-                        items,
-                      }: {
-                        type: 'forum'|'network'|'cop'|'action'
-                        label: string
-                        items: string[]
-                      }) => items.length ? (
-                        <div className="row-activities__line">
-                          <Badge type={type} className="row-activities__badge" title={label} />
-                          <span className="row-activities__type">{label}:</span>{' '}
-                          <span className="row-activities__titles">{items.join(', ')}</span>
-                        </div>
-                      ) : null
-
-                      return (
-                        <div className="row-activities">
-                          <div className="row-activities__label">Active in:</div>
-                          <Line type="forum"   label="Forum"                 items={forums} />
-                          <Line type="network" label="Network"               items={networks} />
-                          <Line type="cop"     label="Community of Practice" items={cops} />
-                          <Line type="action"  label="Action Group"          items={actions} />
-                        </div>
-                      )
-                    })()}
-                  </div>
-                </details>
-              </li>
-            ))}
+                  </details>
+                </li>
+              )
+            })}
           </ul>
 
           {/* BOTTOM PAGER */}
@@ -591,7 +602,9 @@ export default async function HomeHero({
                   ← Previous
                 </Link>
               ) : (
-                <span className="btn-pager" aria-disabled="true">← Previous</span>
+                <span className="btn-pager" aria-disabled="true">
+                  ← Previous
+                </span>
               )}
             </div>
 
@@ -614,12 +627,18 @@ export default async function HomeHero({
 
                 return list.map((p, idx) =>
                   typeof p === 'string' ? (
-                    <span key={`e${idx}`} className="pagination__ellipsis">…</span>
+                    <span key={`e${idx}`} className="pagination__ellipsis">
+                      …
+                    </span>
                   ) : p === page ? (
-                    <span key={p} className="pagination__link is-active" aria-current="page">{p}</span>
+                    <span key={p} className="pagination__link is-active" aria-current="page">
+                      {p}
+                    </span>
                   ) : (
-                    <Link key={p} href={pageHref(p)} prefetch={false} className="pagination__link">{p}</Link>
-                  )
+                    <Link key={p} href={pageHref(p)} prefetch={false} className="pagination__link">
+                      {p}
+                    </Link>
+                  ),
                 )
               })()}
             </nav>
@@ -630,7 +649,9 @@ export default async function HomeHero({
                   Next →
                 </Link>
               ) : (
-                <span className="btn-pager" aria-disabled="true">Next →</span>
+                <span className="btn-pager" aria-disabled="true">
+                  Next →
+                </span>
               )}
             </div>
           </div>
