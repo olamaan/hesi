@@ -25,9 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
 
         {/* External CSS from sdgs.un.org */}
-        <link href="https://sdgs.un.org/themes/custom/porto/css/bundle.css?qpptv2" rel="stylesheet" />
-        <link href="https://sdgs.un.org/themes/custom/porto/css/style.css?qpptv2" rel="stylesheet" />
-        <link href="https://sdgs.un.org/themes/custom/porto/color/preview.css?qpptv2" rel="stylesheet" />
+        <link href="/styles/bundle.css?qpptv2" rel="stylesheet" />
+        <link href="/styles/style.css?qpptv2" rel="stylesheet" />
+      
 
         {/* Your local CSS */}
         <link href="/styles/library.css" rel="stylesheet" />
