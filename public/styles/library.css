@@ -13,7 +13,8 @@ a:hover {
 
  p {
     font-size: 14px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    
  }
  
  /* White circle, colored border; star tinted via mask using currentColor */
@@ -3298,23 +3299,23 @@ height:100px;
 
     
 
-    --sdg1:#e5243b;
-    --sdg2:#DDA63A;
-    --sdg3:#4C9F38;
-    --sdg4:#C5192D;
-    --sdg5:#FF3A21;
-    --sdg6:#26BDE2;
-    --sdg7:#FCC30B;
-    --sdg8:#A21942;
-    --sdg9:#FD6925;
-    --sdg10:#DD1367;
-    --sdg11:#FD9D24;
-    --sdg12:#BF8B2E;
-    --sdg13:#3F7E44;
-    --sdg14:#0A97D9;
-    --sdg15:#56C02B;
-    --sdg16:#00689D;  
-    --sdg17:#19486A;   
+--sdg1:  #e5243b;  /* No Poverty */
+--sdg2:  #DDA63A;  /* Zero Hunger */
+--sdg3:  #4C9F38;  /* Good Health and Well-being */
+--sdg4:  #C5192D;  /* Quality Education */
+--sdg5:  #FF3A21;  /* Gender Equality */
+--sdg6:  #26BDE2;  /* Clean Water and Sanitation */
+--sdg7:  #FCC30B;  /* Affordable and Clean Energy */
+--sdg8:  #A21942;  /* Decent Work and Economic Growth */
+--sdg9:  #FD6925;  /* Industry, Innovation and Infrastructure */
+--sdg10: #DD1367;  /* Reduced Inequalities */
+--sdg11: #FD9D24;  /* Sustainable Cities and Communities */
+--sdg12: #BF8B2E;  /* Responsible Consumption and Production */
+--sdg13: #3F7E44;  /* Climate Action */
+--sdg14: #0A97D9;  /* Life Below Water */
+--sdg15: #56C02B;  /* Life on Land */
+--sdg16: #00689D;  /* Peace, Justice and Strong Institutions */
+--sdg17: #19486A;  /* Partnerships for the Goals */  
   }
 
   .platform_card_body_nopadding {
@@ -3926,8 +3927,16 @@ vertical-align: middle;
 
 #platform_clear {
     clear: both;
- 
+  display: block;
+  height: 0;
+
 }
+
+.flex-break {
+  flex-basis: 100%;
+  width: 100%;
+}
+
 
 .platform_bigbutton
 {
