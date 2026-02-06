@@ -480,6 +480,7 @@ display=swap" rel="stylesheet">
                 line-height: 40px;
                 clear: right;
                 margin-bottom: 20px;
+                width: 100%;
             }
 
 
@@ -585,7 +586,7 @@ display=swap" rel="stylesheet">
 }
 
 .home_publication_text {
-  font-size: 16px;
+  font-size: 14px;
 
   margin-bottom: 10px;
   color: #444;
@@ -593,6 +594,42 @@ display=swap" rel="stylesheet">
 .home_publication .home_feature_button {
   margin-top: auto;
   
+}
+
+.home_feature {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home_feature {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home_feature_icon_row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.home_feature_icon_row img {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+}
+
+ 
+
+ 
+
+/* only target this icon */
+#home_feature_platform_icon {
+  
+ margin-left: 20px;
+ margin-bottom: 20px;
+  width: 300px;
+  float:right;
+ 
 }
 
                         
@@ -801,11 +838,85 @@ The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, 
 
         </div>
 
- 
+ <div class="home_feature">
+
+  <div class="home_feature_title">SDG Registries & Databases</div>
+
+  <div class="home_feature_intro">
+
+    <div id="home_feature_platform_icon">
+
+  <img src="homepics/actions.png"   alt="SDG Actions Platform">
 
 
+  <p></p>
+  <button class="home_feature_button">Visit the SDG Actions Platform</button>
 
- 
+    </div>
+  
+
+    <div class="home_feature_intro_text">
+      Over the years, UN DESA has developed and maintained a range of SDG registries and databases that capture commitments, partnerships, and actions by governments, the United Nations system, and a wide range of stakeholders. These platforms support transparency, accountability, and knowledge-sharing, and help track progress and implementation across the 2030 Agenda.
+
+      <p></p>
+
+      Together, these registries bring together thousands of entries originating from major UN conferences, intergovernmental processes, and country-led efforts. They provide publicly accessible information on voluntary commitments, national reviews, UN system initiatives, and partnership activities at global, regional, and national levels.
+    </div>
+
+  </div>
+
+  <!-- Ocean Commitments -->
+  <div class="home_publication">
+    <div class="home_publication_cover" style="background-image: url('homepics/ocean2.jpg');"></div>
+    <div class="home_publication_title">Ocean Commitments</div>
+    <div class="home_publication_text">
+      A registry of voluntary commitments by governments, the UN system, and stakeholders to support implementation of SDG 14, covering actions to protect marine ecosystems, reduce pollution, promote sustainable fisheries, and advance ocean-based solutions.
+    </div>
+    <button class="home_feature_button">View</button>
+  </div>
+
+  <!-- Water Action Agenda -->
+  <div class="home_publication">
+    <div class="home_publication_cover" style="background-image: url('homepics/water2.jpg');"></div>
+    <div class="home_publication_title">Water Action Agenda</div>
+    <div class="home_publication_text">
+      A collection of commitments and initiatives launched in support of the Water Action Agenda, highlighting actions by governments and stakeholders to advance sustainable water management, sanitation, and water-related resilience.
+    </div>
+    <button class="home_feature_button">View</button>
+  </div>
+
+  <!-- SIDS Partnership Database -->
+  <div class="home_publication">
+    <div class="home_publication_cover" style="background-image: url('homepics/sids2.jpg');"></div>
+    <div class="home_publication_title">SIDS Partnership Database</div>
+    <div class="home_publication_text">
+      A dedicated database highlighting partnerships and initiatives supporting Small Island Developing States, with a focus on strengthening resilience, addressing structural vulnerabilities, and advancing implementation of the Antigua and Barbuda Agenda for SIDS.
+    </div>
+    <button class="home_feature_button">View</button>
+  </div>
+
+  <!-- UN System Implementation Database -->
+  <div class="home_publication">
+    <div class="home_publication_cover" style="background-image: url('homepics/un.jpg');"></div>
+    <div class="home_publication_title">UN System Implementation Database</div>
+    <div class="home_publication_text">
+      A system-wide overview of actions, initiatives, and plans undertaken by United Nations entities in support of the 2030 Agenda, providing insight into collective UN system contributions across the Sustainable Development Goals.
+    </div>
+    <button class="home_feature_button">View</button>
+  </div>
+
+  <!-- VNR Database -->
+  <div class="home_publication">
+    <div class="home_publication_cover" style="background-image: url('homepics/vnr.png');"></div>
+    <div class="home_publication_title">Voluntary National Review Database</div>
+    <div class="home_publication_text">
+      A comprehensive repository of Voluntary National Reviews presented by countries at the High-level Political Forum, documenting national progress, challenges, and lessons learned in implementing the Sustainable Development Goals.
+    </div>
+    <button class="home_feature_button">View</button>
+  </div>
+
+</div>
+
 
    
 
