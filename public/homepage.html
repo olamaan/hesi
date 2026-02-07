@@ -392,30 +392,9 @@ display=swap" rel="stylesheet">
         
     
    
-
-        <div class="platformhome_side1">
-
  
-   
-
- 
-
-            </div> <!-- end left side -->
-
-
            
-                    
-        <div class="platformhome_side2">
-
-   
-   
-
-
-
-                    
-        </div> <!-- end side 2-->
- 
- 
+       
 
 
         <div id="platform_clear"></div>
@@ -650,6 +629,140 @@ display=swap" rel="stylesheet">
   float:right;
  
 }
+
+
+
+/* =========================
+   Responsive fixes (mobile)
+   ========================= */
+
+/* Stop floats from fighting flex (desktop still fine) */
+.home_feature_image,
+.home_feature_image_large,
+.home_feature_rightside,
+.home_feature_rightside2 {
+  float: none;
+}
+
+/* Make images behave like flex items */
+.home_feature_image,
+.home_feature_image_large {
+  flex: 0 0 auto;
+}
+
+/* Registries intro row responsiveness */
+.home_feature_intro {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+#home_feature_platform_icon {
+  float: none;
+  flex: 0 0 300px;
+  width: 300px;
+  margin-left: auto;
+}
+
+.home_feature_intro_text {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+
+/* Ensure cards wrap cleanly */
+.home_publication {
+  flex: 0 0 auto;
+}
+
+/* ---------- Tablet and below ---------- */
+@media (max-width: 1200px) {
+  .home_feature {
+    gap: 16px;
+  }
+
+  .home_feature_image,
+  .home_feature_image_large {
+    width: 100%;
+    height: 260px;
+    margin-right: 0;
+  }
+
+  .home_feature_rightside,
+  .home_feature_rightside2 {
+    width: 100%;
+    padding: 0;
+  }
+
+  .home_feature_title {
+    font-size: 28px;
+    line-height: 34px;
+    margin-bottom: 12px;
+  }
+
+  /* Make cards larger + fewer per row */
+  .home_publication {
+    width: calc(50% - 20px);
+    margin-right: 0;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  .home_feature {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .home_feature_image,
+  .home_feature_image_large {
+    height: 220px;
+  }
+
+  .home_feature_title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  /* Full-width cards on mobile */
+  .home_publication {
+    width: 100%;
+  }
+
+  .home_publication_cover {
+    height: 200px;
+  }
+
+  /* Buttons: easier tap targets */
+  .home_feature_button,
+  .home_feature_button_on {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+  }
+
+  /* Registries icon stacks above text */
+  #home_feature_platform_icon {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 280px;
+    margin-left: 0;
+  }
+
+  #home_feature_platform_icon img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    display: block;
+  }
+
+  .home_feature_intro_text {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
 
                         
         </style>
