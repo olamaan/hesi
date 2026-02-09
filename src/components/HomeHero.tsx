@@ -22,24 +22,6 @@ export function Badge({
   )
 }
 
-// SDG colors (currently unused but kept in case you hook into them later)
-const SDG = {
-  forum: '#19486A',
-  network: '#F36D25',
-  cop: '#C5192D',
-  action: '#3F7E44',
-} as const
-
-/** Six canonical regions */
-const CANON = [
-  { id: 'region.africa', title: 'Africa' },
-  { id: 'region.asia-pacific', title: 'Asia-Pacific' },
-  { id: 'region.europe', title: 'Europe' },
-  { id: 'region.lac', title: 'Latin America and the Caribbean' },
-  { id: 'region.north-america', title: 'North America' },
-  { id: 'region.western-asia', title: 'Western Asia' },
-]
-
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n)
 
 type ActivityType = 'forum' | 'network' | 'cop' | 'action' | 'other'
@@ -59,11 +41,6 @@ type Item = {
   activities?: { _id: string; type: ActivityType; title?: string }[]
 }
 
-function toArray(v?: string | string[]): string[] {
-  if (!v) return []
-  return Array.isArray(v) ? v : [v]
-}
-
 const formatYear = (iso?: string) => {
   if (!iso) return ''
   const d = new Date(iso)
@@ -81,29 +58,49 @@ function buildHrefWithParams(nextParams: Record<string, string | string[] | unde
   return qs ? `/?${qs}` : '/'
 }
 
-// toggle region & reset page
-function toggleRegionHref({
-  current,
-  id,
-}: {
-  current: { [k: string]: string | string[] | undefined }
-  id: string
-}) {
-  const chosen = toArray(current.region)
-  const exists = chosen.includes(id)
-  const next = exists ? chosen.filter((x) => x !== id) : [...chosen, id]
-  return buildHrefWithParams({ ...current, region: next.length ? next : undefined, page: undefined })
-}
+/* ------------------------------------------------------------------
+   OPTIONAL (commented out): region filter + search + sort helpers
+   Keeping these here so you can re-enable later if desired.
+------------------------------------------------------------------- */
 
-// set sort & reset page
-function sortHref(current: { [k: string]: string | string[] | undefined }, sort: 'joined' | 'title') {
-  return buildHrefWithParams({ ...current, sort, page: undefined })
-}
-
-// clear search & reset page
-function clearSearchHref(current: { [k: string]: string | string[] | undefined }) {
-  return buildHrefWithParams({ ...current, q: undefined, page: undefined })
-}
+// /** Six canonical regions */
+// const CANON = [
+//   { id: 'region.africa', title: 'Africa' },
+//   { id: 'region.asia-pacific', title: 'Asia-Pacific' },
+//   { id: 'region.europe', title: 'Europe' },
+//   { id: 'region.lac', title: 'Latin America and the Caribbean' },
+//   { id: 'region.north-america', title: 'North America' },
+//   { id: 'region.western-asia', title: 'Western Asia' },
+// ]
+//
+// function toArray(v?: string | string[]): string[] {
+//   if (!v) return []
+//   return Array.isArray(v) ? v : [v]
+// }
+//
+// // toggle region & reset page
+// function toggleRegionHref({
+//   current,
+//   id,
+// }: {
+//   current: { [k: string]: string | string[] | undefined }
+//   id: string
+// }) {
+//   const chosen = toArray(current.region)
+//   const exists = chosen.includes(id)
+//   const next = exists ? chosen.filter((x) => x !== id) : [...chosen, id]
+//   return buildHrefWithParams({ ...current, region: next.length ? next : undefined, page: undefined })
+// }
+//
+// // set sort & reset page
+// function sortHref(current: { [k: string]: string | string[] | undefined }, sort: 'joined' | 'title') {
+//   return buildHrefWithParams({ ...current, sort, page: undefined })
+// }
+//
+// // clear search & reset page
+// function clearSearchHref(current: { [k: string]: string | string[] | undefined }) {
+//   return buildHrefWithParams({ ...current, q: undefined, page: undefined })
+// }
 
 export default async function HomeHero({
   searchParams,
@@ -112,18 +109,27 @@ export default async function HomeHero({
 }) {
   const sp = searchParams ?? {}
 
-  // title/country search (q)
-  const qRaw = Array.isArray(sp.q) ? sp.q[0] : sp.q
-  const q = (qRaw || '').trim()
-  const qPattern = q ? `*${q.toLowerCase()}*` : null
+  /* ------------------------------------------------------------------
+     Regions + Search + Sort REMOVED (kept here as a comment reference)
+  ------------------------------------------------------------------- */
 
-  // filters
-  const selectedRegionIds = toArray(sp.region)
-  const filterRegionIds = selectedRegionIds.length ? selectedRegionIds : null
+  // // title/country search (q)
+  // const qRaw = Array.isArray(sp.q) ? sp.q[0] : sp.q
+  // const q = (qRaw || '').trim()
+  // const qPattern = q ? `*${q.toLowerCase()}*` : null
 
-  // sort
-  const sortParam = Array.isArray(sp.sort) ? sp.sort[0] : sp.sort
-  const sort: 'joined' | 'title' = sortParam === 'title' ? 'title' : 'joined'
+  // // filters (region)
+  // const selectedRegionIds = toArray(sp.region)
+  // const filterRegionIds = selectedRegionIds.length ? selectedRegionIds : null
+
+  // // sort
+  // const sortParam = Array.isArray(sp.sort) ? sp.sort[0] : sp.sort
+  // const sort: 'joined' | 'title' = sortParam === 'title' ? 'title' : 'joined'
+
+  // NEW: always no region filter, no search filter, fixed sort (joined newest)
+  const qPattern = null
+  const filterRegionIds = null
+  const sort: 'joined' | 'title' = 'joined'
 
   // pagination
   const perPage = 12
@@ -301,88 +307,23 @@ export default async function HomeHero({
       </div>
 
       <div className="homehero-layout">
-        {/* LEFT: counter, search, sort, regions */}
+        {/* LEFT: counter only (region + search + sort removed) */}
         <aside className="filters">
           <div className="results-bar results-bar--stack">
             <span className={`results-count${total === 0 ? ' is-zero' : ''}`}>{formatNumber(total)}</span>
             <span className="results-label">results</span>
           </div>
 
-          {/* Sort (segmented control) */}
-          <div className="sort-group">
-            <div className="filter_menu filter-menu--spaced">
-              <strong>Sort by</strong>
-            </div>
-            <nav className="segmented" role="radiogroup" aria-label="Sort by">
-              <Link
-                href={sortHref(sp, 'joined')}
-                prefetch={false}
-                className={`segmented__item ${sort === 'joined' ? 'is-active' : ''}`}
-                role="radio"
-                aria-checked={sort === 'joined'}
-              >
-                Joined (newest)
-              </Link>
-              <Link
-                href={sortHref(sp, 'title')}
-                prefetch={false}
-                className={`segmented__item ${sort === 'title' ? 'is-active' : ''}`}
-                role="radio"
-                aria-checked={sort === 'title'}
-              >
-                Title (A–Z)
-              </Link>
-            </nav>
-          </div>
+          {/* ---------------------------------------------------------
+              REMOVED UI (kept as comments for future):
+              - Sort segmented control
+              - Search by Org & country form
+              - Region chips filter
+          ---------------------------------------------------------- */}
 
-          {/* Title/Country search */}
-          <div className="filter_menu filter-menu--spaced" style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-            <strong>Search by Org &amp; country</strong>
-            {q && (
-              <Link className="reset-link" href={clearSearchHref(sp)} prefetch={false}>
-                Clear
-              </Link>
-            )}
-          </div>
-          <form className="filter-search" method="get" action="/">
-            {selectedRegionIds.map((id) => (
-              <input key={id} type="hidden" name="region" value={id} />
-            ))}
-            {sort && <input type="hidden" name="sort" value={sort} />}
-            <input
-              className="filter-search__input"
-              name="q"
-              defaultValue={q}
-              placeholder="Type org name/country…"
-              aria-label="Search members by title or country"
-            />
-            <button className="filter-search__button" type="submit">
-              Search
-            </button>
-          </form>
-
-          {/* Regions */}
-          <div className="filter_menu filter-menu--spaced">
-            <strong>Filter by region</strong>
-          </div>
-          <div className="theme-filter">
-            {CANON.map((r) => {
-              const selected = selectedRegionIds.includes(r.id)
-              return (
-                <Link
-                  key={r.id}
-                  href={toggleRegionHref({ current: sp, id: r.id })}
-                  className={`theme-chip-large ${selected ? 'is-selected' : ''}`}
-                  role="button"
-                  aria-pressed={selected}
-                  title={r.title}
-                  prefetch={false}
-                >
-                  {r.title}
-                </Link>
-              )
-            })}
-          </div>
+          {/* <div className="sort-group">...</div> */}
+          {/* <form className="filter-search">...</form> */}
+          {/* <div className="theme-filter">...</div> */}
 
           <div className="joinBox">
             <div className="filter_menu filter-menu--spaced">Join HESI</div>
@@ -392,8 +333,6 @@ export default async function HomeHero({
             <Link href="/join">
               <button className="theButton">Join now</button>
             </Link>
-
-           
           </div>
         </aside>
 
@@ -465,24 +404,14 @@ export default async function HomeHero({
 
           <ul className="list-plain">
             {items.map((it) => {
-       
-
               const detailsHref = `/member/${encodeURIComponent(it._id)}`
-
-
 
               return (
                 <li key={it._id} className="row-item">
                   <details className="row-details">
                     <summary className="row-summary">
                       <div className="row-summary__left">
-            <div className="row-summary__title">
-      
-                {it.title}
-        
-            </div>
-
-              
+                        <div className="row-summary__title">{it.title}</div>
                       </div>
 
                       {(() => {
@@ -493,14 +422,34 @@ export default async function HomeHero({
                             role="group"
                             aria-label="Membership badges"
                           >
-                            {it.hasForum && <span className="badge-circle badge--forum" title="Forum participant" aria-label="Forum participant" />}
+                            {it.hasForum && (
+                              <span
+                                className="badge-circle badge--forum"
+                                title="Forum participant"
+                                aria-label="Forum participant"
+                              />
+                            )}
                             {it.hasNetwork && (
-                              <span className="badge-circle badge--network" title="Network participant" aria-label="Network participant" />
+                              <span
+                                className="badge-circle badge--network"
+                                title="Network participant"
+                                aria-label="Network participant"
+                              />
                             )}
                             {it.hasCop && (
-                              <span className="badge-circle badge--cop" title="Community of Practice member" aria-label="Community of Practice member" />
+                              <span
+                                className="badge-circle badge--cop"
+                                title="Community of Practice member"
+                                aria-label="Community of Practice member"
+                              />
                             )}
-                            {it.hasAction && <span className="badge-circle badge--action" title="Action Group member" aria-label="Action Group member" />}
+                            {it.hasAction && (
+                              <span
+                                className="badge-circle badge--action"
+                                title="Action Group member"
+                                aria-label="Action Group member"
+                              />
+                            )}
                           </div>
                         )
                       })()}
@@ -518,7 +467,12 @@ export default async function HomeHero({
 
                             {formatYear(it.datejoined) && (
                               <li className="row-meta__item">
-                                <img className="row-meta__icon" src="/images/icons/calendar.svg" alt="" aria-hidden="true" />
+                                <img
+                                  className="row-meta__icon"
+                                  src="/images/icons/calendar.svg"
+                                  alt=""
+                                  aria-hidden="true"
+                                />
                                 <span>{formatYear(it.datejoined)}</span>
                               </li>
                             )}
@@ -534,8 +488,6 @@ export default async function HomeHero({
                           </ul>
                         </div>
                       </div>
-
-                      {/* Description removed from listing */}
 
                       {/* Grouped activities */}
                       {(it.activities && it.activities.length > 0) &&
