@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: 'HESI Community',
   description: '',
   icons: { icon: 'https://sdgs.un.org/themes/custom/porto/favicon.ico' },
+  alternates: {
+    canonical: 'https://hesicommunity.org/', // <-- change to your real domain
+  },
+
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

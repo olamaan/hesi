@@ -447,6 +447,18 @@ display=swap" rel="stylesheet">
 
 
                         
+            .home_feature_title_big
+            {
+                font-size: 44px;
+                font-weight: bold;
+                color: #333;
+                font-family: Oswald, sans-serif;
+             
+                line-height: 44px;
+                clear: right;
+                margin-bottom: 20px;
+                width: 100%;
+            }
 
 
             .home_feature_title
@@ -461,7 +473,6 @@ display=swap" rel="stylesheet">
                 margin-bottom: 20px;
                 width: 100%;
             }
-
 
                      .home_feature_rightside2 {
                  
@@ -492,8 +503,66 @@ display=swap" rel="stylesheet">
                 border-radius: 15px;
                 font-size: 14px;
                 cursor: pointer;
-                margin-right: 10px;
+                margin-right: 5px;
             }
+
+
+            /* make <a> look/behave like your buttons */
+a.home_feature_button,
+a.home_feature_button_on{
+  display:inline-block;
+  text-decoration:none;
+}
+
+/* ===== Fix hover text color for <a class="home_feature_button..."> ===== */
+
+a.home_feature_button,
+a.home_feature_button_on{
+  display:inline-block;
+  text-decoration:none;
+  margin-top: 10px;
+  padding: 10px 10px;
+  font-family: Oswald, sans-serif;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+/* base colors */
+a.home_feature_button{
+  background:#fff;
+  color:#00adef;
+  border:1px solid #00adef;
+}
+a.home_feature_button_on{
+  background:#42c513;
+  color:#fff;
+  border:1px solid #42c513;
+}
+
+/* hover -> white text */
+a.home_feature_button:hover,
+a.home_feature_button:focus{
+  background:#00adef;
+  color:#fff !important;
+  text-decoration: none !important
+}
+a.home_feature_button_on:hover,
+a.home_feature_button_on:focus{
+  background:#00adef;
+  color:#fff !important;
+    border:1px solid #00adef;
+   text-decoration: none !important
+
+}
+
+
+
+
+/* keep “bottom aligned” CTA in cards */
+.home_publication_cta{ margin-top:auto; }
+
 
               .home_feature_button_on:hover {
                 background-color: #00adef;
@@ -510,7 +579,7 @@ display=swap" rel="stylesheet">
                 border-radius: 15px;
                 font-size: 14px;
                 cursor: pointer;
-                margin-right: 10px;
+                margin-right: 5px;
             }
                         .home_feature_button:hover {
                 background-color: #00adef;
@@ -594,6 +663,13 @@ display=swap" rel="stylesheet">
   
 }
 
+.home_publication_cta {
+  margin-top: auto;       /* THIS pushes it to the bottom */
+  display: block;         /* makes it behave like a block in the column */
+  text-decoration: none;  /* optional */
+}
+
+
 .home_feature {
   display: flex;
   flex-wrap: wrap;
@@ -623,10 +699,10 @@ display=swap" rel="stylesheet">
 /* only target this icon */
 #home_feature_platform_icon {
   
- margin-left: 20px;
- margin-bottom: 20px;
-  width: 300px;
-  float:right;
+ margin-right: 30px;
+ margin-bottom: 30px;
+ 
+  float:right !important;
  
 }
 
@@ -673,8 +749,19 @@ display=swap" rel="stylesheet">
 
 /* Ensure cards wrap cleanly */
 .home_publication {
-  flex: 0 0 auto;
+   display: flex;
+  flex-direction: column;
+
 }
+
+.home_publication_cta {
+  margin-top: auto;
+  display: inline-block;   /* so padding works like a button */
+  text-align: center;
+  text-decoration: none;
+}
+
+
 
 /* ---------- Tablet and below ---------- */
 @media (max-width: 1200px) {
@@ -746,7 +833,7 @@ display=swap" rel="stylesheet">
   #home_feature_platform_icon {
     flex: 1 1 100%;
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
     margin-left: 0;
   }
 
@@ -761,6 +848,23 @@ display=swap" rel="stylesheet">
     flex: 1 1 100%;
     min-width: 0;
   }
+
+
+                          .home_goal
+                        {
+                           
+                             
+                            width:100%;
+                           
+                            color:#fff;
+                            padding:30px;
+                            position: relative;
+                            margin-top:20px;
+                            margin-right: 0px;
+                            margin-bottom: 0px;
+                        }
+
+
 }
 
 
@@ -769,252 +873,255 @@ display=swap" rel="stylesheet">
  
  
 
-        <div class="home_feature">
+       <!-- =========================
+     UPDATED HTML (Option B)
+     Buttons -> <a> styled as buttons
+     ========================= -->
 
-            <div class="home_feature_image_large" style="background-image: url('homepics/home.jpg');background-size: cover;background-position: center center;"></div>
+<div class="home_feature">
 
+  <div class="home_feature_image_large"
+       style="background-image: url('homepics/home.jpg');background-size: cover;background-position: center center;"></div>
 
+  <div class="home_feature_rightside2">
 
-            <div class="home_feature_rightside2">
-    
-    
-    <div class="home_feature_title">Sciene, Technology and Innovation</div>
+    <div class="home_feature_title_big">Science, Technology and Innovation</div>
 
-
-Science, technology and innovation (STI) are essential for advancing the Sustainable Development Goals, enabling evidence-based decision-making, accelerating implementation, and scaling solutions to complex global challenges. Harnessing STI helps bridge gaps between knowledge, policy, and action, and supports more inclusive, resilient, and sustainable development outcomes.
+    Science, technology and innovation (STI) are essential for advancing the Sustainable Development Goals, enabling evidence-based decision-making, accelerating implementation, and scaling solutions to complex global challenges. Harnessing STI helps bridge gaps between knowledge, policy, and action, and supports more inclusive, resilient, and sustainable development outcomes.
 
     <p></p>
 
     On 6-7 May 2026, the eleventh annual Multi-Stakeholder Forum on Science, Technology and Innovation for the SDGs (STI Forum) at UNHQ, a key part of the Technology Facilitation Mechanism (TFM).
-         <div id="platform_clear"></div>
- 
+    <div id="platform_clear"></div>
 
-         <button class="home_feature_button_on">STI Forum 2026</button>
-         <button class="home_feature_button">Technology Facilitation Mechanism</button>
-              <button class="home_feature_button">More on STI</button>
-</div>
-
-
-
-
-        </div>
-
-   
-
-
-          <div class="home_feature">
-
-  <div class="home_feature_image" style="background-image: url('homepics/transport.jpg');background-size: cover;background-position: center center;"></div>
-
-  <div class="home_feature_rightside">
-      
-    <div class="home_feature_title">Transport</div>
-
-While there is no single dedicated Sustainable Development Goal for transport, it is reflected in several SDG targets and recognized as an enabler for achieving many of the goals. 
-<p></p>
-
-The United Nations Decade of Sustainable Transport will be an opportunity to further raise awareness of transport’s crucial role in advancing the Sustainable Development Goals and to gather and rally new solutions, resources and partnerships to advance sustainable transport globally.
-
-<div id="platform_clear"></div>
-
-<button class="home_feature_button">
-  UN Decade of Sustainable Transport 2026 – 2035
-
-</button>
-
-<button class="home_feature_button">
-  More on Sustainable Transport
-</button>
+    <a class="home_feature_button_on" href="https://sdgs.un.org/tfm/STIForum2026">STI Forum 2026</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/tfm">TFM</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/science">More on Science</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/technology">More on Technology</a>
 
   </div>
-
 </div>
 
 
-
-          <div class="home_feature">
-
-  <div class="home_feature_image" style="background-image: url('homepics/water.jpg');background-size: cover;background-position: center center;"></div>
-
-  <div class="home_feature_rightside">
-      
-    <div class="home_feature_title">Water</div>
-
-Water is fundamental to sustainable development, underpinning health, food security, energy, ecosystems, and economic growth. Ensuring universal access to safe drinking water and sanitation, improving water quality, strengthening water management, and enhancing resilience to water-related risks are essential for achieving the Sustainable Development Goals and addressing climate change impacts.
-
-<p></p>
-
-The 2026 UN Water Conference will take place from 2–4 December 2026 in the United Arab Emirates. Co-hosted by Senegal and the United Arab Emirates, the Conference aims to accelerate the implementation of SDG 6 on clean water and sanitation, strengthen global water governance, and further elevate water-related issues on the international agenda through concrete action and partnerships.
-<div id="platform_clear"></div>
-
-<button class="home_feature_button">
-  2026 UN Water Conference
-</button>
-
-<button class="home_feature_button">
-  More on Water
-</button>
-
-  </div>
-
-</div>
-
-    
-        <div class="home_feature">
-
-
-<div class="home_feature_image" style="background-image: url('homepics/ocean.jpg');background-size: cover;background-position: center center;"></div>
-
-<div class="home_feature_rightside">
-    
-    
-    <div class="home_feature_title">Oceans</div>
-
-
-    SDG 14: Life Below Water aims to conserve and sustainably use the world's oceans, seas, and marine resources by 2030. Key targets include reducing marine pollution, protecting ecosystems, ending overfishing, and minimizing ocean acidification. It is critical for managing climate change, biodiversity, and coastal livelihoods. 
-      <div id="platform_clear"></div>
- 
-
-       <button class="home_feature_button">2025 UN Ocean Conference</button>
-     
-
-    <button class="home_feature_button">More on Oceans & Seas</button>
-</div>
-
-        </div>
-
-   
 <div class="home_feature">
 
-  <div class="home_feature_image" style="background-image: url('homepics/sids.jpg');background-size: cover;background-position: center center;"></div>
+  <div class="home_feature_image"
+       style="background-image: url('homepics/transport.jpg');background-size: cover;background-position: center center;"></div>
 
   <div class="home_feature_rightside">
-      
-    <div class="home_feature_title">Small Island Developing States</div>
 
-Small Island Developing States (SIDS) face unique and interrelated challenges, including climate change impacts, ocean degradation, limited resources, and structural vulnerabilities, while also demonstrating leadership and innovation in advancing sustainable development. Strengthening partnerships, mobilizing finance, and enhancing capacity-building are essential to support SIDS in achieving the Sustainable Development Goals and ensuring that no one is left behind.
+    <div class="home_feature_title">Sustainable Transport</div>
 
-<p></p>
+    While there is no single dedicated Sustainable Development Goal for transport, it is reflected in several SDG targets and recognized as an enabler for achieving many of the goals.
+    <p></p>
 
-The Fourth International Conference on Small Island Developing States marked a key milestone in advancing SIDS priorities and resulted in the adoption of the Antigua and Barbuda Agenda for SIDS, which provides a renewed framework for action, partnerships, and implementation.
+    The United Nations Decade of Sustainable Transport will be an opportunity to further raise awareness of transport’s crucial role in advancing the Sustainable Development Goals and to gather and rally new solutions, resources and partnerships to advance sustainable transport globally.
 
-<div id="platform_clear"></div>
+    <div id="platform_clear"></div>
 
-
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/conferences/sids2024'">
-4th Conference on SIDS
-</button>
-
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/sids/antigua-and-barbuda-agenda'">
-ABAS
-</button>
-
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/conferences/sids2024'">
-SIDS Partnership Framework
-</button>
-
-
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/conferences/sids2024'">
-  More on SIDS
-</button>
+    <a class="home_feature_button" href="https://sdgs.un.org/un-decade-sustainable-transport-2026-2035">UN Decade of Sustainable Transport 2026 – 2035</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/sustainable-transport">More on Sustainable Transport</a>
 
   </div>
-
-</div>
-
-    
-
-
-        <div class="home_feature">
-
-    <div class="home_feature_image" style="background-image: url('homepics/partner.jpg');background-size: cover;background-position: center center;"></div>
-
-            <div class="home_feature_rightside">
-    
-            
-    
-<div class="home_feature_title">Partnerships for the SDGs</div>
-
-Partnerships are critical for accelerating progress towards the Sustainable Development Goals by bringing together governments, civil society, the private sector, academia, and the UN system. Effective multi-stakeholder partnerships help mobilize resources, scale innovative solutions, and strengthen implementation across sectors and levels.
-
-<p></p>
-
-The 2026 ECOSOC Partnership Forum took place on 27 January 2026 at the UN Headquarters in New York under the theme “Transformative, equitable, innovative and coordinated actions for the 2030 Agenda and its SDGs for a sustainable future for all”. 
-
-
-
-
-<div id="platform_clear"></div>
-
- 
-
-         <button class="home_feature_button">2026 ECOSOC Partnership Forum</button>
-
-         <button class="home_feature_button">SDG Actions Platform</button>
-          <button class="home_feature_button">Partnership Accelerator</button>
-         <button class="home_feature_button">More on Partnerships</button>
-
 </div>
 
 
+<div class="home_feature">
+
+  <div class="home_feature_image"
+       style="background-image: url('homepics/water.jpg');background-size: cover;background-position: center center;"></div>
+
+  <div class="home_feature_rightside">
+
+    <div class="home_feature_title">Water</div>
+
+    Water is fundamental to sustainable development, underpinning health, food security, energy, ecosystems, and economic growth. Ensuring universal access to safe drinking water and sanitation, improving water quality, strengthening water management, and enhancing resilience to water-related risks are essential for achieving the Sustainable Development Goals and addressing climate change impacts.
+
+    <p></p>
+
+    The 2026 UN Water Conference will take place from 2–4 December 2026 in the United Arab Emirates. Co-hosted by Senegal and the United Arab Emirates, the Conference aims to accelerate the implementation of SDG 6 on clean water and sanitation, strengthen global water governance, and further elevate water-related issues on the international agenda through concrete action and partnerships.
+
+    <div id="platform_clear"></div>
+
+    <a class="home_feature_button" href="https://sdgs.un.org/">2026 UN Water Conference</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/water-and-sanitation">More on Water and Sanitation</a>
+
+  </div>
+</div>
 
 
+<div class="home_feature">
 
-        </div>
- 
+  <div class="home_feature_image"
+       style="background-image: url('homepics/ocean.jpg');background-size: cover;background-position: center center;"></div>
 
-    
-        <div class="home_feature">
+  <div class="home_feature_rightside">
 
+    <div class="home_feature_title">Oceans</div>
 
-<div class="home_feature_image" style="background-image: url('homepics/hlpf.webp');background-size: cover;background-position: center center;"></div>
+    SDG 14: Life Below Water aims to conserve and sustainably use the world's oceans, seas, and marine resources by 2030. Key targets include reducing marine pollution, protecting ecosystems, ending overfishing, and minimizing ocean acidification. It is critical for managing climate change, biodiversity, and coastal livelihoods.
 
-<div class="home_feature_rightside">
-    
-    
-    <div class="home_feature_title">High-level Political Forum on Sustainable Development</div>
+    <p></p>
 
-The High-level Political Forum on Sustainable Development (HLPF) is the central United Nations platform for the follow-up and review of the 2030 Agenda for Sustainable Development and its 17 Sustainable Development Goals (SDGs) .
-
-<p></p>
-The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, under the auspices of the Economic and Social Council (ECOSOC). This includes the three-day ministerial segment of the forum from Monday, 13 July, to Wednesday, 15 July 2026, as part of the High-level Segment of ECOSOC. The last day of the High-level Segment of ECOSOC will take place on 16 July.
-
-
+    The high-level 2025 United Nations Conference to Support the Implementation of Sustainable Development Goal 14: Conserve and sustainably use the oceans, seas and marine resources for sustainable development (the 2025 UN Ocean Conference) was co-hosted by France and Costa Rica and held in Nice, France, from 9 – 13 June 2025.
 
 
     <div id="platform_clear"></div>
- 
 
+    <a class="home_feature_button" href="https://sdgs.un.org/conferences/ocean2025">2025 UN Ocean Conference</a>
+     <a class="home_feature_button" href="https://sdgs.un.org/sites/default/files/2025-06/A-CONF.230-2025-14%20%28Note%20by%20the%20Sect-%20political%20declaration%29.pdf">UNOC3 Political Declaration</a>
 
-    <button class="home_feature_button">HLPF in 2026</button>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/oceans-and-seas">More on Oceans &amp; Seas</a>
 
-       <button class="home_feature_button">Goal 6</button>
-           <button class="home_feature_button">Goal 7</button>
-           <button class="home_feature_button">Goal 9</button>
-           <button class="home_feature_button">Goal 11</button>
-       
-           <button class="home_feature_button">Goal 17</button>
-       
+  </div>
 </div>
 
-        </div>
 
- <div class="home_feature">
+<div class="home_feature">
 
-  <div class="home_feature_title">SDG Registries & Databases</div>
+  <div class="home_feature_image"
+       style="background-image: url('homepics/sids.jpg');background-size: cover;background-position: center center;"></div>
+
+  <div class="home_feature_rightside">
+
+    <div class="home_feature_title">Small Island Developing States</div>
+
+    Small Island Developing States (SIDS) face unique and interrelated challenges, including climate change impacts, ocean degradation, limited resources, and structural vulnerabilities, while also demonstrating leadership and innovation in advancing sustainable development. Strengthening partnerships, mobilizing finance, and enhancing capacity-building are essential to support SIDS in achieving the Sustainable Development Goals and ensuring that no one is left behind.
+
+    <p></p>
+
+    The Fourth International Conference on Small Island Developing States marked a key milestone in advancing SIDS priorities and resulted in the adoption of the Antigua and Barbuda Agenda for SIDS, which provides a renewed framework for action, partnerships, and implementation.
+
+    <div id="platform_clear"></div>
+
+    <a class="home_feature_button" href="https://sdgs.un.org/conferences/sids2024">4th Conference on SIDS</a>
+    <a class="home_feature_button" href="https://docs.un.org/en/A/RES/78/317">ABAS</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/small-island-developing-states/sids-partnership-framework">SIDS Partnership Framework</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/small-island-developing-states">More on SIDS</a>
+
+  </div>
+</div>
+
+
+<div class="home_feature">
+
+  <div class="home_feature_image"
+       style="background-image: url('homepics/partner.jpg');background-size: cover;background-position: center center;"></div>
+
+  <div class="home_feature_rightside">
+
+    <div class="home_feature_title">Partnerships for the SDGs</div>
+
+    Partnerships are critical for accelerating progress towards the Sustainable Development Goals by bringing together governments, civil society, the private sector, academia, and the UN system. Effective multi-stakeholder partnerships help mobilize resources, scale innovative solutions, and strengthen implementation across sectors and levels.
+
+    <p></p>
+
+    The 2026 ECOSOC Partnership Forum took place on 27 January 2026 at the UN Headquarters in New York under the theme “Transformative, equitable, innovative and coordinated actions for the 2030 Agenda and its SDGs for a sustainable future for all”.
+
+    <div id="platform_clear"></div>
+
+    <a class="home_feature_button" href="https://sdgs.un.org/2026ECOSOCPartnershipForum/">2026 ECOSOC Partnership Forum</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/partnerships">SDG Actions Platform</a>
+    <a class="home_feature_button" href="https://partnershipaccelerator.org/">Partnership Accelerator</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/multi-stakeholder-partnerships">More on Partnerships</a>
+
+  </div>
+</div>
+
+
+<div class="home_feature">
+
+  <div class="home_feature_image"
+       style="background-image: url('homepics/hlpf.webp');background-size: cover;background-position: center center;"></div>
+
+  <div class="home_feature_rightside">
+
+    <div class="home_feature_title">High-level Political Forum on Sustainable Development</div>
+
+    The High-level Political Forum on Sustainable Development (HLPF) is the central United Nations platform for the follow-up and review of the 2030 Agenda for Sustainable Development and its 17 Sustainable Development Goals (SDGs).
+
+    <p></p>
+
+    The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, under the auspices of the Economic and Social Council (ECOSOC). This includes the three-day ministerial segment of the forum from Monday, 13 July, to Wednesday, 15 July 2026, as part of the High-level Segment of ECOSOC. The last day of the High-level Segment of ECOSOC will take place on 16 July.
+
+    <div id="platform_clear"></div>
+
+    <a class="home_feature_button" href="https://hlpf.un.org/">HLPF in 2026</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal6">Goal 6</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal7">Goal 7</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal9">Goal 9</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal11">Goal 11</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal17">Goal 17</a>
+
+  </div>
+</div>
+
+
+<div class="home_feature">
+
+  <div class="home_feature_image"
+       style="background-image: url('homepics/cap.jpg');background-size: cover;background-position: center center;"></div>
+
+  <div class="home_feature_rightside">
+
+    <div class="home_feature_title">Capacity Development</div>
+
+    Capacity development is essential for advancing sustainable development, enabling governments and stakeholders to strengthen skills, institutions, data systems, and partnerships needed to design, implement, and monitor integrated solutions across the economic, social, and environmental dimensions of the 2030 Agenda.
+
+    <p></p>
+
+The Division’s capacity development activities advance the implementation of the 2030 Agenda for Sustainable Development, the ABAS and other internationally agreed development goals, guided by the outcomes of United Nations intergovernmental bodies on the three pillars of sustainable development – social, economic and environmental.
+
+
+
+    <p></p>
+
+
+
+    <div class="flex-break"></div>
+
+    <a class="home_feature_button" href="https://sdgs.un.org/topics/capacity-development/msmes">Micro-, Small and Medium-sized Enterprises (MSMEs)</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/events/un-portugal-ocean-fellowship-capacity-building-program-sustainable-ocean-governance-and-blue">UN-Portugal Ocean Fellowship</a>
+    <a class="home_feature_button" href="https://partnershipaccelerator.org/">Partnership Accelerator</a>
+
+       <a class="home_feature_button" href="https://sdgs.un.org/topics/capacity-development">More on Capacity Development</a>
+
+
+  </div>
+</div>
+
+<div class="home_feature">
+
+  <div class="home_feature_image"
+       style="background-image: url('homepics/stake.jpg');background-size: cover;background-position: center center;"></div>
+
+  <div class="home_feature_rightside">
+
+    <div class="home_feature_title">Stakeholder Engagement</div>
+
+    Stakeholder engagement is central to advancing the 2030 Agenda for Sustainable Development. The High-level Political Forum on Sustainable Development (HLPF) serves as the United Nations’ main platform for inclusive dialogue, bringing together governments, civil society, the private sector, academia, and other stakeholders to share experiences, build partnerships, and strengthen implementation of the Sustainable Development Goals.
+
+    <div id="platform_clear"></div>
+
+    <a class="home_feature_button" href="https://sdgs.un.org/stakeholders">More information</a>
+
+  </div>
+</div>
+
+
+
+
+<div class="home_feature">
+
+  <div class="home_feature_title">SDG Registries &amp; Databases</div>
 
   <div class="home_feature_intro">
 
     <div id="home_feature_platform_icon">
-
-  <img src="homepics/actions.png"   alt="SDG Actions Platform">
-
-
-  <p></p>
-  <button class="home_feature_button_on" style="width:100%;">Visit the SDG Actions Platform</button>
-
+      <img src="homepics/actions.png" alt="SDG Actions Platform">
+      <p></p>
+      <a class="home_feature_button_on"   href="https://sdgs.un.org/partnerships">Visit the SDG Actions Platform</a>
     </div>
-  
 
     <div class="home_feature_intro_text">
       Over the years, UN DESA has developed and maintained a range of SDG registries and databases that capture commitments, partnerships, and actions by governments, the United Nations system, and a wide range of stakeholders. These platforms support transparency, accountability, and knowledge-sharing, and help track progress and implementation across the 2030 Agenda.
@@ -1031,9 +1138,9 @@ The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, 
     <div class="home_publication_cover" style="background-image: url('homepics/ocean2.jpg');"></div>
     <div class="home_publication_title">Ocean Commitments</div>
     <div class="home_publication_text">
-      A registry of voluntary commitments by governments, the UN system, and stakeholders to support implementation of SDG 14, covering actions to protect marine ecosystems, reduce pollution, promote sustainable fisheries, and advance ocean-based solutions.
+      A registry of voluntary commitments by governments, the UN system, and stakeholders to support implementation of SDG 14.
     </div>
-    <button class="home_feature_button">View</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/ocean-commitments">View</a>
   </div>
 
   <!-- Water Action Agenda -->
@@ -1043,7 +1150,7 @@ The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, 
     <div class="home_publication_text">
       A collection of commitments and initiatives launched in support of the Water Action Agenda, highlighting actions by governments and stakeholders to advance sustainable water management, sanitation, and water-related resilience.
     </div>
-    <button class="home_feature_button">View</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/water">View</a>
   </div>
 
   <!-- SIDS Partnership Database -->
@@ -1051,9 +1158,9 @@ The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, 
     <div class="home_publication_cover" style="background-image: url('homepics/sids2.jpg');"></div>
     <div class="home_publication_title">SIDS Partnership Database</div>
     <div class="home_publication_text">
-      A dedicated database highlighting partnerships and initiatives supporting Small Island Developing States, with a focus on strengthening resilience, addressing structural vulnerabilities, and advancing implementation of the Antigua and Barbuda Agenda for SIDS.
+      A dedicated database highlighting partnerships and initiatives supporting Small Island Developing States.
     </div>
-    <button class="home_feature_button">View</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/sids-partnerships">View</a>
   </div>
 
   <!-- UN System Implementation Database -->
@@ -1061,9 +1168,9 @@ The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, 
     <div class="home_publication_cover" style="background-image: url('homepics/un.jpg');"></div>
     <div class="home_publication_title">UN System Implementation Database</div>
     <div class="home_publication_text">
-      A system-wide overview of actions, initiatives, and plans undertaken by United Nations entities in support of the 2030 Agenda, providing insight into collective UN system contributions across the SDGs.
+      UN family’s repository of actions, initiatives and plans on the implementation of the 2030 Agenda and the sustainable development goals (SDGs). 
     </div>
-    <button class="home_feature_button">View</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/UNSDGimplementation">View</a>
   </div>
 
   <!-- VNR Database -->
@@ -1071,71 +1178,19 @@ The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, 
     <div class="home_publication_cover" style="background-image: url('homepics/vnr.png');"></div>
     <div class="home_publication_title">Voluntary National Review Database</div>
     <div class="home_publication_text">
-      A comprehensive repository of Voluntary National Reviews presented by countries at the High-level Political Forum, documenting national progress, challenges, and lessons learned in implementing the Sustainable Development Goals.
+      Repository of Voluntary National Reviews presented by countries at the High-level Political Forum, documenting progress, challenges, and lessons learned in implementing the SDGs.
     </div>
-    <button class="home_feature_button">View</button>
-  </div>
-
-</div>
-
-
-   
-
-         <div class="home_feature">
-
-  <div class="home_feature_image" style="background-image: url('homepics/stake.jpg');background-size: cover;background-position: center center;"></div>
-
-  <div class="home_feature_rightside">
-      
-    <div class="home_feature_title">Stakeholder Engagement</div>
-
-Stakeholder engagement is central to advancing the 2030 Agenda for Sustainable Development. The High-level Political Forum on Sustainable Development (HLPF) serves as the United Nations’ main platform for inclusive dialogue, bringing together governments, civil society, the private sector, academia, and other stakeholders to share experiences, build partnerships, and strengthen implementation of the Sustainable Development Goals.
-
- 
-
-<div id="platform_clear"></div>
-
-<button class="home_feature_button">More information</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/vnrs">View</a>
   </div>
 
 </div>
 
 
 
- <div class="home_feature">
 
-  <div class="home_feature_image" style="background-image: url('homepics/cap.jpg');background-size: cover;background-position: center center;"></div>
-
-  <div class="home_feature_rightside">
-      
-    <div class="home_feature_title">Capacity Building</div>
-
-Capacity building is essential for advancing sustainable development, enabling governments and stakeholders to strengthen skills, institutions, data systems, and partnerships needed to design, implement, and monitor integrated solutions across the economic, social, and environmental dimensions of the 2030 Agenda.
-
-<p></p>
-
-The Division for Sustainable Development Goals supports capacity-building efforts that enhance national and local implementation, promote multi-stakeholder engagement, and foster knowledge-sharing and learning across regions. These efforts aim to translate global commitments into concrete action on the ground, with a focus on inclusiveness, effectiveness, and long-term impact.
-
-<div class="flex-break"></div>
-
-<button class="home_feature_button">Micro Small and Medium-sized Enterprises</button>
-<button class="home_feature_button">UN-Portugal Ocean Fellowship</button>
-<button class="home_feature_button">Paartnership Accelerator</button>
-
- 
-
-  </div>
-
-</div>
-
- 
-
-
-
-         <div class="home_feature">
+<div class="home_feature">
 
   <div class="home_feature_title">Publications</div>
-
   <div class="flex-break"></div>
 
   <!-- SDG Report -->
@@ -1145,7 +1200,7 @@ The Division for Sustainable Development Goals supports capacity-building effort
     <div class="home_publication_text">
       The UN’s annual flagship report tracking global and regional progress toward the SDGs, highlighting gaps, trends, and priority areas for accelerated action.
     </div>
-    <button class="home_feature_button">Read</button>
+    <a class="home_feature_button home_publication_cta" href="https://unstats.un.org/sdgs/report/2025/" target="_blank" rel="noopener">Read</a>
   </div>
 
   <!-- GSDR -->
@@ -1155,176 +1210,44 @@ The Division for Sustainable Development Goals supports capacity-building effort
     <div class="home_publication_text">
       A quadrennial, science-based assessment strengthening the science–policy interface and informing decision-making at the High-level Political Forum.
     </div>
-    <button class="home_feature_button">Read</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/gsdr">Read</a>
   </div>
-
- 
-
- 
- 
 
   <!-- Partnership Snapshot -->
   <div class="home_publication">
     <div class="home_publication_cover" style="background-image: url('homepics/partnership-snapshot.png');"></div>
-    <div class="home_publication_title">Partnership Snapshot</div>
+    <div class="home_publication_title">2026 Partnership Snapshot</div>
     <div class="home_publication_text">
       A curated snapshot of high-impact partnerships, showcasing implementation experiences and opportunities to scale solutions for the SDGs.
     </div>
-    <button class="home_feature_button">Read</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/2026/PartnershipSnapshot">Read</a>
   </div>
 
-  <!-- GSDR -->
+  <!-- SDGs in Practice -->
   <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('homepics/gsdr.jpeg');"></div>
-    <div class="home_publication_title">Global Sustainable Development Report</div>
+    <div class="home_publication_cover" style="background-image: url('https://sdgs.un.org/sites/default/files/2025-11/a_decade_of_learning_training_and_practice_for_the_sdgs.png');"></div>
+    <div class="home_publication_title">A Decade of Learning, Training and Practice for the SDGs</div>
     <div class="home_publication_text">
-      A quadrennial, science-based assessment strengthening the science–policy interface and informing decision-making at the High-level Political Forum.
+      For ten years, the SDGs in Practice series has provided a dedicated space for skills-building and collaboration to advance the SDGs.
     </div>
-    <button class="home_feature_button">Read</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/publications/decade-learning-training-and-practice-sustainable-development-goals-60381">Read</a>
   </div>
 
- 
-
- 
- 
-
-  <!-- Partnership Snapshot -->
+  <!-- SIDS Brief -->
   <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('homepics/partnership-snapshot.png');"></div>
-    <div class="home_publication_title">Partnership Snapshot</div>
+    <div class="home_publication_cover" style="background-image: url('https://sdgs.un.org/sites/default/files/2025-12/cover.png');"></div>
+    <div class="home_publication_title">2025 SIDS Partnership Brief</div>
     <div class="home_publication_text">
-      A curated snapshot of high-impact partnerships, showcasing implementation experiences and opportunities to scale solutions for the SDGs.
+      The Brief introduces the three winners and the other six finalists of the SIDS Partnership Awards, serving as a resource to inspire stronger, more impactful collaborations that advance SIDS priorities.
     </div>
-    <button class="home_feature_button">Read</button>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/publications/2025-sids-partnership-brief-60516">Read</a>
   </div>
-
 
   <div class="flex-break"></div>
 
-  <button class="home_feature_button_on">More publications</button>
+  <a class="home_feature_button_on" href="https://sdgs.un.org/publications">More publications</a>
 
 </div>
-
-
-
-
- 
-             <div class="home_feature">
-
-      
-   <div class="home_feature_title">Sustainable Development Goals in 2026</div>The 2026 HLPF with full appreciation for the integrated, indivisible and interlinked nature of the Sustainable Development Goals, will conduct in-depth reviews of: SDG 6. Ensure availability and sustainable management of water and sanitation for all; SDG 7. Ensure access to affordable, reliable, sustainable and modern energy for all; SDG 9. Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation; SDG 11. Make cities and human settlements inclusive, safe, resilient and sustainable; and SDG 17. Strengthen the means of implementation and revitalize the Global Partnership for Sustainable Development.
-
- <div class="flex-break"></div>
-
-<div class="home_goal" style=" background: var(--sdg6);">
-
-    <img src="homepics/6clean.png" id="goal_icon">
-    <div class="home_goal_title">Goal 6: Clean Water and Sanitation</div>
-
-
-
-</div>
-
-<div class="home_goal"  style=" background: var(--sdg7);">
-
-    <img src="homepics/7clean.png" id="goal_icon">
-    <div class="home_goal_title">Goal 7: Affordable and Clean Energy</div>
-
-
-
-</div>
-
-<div class="home_goal"  style=" background: var(--sdg9);">
-
-    <img src="homepics/9clean.png" id="goal_icon">
-    <div class="home_goal_title">Goal 9: Industry, Innovation and Infrastructure</div>
-
-
-
-</div>
-
-<div class="home_goal"  style=" background: var(--sdg11);">
-
-    <img src="homepics/11clean.png" id="goal_icon">
-    <div class="home_goal_title">Goal 11: Sustainable Cities and Communities</div>
-
-
-
-</div>
-
-<div class="home_goal"  style=" background: var(--sdg17);">
-
-    <img src="homepics/17clean.png" id="goal_icon">
-    <div class="home_goal_title">Goal 17: Partnerships for the SDGs</div>
-
-
-
-</div>
-<div class="flex-break"></div>
-
-
- 
-         <button class="home_feature_button_on">View all 17 SDGs</button>
-       
-
-
-        </div>
-
-
-
-   <div class="home_feature">
-
-  <div class="home_feature_title">Explore more topics</div>
-
-Sustainable development is shaped by a wide range of interconnected topics that cut across the economic, social, and environmental dimensions of the 2030 Agenda. These thematic areas highlight where action, partnerships, innovation, and policy coherence are most urgently needed to advance progress on the Sustainable Development Goals and address complex global challenges in an integrated manner.
-
-<div class="flex-break"></div>
-
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/climate-change'">Climate Change</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/water-and-sanitation'">Water & Sanitation</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/oceans-and-seas'">Oceans</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/biodiversity'">Biodiversity</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/energy'">Energy</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/cities-and-human-settlements'">Cities</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/food-and-agriculture'">Food Systems</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/health'">Health</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/education'">Education</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/gender-equality'">Gender Equality</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/inequality'">Inequality</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/finance'">Financing for Development</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/partnerships'">Partnerships</button>
-<button class="home_feature_button" onclick="window.location.href='https://sdgs.un.org/topics/science-technology-and-innovation'">Science, Technology & Innovation</button>
-
-<div class="flex-break"></div>
-
-<button class="home_feature_button_on" onclick="window.location.href='https://sdgs.un.org/topics'">
-  View All Topics
-</button>
-
-</div>
-
-
-
-  
-         <div class="home_feature"  > 
-
- 
-
- 
-    <div class="home_feature_title">About the Division for Sustainable Development Goals, UN DESA </div>
-
-The Division for Sustainable Development Goals (DSDG) in the UN Department of Economic and Social Affairs (UN DESA) acts as the Secretariat for the 17 Sustainable Development Goals, providing substantive support, policy analysis, and capacity-building to advance the 2030 Agenda. DSDG facilitates knowledge sharing, partnerships, and monitors progress on thematic issues like climate, energy, and ocean action. 
- 
-
-<div id="platform_clear"></div>
-
-<button class="home_feature_button">About us</button>
-  </div>
-
- 
-
- 
- 
 
   
 
