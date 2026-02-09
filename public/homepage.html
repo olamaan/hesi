@@ -507,8 +507,23 @@ display=swap" rel="stylesheet">
             }
 
 
+                                    .home_feature_button_topic {
+                margin-top: 10px;
+                padding: 10px 10px;
+               
+                color: #fff;
+                font-family: Oswald, sans-serif;
+                
+                border-radius: 15px;
+                font-size: 14px;
+                cursor: pointer;
+                margin-right: 5px;
+            }
+
+
             /* make <a> look/behave like your buttons */
 a.home_feature_button,
+a.home_feature_button_topic,
 a.home_feature_button_on{
   display:inline-block;
   text-decoration:none;
@@ -517,6 +532,7 @@ a.home_feature_button_on{
 /* ===== Fix hover text color for <a class="home_feature_button..."> ===== */
 
 a.home_feature_button,
+a.home_feature_button_topic,
 a.home_feature_button_on{
   display:inline-block;
   text-decoration:none;
@@ -541,6 +557,12 @@ a.home_feature_button_on{
   border:1px solid #42c513;
 }
 
+a.home_feature_button_topic{
+  background:var(--sdg9);
+  color:#fff;
+  border:1px solid var(--sdg9);
+}
+
 /* hover -> white text */
 a.home_feature_button:hover,
 a.home_feature_button:focus{
@@ -558,6 +580,14 @@ a.home_feature_button_on:focus{
 }
 
 
+a.home_feature_button_topic:hover,
+a.home_feature_button_topic:focus{
+  background:#00adef;
+  color:#fff !important;
+    border:1px solid #00adef;
+   text-decoration: none !important
+
+}
 
 
 /* keep “bottom aligned” CTA in cards */
@@ -943,7 +973,7 @@ a.home_feature_button_on:focus{
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/">2026 UN Water Conference</a>
+    <a class="home_feature_button" href="https://sdgs.un.org/conferences/water2026">2026 UN Water Conference</a>
     <a class="home_feature_button" href="https://sdgs.un.org/topics/water-and-sanitation">More on Water and Sanitation</a>
 
   </div>

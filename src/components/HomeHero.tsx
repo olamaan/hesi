@@ -2,44 +2,16 @@
 import Link from 'next/link'
 import { publicClient as client } from '@/sanity/lib/client'
 
-type BadgeType = 'forum' | 'network' | 'cop' | 'action'
-
-export function Badge({
-  type,
-  className = '',
-  title,
-}: {
-  type: BadgeType
-  className?: string
-  title?: string
-}) {
-  return (
-    <span
-      className={`badge-circle badge--${type} ${className}`}
-      title={title}
-      aria-label={title}
-    />
-  )
-}
-
-const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n)
-
-type ActivityType = 'forum' | 'network' | 'cop' | 'action' | 'other'
-
 type Item = {
   _id: string
   title: string
-  slug?: string
   website?: string
   datejoined?: string
   countryTitle?: string
   regionTitle?: string
-  hasForum?: boolean
-  hasNetwork?: boolean
-  hasCop?: boolean
-  hasAction?: boolean
-  activities?: { _id: string; type: ActivityType; title?: string }[]
 }
+
+const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n)
 
 const formatYear = (iso?: string) => {
   if (!iso) return ''
@@ -58,49 +30,17 @@ function buildHrefWithParams(nextParams: Record<string, string | string[] | unde
   return qs ? `/?${qs}` : '/'
 }
 
+function clearSearchHref(current: { [k: string]: string | string[] | undefined }) {
+  return buildHrefWithParams({ ...current, q: undefined, page: undefined })
+}
+
 /* ------------------------------------------------------------------
-   OPTIONAL (commented out): region filter + search + sort helpers
-   Keeping these here so you can re-enable later if desired.
+   OPTIONAL (commented out): badges / activities
+   Keeping placeholders so you can re-enable later.
 ------------------------------------------------------------------- */
 
-// /** Six canonical regions */
-// const CANON = [
-//   { id: 'region.africa', title: 'Africa' },
-//   { id: 'region.asia-pacific', title: 'Asia-Pacific' },
-//   { id: 'region.europe', title: 'Europe' },
-//   { id: 'region.lac', title: 'Latin America and the Caribbean' },
-//   { id: 'region.north-america', title: 'North America' },
-//   { id: 'region.western-asia', title: 'Western Asia' },
-// ]
-//
-// function toArray(v?: string | string[]): string[] {
-//   if (!v) return []
-//   return Array.isArray(v) ? v : [v]
-// }
-//
-// // toggle region & reset page
-// function toggleRegionHref({
-//   current,
-//   id,
-// }: {
-//   current: { [k: string]: string | string[] | undefined }
-//   id: string
-// }) {
-//   const chosen = toArray(current.region)
-//   const exists = chosen.includes(id)
-//   const next = exists ? chosen.filter((x) => x !== id) : [...chosen, id]
-//   return buildHrefWithParams({ ...current, region: next.length ? next : undefined, page: undefined })
-// }
-//
-// // set sort & reset page
-// function sortHref(current: { [k: string]: string | string[] | undefined }, sort: 'joined' | 'title') {
-//   return buildHrefWithParams({ ...current, sort, page: undefined })
-// }
-//
-// // clear search & reset page
-// function clearSearchHref(current: { [k: string]: string | string[] | undefined }) {
-//   return buildHrefWithParams({ ...current, q: undefined, page: undefined })
-// }
+// type BadgeType = 'forum' | 'network' | 'cop' | 'action'
+// export function Badge(...) { ... }
 
 export default async function HomeHero({
   searchParams,
@@ -109,30 +49,13 @@ export default async function HomeHero({
 }) {
   const sp = searchParams ?? {}
 
-  /* ------------------------------------------------------------------
-     Regions + Search + Sort REMOVED (kept here as a comment reference)
-  ------------------------------------------------------------------- */
-
-  // // title/country search (q)
-  // const qRaw = Array.isArray(sp.q) ? sp.q[0] : sp.q
-  // const q = (qRaw || '').trim()
-  // const qPattern = q ? `*${q.toLowerCase()}*` : null
-
-  // // filters (region)
-  // const selectedRegionIds = toArray(sp.region)
-  // const filterRegionIds = selectedRegionIds.length ? selectedRegionIds : null
-
-  // // sort
-  // const sortParam = Array.isArray(sp.sort) ? sp.sort[0] : sp.sort
-  // const sort: 'joined' | 'title' = sortParam === 'title' ? 'title' : 'joined'
-
-  // NEW: always no region filter, no search filter, fixed sort (joined newest)
-  const qPattern = null
-  const filterRegionIds = null
-  const sort: 'joined' | 'title' = 'joined'
+  // Search by org & country (q)
+  const qRaw = Array.isArray(sp.q) ? sp.q[0] : sp.q
+  const q = (qRaw || '').trim()
+  const qPattern = q ? `*${q.toLowerCase()}*` : null
 
   // pagination
-  const perPage = 12
+  const perPage = 30
   const pageParam = Array.isArray(sp.page) ? sp.page[0] : sp.page
   const page = Math.max(1, Number.parseInt(pageParam ?? '1', 10) || 1)
   const start = (page - 1) * perPage
@@ -144,94 +67,29 @@ export default async function HomeHero({
     publishedTotal: number
   }>(
     /* groq */ `{
-      "items": select(
-        $sort == "title" =>
-          *[
-            _type == "post" &&
-            lower(status) == "published" &&
-            (
-              $filterRegionIds == null ||
-              country._ref in *[
-                _type == "country" &&
-                defined(region._ref) &&
-                region._ref in $filterRegionIds
-              ]._id
-            ) &&
-            (
-              $qPattern == null ||
-              lower(title) match $qPattern ||
-              lower(country->title) match $qPattern
-            )
-          ] | order(title asc)[$start...$end]{
-            _id, title, datejoined, website,
-            "slug": slug.current,
-            "countryTitle": country->title,
-            "regionTitle": country->region->title,
-
-            "hasForum":   count(coalesce(forums[], [])) > 0,
-            "hasNetwork": count(coalesce(networks[], [])) > 0,
-            "hasCop":     count(coalesce(priorityAreas[], [])) > 0,
-            "hasAction":  count(coalesce(actionGroups[], [])) > 0,
-
-            "activities": [
-              ...select(defined(forums)         => forums[]->         {_id, "type":"forum",   title}),
-              ...select(defined(networks)       => networks[]->       {_id, "type":"network", title}),
-              ...select(defined(priorityAreas)  => priorityAreas[]->  {_id, "type":"cop",     title}),
-              ...select(defined(actionGroups)   => actionGroups[]->   {_id, "type":"action",  title})
-            ]
-          },
-
-        *[
-          _type == "post" &&
-          lower(status) == "published" &&
-          (
-            $filterRegionIds == null ||
-            country._ref in *[
-              _type == "country" &&
-              defined(region._ref) &&
-              region._ref in $filterRegionIds
-            ]._id
-          ) &&
-          (
-            $qPattern == null ||
-            lower(title) match $qPattern ||
-            lower(country->title) match $qPattern
-          )
-        ] | order(datejoined desc, _createdAt desc)[$start...$end]{
-          _id, title, datejoined, website,
-          "slug": slug.current,
-          "countryTitle": country->title,
-          "regionTitle": country->region->title,
-
-          "hasForum":   count(coalesce(forums[], [])) > 0,
-          "hasNetwork": count(coalesce(networks[], [])) > 0,
-          "hasCop":     count(coalesce(priorityAreas[], [])) > 0,
-          "hasAction":  count(coalesce(actionGroups[], [])) > 0,
-
-          "activities": [
-            ...select(defined(forums)         => forums[]->         {_id, "type":"forum",   title}),
-            ...select(defined(networks)       => networks[]->       {_id, "type":"network", title}),
-            ...select(defined(priorityAreas)  => priorityAreas[]->  {_id, "type":"cop",     title}),
-            ...select(defined(actionGroups)   => actionGroups[]->   {_id, "type":"action",  title})
-          ]
-        }
-      ),
+      "items": *[
+        _type == "post" &&
+        lower(status) == "published" &&
+        (
+          $qPattern == null ||
+          lower(title) match $qPattern ||
+          lower(country->title) match $qPattern ||
+          lower(website) match $qPattern
+        )
+      ] | order(datejoined desc, _createdAt desc)[$start...$end]{
+        _id, title, datejoined, website,
+        "countryTitle": country->title,
+        "regionTitle": country->region->title
+      },
 
       "total": count(*[
         _type == "post" &&
         lower(status) == "published" &&
         (
-          $filterRegionIds == null ||
-          country._ref in *[
-            _type == "country" &&
-            defined(region._ref) &&
-            region._ref in $filterRegionIds
-          ]._id
-        ) &&
-        (
           $qPattern == null ||
           lower(title) match $qPattern ||
-          lower(country->title) match $qPattern
+          lower(country->title) match $qPattern ||
+          lower(website) match $qPattern
         )
       ]),
 
@@ -240,7 +98,7 @@ export default async function HomeHero({
         lower(status) == "published"
       ])
     }`,
-    { filterRegionIds, start, end, sort, qPattern },
+    { start, end, qPattern },
     {
       next: { revalidate: 60, tags: ['homehero'] },
       cache: 'force-cache',
@@ -307,23 +165,35 @@ export default async function HomeHero({
       </div>
 
       <div className="homehero-layout">
-        {/* LEFT: counter only (region + search + sort removed) */}
+        {/* LEFT: counter + search */}
         <aside className="filters">
           <div className="results-bar results-bar--stack">
             <span className={`results-count${total === 0 ? ' is-zero' : ''}`}>{formatNumber(total)}</span>
             <span className="results-label">results</span>
           </div>
 
-          {/* ---------------------------------------------------------
-              REMOVED UI (kept as comments for future):
-              - Sort segmented control
-              - Search by Org & country form
-              - Region chips filter
-          ---------------------------------------------------------- */}
+          {/* Search by Org & country */}
+          <div className="filter_menu filter-menu--spaced" style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+            <strong>Search by Org &amp; country</strong>
+            {q && (
+              <Link className="reset-link" href={clearSearchHref(sp)} prefetch={false}>
+                Clear
+              </Link>
+            )}
+          </div>
 
-          {/* <div className="sort-group">...</div> */}
-          {/* <form className="filter-search">...</form> */}
-          {/* <div className="theme-filter">...</div> */}
+          <form className="filter-search" method="get" action="/">
+            <input
+              className="filter-search__input"
+              name="q"
+              defaultValue={q}
+              placeholder="Type org name/country…"
+              aria-label="Search members by title or country"
+            />
+            <button className="filter-search__button" type="submit">
+              Search
+            </button>
+          </form>
 
           <div className="joinBox">
             <div className="filter_menu filter-menu--spaced">Join HESI</div>
@@ -414,49 +284,10 @@ export default async function HomeHero({
                         <div className="row-summary__title">{it.title}</div>
                       </div>
 
-                      {(() => {
-                        const hasAll = !!(it.hasForum && it.hasNetwork && it.hasCop && it.hasAction)
-                        return (
-                          <div
-                            className={`row-summary__badges${hasAll ? ' is-all' : ''}`}
-                            role="group"
-                            aria-label="Membership badges"
-                          >
-                            {it.hasForum && (
-                              <span
-                                className="badge-circle badge--forum"
-                                title="Forum participant"
-                                aria-label="Forum participant"
-                              />
-                            )}
-                            {it.hasNetwork && (
-                              <span
-                                className="badge-circle badge--network"
-                                title="Network participant"
-                                aria-label="Network participant"
-                              />
-                            )}
-                            {it.hasCop && (
-                              <span
-                                className="badge-circle badge--cop"
-                                title="Community of Practice member"
-                                aria-label="Community of Practice member"
-                              />
-                            )}
-                            {it.hasAction && (
-                              <span
-                                className="badge-circle badge--action"
-                                title="Action Group member"
-                                aria-label="Action Group member"
-                              />
-                            )}
-                          </div>
-                        )
-                      })()}
+                      {/* Badges removed */}
                     </summary>
 
                     <div className="row-details__body">
-                      {/* Meta line: country | year | website */}
                       <div className="muted row-summary__meta">
                         <div className="row-meta">
                           <ul className="row-meta__list row-meta__list--stacked">
@@ -467,12 +298,7 @@ export default async function HomeHero({
 
                             {formatYear(it.datejoined) && (
                               <li className="row-meta__item">
-                                <img
-                                  className="row-meta__icon"
-                                  src="/images/icons/calendar.svg"
-                                  alt=""
-                                  aria-hidden="true"
-                                />
+                                <img className="row-meta__icon" src="/images/icons/calendar.svg" alt="" aria-hidden="true" />
                                 <span>{formatYear(it.datejoined)}</span>
                               </li>
                             )}
@@ -489,54 +315,13 @@ export default async function HomeHero({
                         </div>
                       </div>
 
-                      {/* Grouped activities */}
-                      {(it.activities && it.activities.length > 0) &&
-                        (() => {
-                          const uniq = (xs: (string | undefined)[]) => Array.from(new Set(xs.filter(Boolean))) as string[]
+                      {/* Activities removed */}
 
-                          const forums = uniq(it.activities.filter((a) => a.type === 'forum').map((a) => a.title))
-                          const networks = uniq(it.activities.filter((a) => a.type === 'network').map((a) => a.title))
-                          const cops = uniq(it.activities.filter((a) => a.type === 'cop').map((a) => a.title))
-                          const actions = uniq(it.activities.filter((a) => a.type === 'action').map((a) => a.title))
-
-                          const hasAny = forums.length || networks.length || cops.length || actions.length
-                          if (!hasAny) return null
-
-                          const Line = ({
-                            type,
-                            label,
-                            items,
-                          }: {
-                            type: 'forum' | 'network' | 'cop' | 'action'
-                            label: string
-                            items: string[]
-                          }) =>
-                            items.length ? (
-                              <div className="row-activities__line">
-                                <Badge type={type} className="row-activities__badge" title={label} />
-                                <span className="row-activities__type">{label}:</span>{' '}
-                                <span className="row-activities__titles">{items.join(', ')}</span>
-                              </div>
-                            ) : null
-
-                          return (
-                            <div className="row-activities">
-                              <div className="row-activities__label">Active in:</div>
-                              <Line type="forum" label="Forum" items={forums} />
-                              <Line type="network" label="Network" items={networks} />
-                              <Line type="cop" label="Community of Practice" items={cops} />
-                              <Line type="action" label="Action Group" items={actions} />
-                            </div>
-                          )
-                        })()}
-
-                      {detailsHref ? (
-                        <div style={{ marginTop: 12 }}>
-                          <Link href={detailsHref} prefetch={false} className="btn-pager">
-                            View full profile →
-                          </Link>
-                        </div>
-                      ) : null}
+                      <div style={{ marginTop: 12 }}>
+                        <Link href={detailsHref} prefetch={false} className="btn-pager">
+                          View full profile →
+                        </Link>
+                      </div>
                     </div>
                   </details>
                 </li>
