@@ -474,6 +474,68 @@ display=swap" rel="stylesheet">
                 margin-right: 5px;
             }
 
+ 
+ 
+
+
+
+ 
+
+
+
+                                    .home_big_button {
+                 width: 100%;
+ 
+                 display: flex;              /* REQUIRED */
+
+                 height:100%;
+   align-items: center;
+  justify-content: center;
+
+ background-size: cover;
+ background-position: center center;
+  line-height: 1;
+  text-align: center;
+
+                
+  color:#00adef;
+  border:1px solid #00adef;
+
+background-image: url("homepics/sdgbg.png");
+            
+             
+                font-family: Oswald, sans-serif;
+           
+                border-radius: 15px;
+                font-size: 14px;
+                cursor: pointer;
+            
+            }
+
+            
+ 
+
+
+             .home_big_button:hover {
+               
+                background:#00adef;
+  color:#fff;
+
+
+        
+            
+            }
+
+
+                     a.home_big_button{
+ 
+  text-decoration:none !important;
+}
+ 
+
+
+
+
 
                                     .home_feature_button_topic {
                 margin-top: 10px;
@@ -489,7 +551,11 @@ display=swap" rel="stylesheet">
             }
 
 
+
+   
+
             /* make <a> look/behave like your buttons */
+a.home_feature_button,
 a.home_feature_button,
 a.home_feature_button_topic,
 a.home_feature_button_on{
@@ -532,12 +598,23 @@ a.home_feature_button_topic{
 }
 
 /* hover -> white text */
+
+a.home_big_button:hover,
+a.home_big_button:focus{
+  background:#00adef;
+  color:#fff !important;
+  text-decoration: none !important
+}
+
+
 a.home_feature_button:hover,
 a.home_feature_button:focus{
   background:#00adef;
   color:#fff !important;
   text-decoration: none !important
 }
+
+
 a.home_feature_button_on:hover,
 a.home_feature_button_on:focus{
   background:#00adef;
@@ -584,12 +661,29 @@ a.home_feature_button_topic:focus{
                 color:#fff
                         }
 
+                                            .home_goal_off
+                        {
+                           
+                             
+                          
+                            width:92px;
+                            
+                            color:#fff;
+                            padding:0px;
+                            position: relative;
+                            margin-top:0px;
+                            margin-right: 10px;
+                            margin-bottom: 10px;
+                           
+                        }
+
+
 
                         .home_goal
                         {
                             border-radius: 15px;
                              
-                            width:105px;
+                            width:92px;
                             
                             color:#fff;
                             padding:10px;
@@ -838,6 +932,13 @@ a.home_feature_button_topic:focus{
     margin-right: 0;
   }
 
+   .home_big_button {
+    width: 100%;
+    padding:20px;
+    
+  }
+
+
   /* Registries icon stacks above text */
   #home_feature_platform_icon {
     flex: 1 1 100%;
@@ -895,15 +996,14 @@ a.home_feature_button_topic:focus{
 
     <div class="home_feature_title_big">Science, Technology and Innovation</div>
 
-    Science, technology and innovation (STI) are essential for advancing the Sustainable Development Goals, enabling evidence-based decision-making, accelerating implementation, and scaling solutions to complex global challenges. Harnessing STI helps bridge gaps between knowledge, policy, and action, and supports more inclusive, resilient, and sustainable development outcomes.
-
+    Science, technology and innovation (STI) are essential for advancing the SDGs, enabling evidence-based decision-making, accelerating implementation, and scaling solutions to complex global challenges. 
     <p></p>
 
-    On 6-7 May 2026, the eleventh annual Multi-Stakeholder Forum on Science, Technology and Innovation for the SDGs (STI Forum) at UNHQ, a key part of the Technology Facilitation Mechanism (TFM).
+    On 6-7 May 2026, the eleventh annual Multi-Stakeholder Forum on Science, Technology and Innovation for the SDGs (STI Forum) will take place.
     <div id="platform_clear"></div>
 
     <a class="home_feature_button_on" href="https://sdgs.un.org/tfm/STIForum2026">STI Forum 2026</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/tfm">TFM</a>
+  
     <a class="home_feature_button" href="https://sdgs.un.org/topics/science">More on Science</a>
     <a class="home_feature_button" href="https://sdgs.un.org/topics/technology">More on Technology</a>
 
@@ -1035,13 +1135,34 @@ a.home_feature_button_topic:focus{
   </div>
 </a>
 
-     <a href="https://sdgs.un.org/goals/goal17">
-  <div class="home_goal" style="background: var(--grey);">
-    <img src="https://sdgs.un.org/themes/custom/porto/assets/goals/global-goals.png" id="goal_icon">
-    <div class="home_goal_title">Explore all Goals</div>
-  </div>
-</a>
+      
   
+ 
+
+
+ <div class="home_goal_off">
+    
+  
+  <a class="home_big_button" href="https://sdgs.un.org/goals">Explore Goals</a>
+  </div>
+
+ <div class="home_goal_off">
+    
+  
+  <a class="home_big_button" href="https://sdgs.un.org/2030agenda">2030 Agenda</a>
+  </div>
+
+
+
+   
+ 
+
+  
+
+
+
+  
+
 
 </div>
 
@@ -1056,6 +1177,15 @@ a.home_feature_button_topic:focus{
 
   </div>
 
+    <div class="home_publication">
+ 
+    <div class="home_publication_title">ECOSOC Partnership Forum, 27 Jan 2026</div>
+    <div class="home_publication_text">A key moment to mobilize commitments and actions to advance the 2030 Agenda for Sustainable Development.    </div>
+    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/2026ECOSOCPartnershipForum">View</a>
+  </div>
+
+
+
  
   <div class="home_publication">
     
@@ -1069,26 +1199,20 @@ a.home_feature_button_topic:focus{
  
   <div class="home_publication">
 
-    <div class="home_publication_title">HLPF, 6 - 15 July 2026</div>
+    <div class="home_publication_title">HLPF, 6-15 July 2026</div>
     <div class="home_publication_text">
-UN's central platform for the follow-up and review of the 2030 Agenda, held in 2026 under the theme “Transformative, equitable, innovative and coordinated actions for the 2030 Agenda for Sustainable Development and its Sustainable Development Goals for a sustainable future for all”.     </div>
+Held under the theme “Transformative, equitable, innovative and coordinated actions for the 2030 Agenda for Sustainable Development and its Sustainable Development Goals for a sustainable future for all”.     </div>
     <a class="home_feature_button home_publication_cta" href="https://hlpf.un.org/2026">View</a>
   </div>
 
 
    
-  <div class="home_publication">
- 
-    <div class="home_publication_title">ECOSOC Partnership Forum, 27 Jan 2026</div>
-    <div class="home_publication_text">A key moment to mobilize cCommitments and actions to advance the 2030 Agenda for Sustainable Development    </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/2026ECOSOCPartnershipForum">View</a>
-  </div>
 
 
      
   <div class="home_publication">
  
-    <div class="home_publication_title">2026 United Nations Water Conference, 2 - 4 Dec 2026</div>
+    <div class="home_publication_title">2026 United Nations Water Conference, 2-4 Dec 2026</div>
     <div class="home_publication_text">
 Achieving Sustainable Development Goal (SDG) 6 on Clean Water and Sanitation is an essential end in itself and is also critical to progress on the 2030 Agenda as a whole.    </div>
     <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/conferences/water2026">View</a>
@@ -1096,23 +1220,19 @@ Achieving Sustainable Development Goal (SDG) 6 on Clean Water and Sanitation is 
 
 
 
-<div class="home_publication">
  
-    <div class="home_publication_title">Expert Group Meetings for 2026 HLPF Thematic Review</div>
-    <div class="home_publication_text">
-      Preparing for thematic reviews of SDG 7 (Energy), SDG 9 (Industry, Innovation and Infrastructure), SDG 11 (Sustainable Cities and Communities), SDG 12 (Responsible Consumption and Production) and SDG 15 (Life on Land) at the 2026 HLPF.
-    </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/HLPF/2026/ThematicReviewEGMs">View</a>
+  <div class="home_publication">
+    
+  
+  <a class="home_big_button" href="https://sdgs.un.org/events">More events</a>
   </div>
-
 
 
 
 
     <div class="flex-break"></div>
 
-  <a class="home_feature_button_on" href="https://sdgs.un.org/events">More events</a>
-
+  
 
 
 </div>
@@ -1477,7 +1597,7 @@ The SDG Acceleration Actions online database is a tool to help inspire and mobil
     <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/2026/PartnershipSnapshot">Read</a>
   </div>
 
-  <!-- SDGs in Practice -->
+  <!-- 
   <div class="home_publication">
     <div class="home_publication_cover" style="background-image: url('https://sdgs.un.org/sites/default/files/2025-11/a_decade_of_learning_training_and_practice_for_the_sdgs.png');"></div>
     <div class="home_publication_title">A Decade of Learning, Training and Practice for the SDGs</div>
@@ -1486,6 +1606,8 @@ The SDG Acceleration Actions online database is a tool to help inspire and mobil
     </div>
     <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/publications/decade-learning-training-and-practice-sustainable-development-goals-60381">Read</a>
   </div>
+
+  SDGs in Practice -->
 
   <!-- SIDS Brief -->
   <div class="home_publication">
@@ -1497,10 +1619,19 @@ The SDG Acceleration Actions online database is a tool to help inspire and mobil
     <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/publications/2025-sids-partnership-brief-60516">Read</a>
   </div>
 
+
+    <div class="home_publication">
+    
+  
+  <a class="home_big_button" href="https://sdgs.un.org/publications">More publications</a>
+  </div>
+
+
+
+
   <div class="flex-break"></div>
 
-  <a class="home_feature_button_on" href="https://sdgs.un.org/publications">More publications</a>
-
+ 
 </div>
 
   
