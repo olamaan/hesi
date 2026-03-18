@@ -65,7 +65,7 @@ display=swap" rel="stylesheet">
 				
 <nav class="navbar navbar-expand-md navbar-language">
 	<div class="container">
-		<a href="#" class="navbar-brand"><img src="https://sdgs.un.org/themes/custom/porto/assets/images/home.svg" alt="">
+		<a href="#" class="navbar-brand"><img src="/themes/custom/porto/assets/images/home.svg" alt="">
 			Welcome to the United Nations</a>
 		<button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler blue">
 			<span class="navbar-toggler-icon"></span>
@@ -94,9 +94,9 @@ display=swap" rel="stylesheet">
 	<div class="row header-banner header-form">
 		<div class="col-lg-8 col-md-12 d-flex flex-column flex-md-row mb-3 mb-lg-0">
 			<a href="/">
-				<img id="logo" style="" src="https://sdgs.un.org/themes/custom/porto/assets/images/logo-en.svg" alt="United Nations" class="d-none d-md-block logo main-logo">
+				<img id="logo" style="" src="/themes/custom/porto/assets/images/logo-en.svg" alt="United Nations" class="d-none d-md-block logo main-logo">
 			</a>
-							<img src="https://sdgs.un.org/themes/custom/porto/assets/images/logo-en.svg" alt="United Nations" class="d-md-none logo-mobile mb-3">
+							<img src="/themes/custom/porto/assets/images/logo-en.svg" alt="United Nations" class="d-md-none logo-mobile mb-3">
 						
 						
 							<span class="header-title">
@@ -171,7 +171,7 @@ display=swap" rel="stylesheet">
                                       <a href="/goals" class="dropdown-item" data-drupal-link-system-path="goals">Sustainable Development Goals</a>
                       </li>
                             <li class="dropdown-item">
-                                      <a href="https://sdgs.un.org/gsdr" class="dropdown-item">Global Sustainable Development Report</a>
+                                      <a href="/gsdr" class="dropdown-item">Global Sustainable Development Report</a>
                       </li>
                             <li class="dropdown-item">
                                       <a href="/topics" class="dropdown-item" data-drupal-link-system-path="topics">Key Topics</a>
@@ -232,7 +232,7 @@ display=swap" rel="stylesheet">
                                       <a href="/topics/small-island-developing-states/united-nations-sids-partnerships-awards-2022" class="dropdown-item">United Nations SIDS Partnerships Awards</a>
                       </li>
                             <li class="dropdown-item">
-                                      <a href="https://sdgs.un.org/topics/small-island-developing-states/sids-partnership-framework" class="dropdown-item">SIDS Partnership Framework</a>
+                                      <a href="/topics/small-island-developing-states/sids-partnership-framework" class="dropdown-item">SIDS Partnership Framework</a>
                       </li>
                             <li class="dropdown-item">
                                       <a href="https://sustainabledevelopment.un.org/sids/samoareview" class="dropdown-item">SAMOA Pathway</a>
@@ -249,7 +249,7 @@ display=swap" rel="stylesheet">
                                       <a href="/partnerships" class="dropdown-item" data-drupal-link-system-path="node/34743">SDG Actions Platform</a>
                       </li>
                             <li class="dropdown-item">
-                                      <a href="https://sdgs.un.org/tfm" class="dropdown-item">Technology Facilitatory Mechanism</a>
+                                      <a href="/tfm" class="dropdown-item">Technology Facilitatory Mechanism</a>
                       </li>
                             <li class="dropdown-item">
                                       <a href="/partnerships/faq" class="dropdown-item" data-drupal-link-system-path="node/50758">FAQ about the submission of voluntary commitments / SDG Actions</a>
@@ -335,35 +335,47 @@ display=swap" rel="stylesheet">
                 
 
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
-
-   
-
-     <link href="https://hesicommunity.org/styles/library.css" rel="stylesheet" />
-
+ 
         
  
-    <div id="platform_clear"></div>
 
  
     <div class="container">
          
         
-    
-   
- 
-           
-       
-
-
-        <div id="platform_clear"></div>
- 
+  
 
         
         <style>
 
-             .home_feature {
+
+:root {
+  
+  
+
+    
+
+--sdg1:  #e5243b;  /* No Poverty */
+--sdg2:  #DDA63A;  /* Zero Hunger */
+--sdg3:  #4C9F38;  /* Good Health and Well-being */
+--sdg4:  #C5192D;  /* Quality Education */
+--sdg5:  #f0402d;  /* Gender Equality */
+--sdg6:  #28bfe5;  /* Clean Water and Sanitation */
+--sdg7:  #FCC30B;  /* Affordable and Clean Energy */
+--sdg8:  #A21942;  /* Decent Work and Economic Growth */
+--sdg9:  #f26a2f;  /* Industry, Innovation and Infrastructure */
+--sdg10: #df1583;  /* Reduced Inequalities */
+--sdg11: #FD9D24;  /* Sustainable Cities and Communities */
+--sdg12: #BF8B2E;  /* Responsible Consumption and Production */
+--sdg13: #3F7E44;  /* Climate Action */
+--sdg14: #0A97D9;  /* Life Below Water */
+--sdg15: #56C02B;  /* Life on Land */
+--sdg16: #00689D;  /* Peace, Justice and Strong Institutions */
+--sdg17: #19486A;  /* Partnerships for the Goals */  
+  }
+
+
+             .home2026_feature {
                 display: flex;
                 flex-wrap: wrap;
                 margin-top: 20px;
@@ -378,7 +390,7 @@ display=swap" rel="stylesheet">
             } 
 
 
-                       .home_feature_image_large {
+                       .home2026_feature_image_large {
               
                 
                 width:68%;
@@ -391,7 +403,7 @@ display=swap" rel="stylesheet">
             } 
 
 
-                       .home_feature_image {
+                       .home2026_feature_image {
               
                         
                 width:48%;
@@ -407,21 +419,21 @@ display=swap" rel="stylesheet">
 
 
                         
-            .home_feature_title_big
+            .home2026_feature_title_big
             {
-                font-size: 44px;
+                font-size: 46px;
                 font-weight: bold;
                 color: #333;
                 font-family: Oswald, sans-serif;
              
-                line-height: 44px;
+                line-height: 46px;
                 clear: right;
                 margin-bottom: 20px;
                 width: 100%;
             }
 
 
-            .home_feature_title
+            .home2026_feature_title
             {
                 font-size: 34px;
                 font-weight: bold;
@@ -434,7 +446,7 @@ display=swap" rel="stylesheet">
                 width: 100%;
             }
 
-                     .home_feature_rightside2 {
+                     .home2026_feature_rightside2 {
                  
                 width:340px;
                 float: left;
@@ -444,7 +456,7 @@ display=swap" rel="stylesheet">
             }
 
      
-             .home_feature_rightside {
+             .home2026_feature_rightside {
                  
                 width:50%;
                 float: left;
@@ -453,7 +465,7 @@ display=swap" rel="stylesheet">
             
             }
 
-                        .home_feature_button_on {
+                        .home2026_feature_button_on {
                 margin-top: 10px;
                 padding: 10px 10px;
                 background-color: #42c513;
@@ -475,7 +487,7 @@ display=swap" rel="stylesheet">
 
 
 
-                                    .home_big_button {
+                                    .home2026_big_button {
                  width: 100%;
  
                  display: flex;              /* REQUIRED */
@@ -488,6 +500,9 @@ display=swap" rel="stylesheet">
  background-position: center center;
   line-height: 1;
   text-align: center;
+
+  min-height: 90px;
+
 
                 
   color:#00adef;
@@ -506,7 +521,7 @@ display=swap" rel="stylesheet">
  
 
 
-             .home_big_button:hover {
+             .home2026_big_button:hover {
                
                 background:#00adef;
   color:#fff;
@@ -519,7 +534,7 @@ display=swap" rel="stylesheet">
 
 
 
-                     a.home_big_button{
+                     a.home2026_big_button{
  
   text-decoration:none !important;
 }
@@ -530,7 +545,7 @@ display=swap" rel="stylesheet">
 
 
 
-                                    .home_feature_button_topic {
+                                    .home2026_feature_button_topic {
                 margin-top: 10px;
                 padding: 10px 10px;
                
@@ -548,19 +563,19 @@ display=swap" rel="stylesheet">
    
 
             /* make <a> look/behave like your buttons */
-a.home_feature_button,
-a.home_feature_button,
-a.home_feature_button_topic,
-a.home_feature_button_on{
+a.home2026_feature_button,
+a.home2026_feature_button,
+a.home2026_feature_button_topic,
+a.home2026_feature_button_on{
   display:inline-block;
   text-decoration:none;
 }
 
 /* ===== Fix hover text color for <a class="home_feature_button..."> ===== */
 
-a.home_feature_button,
-a.home_feature_button_topic,
-a.home_feature_button_on{
+a.home2026_feature_button,
+a.home2026_feature_button_topic,
+a.home2026_feature_button_on{
   display:inline-block;
   text-decoration:none;
   margin-top: 10px;
@@ -573,18 +588,18 @@ a.home_feature_button_on{
 }
 
 /* base colors */
-a.home_feature_button{
+a.home2026_feature_button{
   background:#fff;
   color:#00adef;
   border:1px solid #00adef;
 }
-a.home_feature_button_on{
+a.home2026_feature_button_on{
   background:#42c513;
   color:#fff;
   border:1px solid #42c513;
 }
 
-a.home_feature_button_topic{
+a.home2026_feature_button_topic{
   background:var(--sdg9);
   color:#fff;
   border:1px solid var(--sdg9);
@@ -592,24 +607,24 @@ a.home_feature_button_topic{
 
 /* hover -> white text */
 
-a.home_big_button:hover,
-a.home_big_button:focus{
+a.home2026_big_button:hover,
+a.home2026_big_button:focus{
   background:#00adef;
   color:#fff !important;
   text-decoration: none !important
 }
 
 
-a.home_feature_button:hover,
-a.home_feature_button:focus{
+a.home2026_feature_button:hover,
+a.home2026_feature_button:focus{
   background:#00adef;
   color:#fff !important;
   text-decoration: none !important
 }
 
 
-a.home_feature_button_on:hover,
-a.home_feature_button_on:focus{
+a.home2026_feature_button_on:hover,
+a.home2026_feature_button_on:focus{
   background:#00adef;
   color:#fff !important;
     border:1px solid #00adef;
@@ -618,8 +633,8 @@ a.home_feature_button_on:focus{
 }
 
 
-a.home_feature_button_topic:hover,
-a.home_feature_button_topic:focus{
+a.home2026_feature_button_topic:hover,
+a.home2026_feature_button_topic:focus{
   background:#00adef;
   color:#fff !important;
     border:1px solid #00adef;
@@ -629,15 +644,15 @@ a.home_feature_button_topic:focus{
 
 
 /* keep “bottom aligned” CTA in cards */
-.home_publication_cta{ margin-top:auto; }
+.home2026_publication_cta{ margin-top:auto; }
 
 
-              .home_feature_button_on:hover {
+              .home2026_feature_button_on:hover {
                 background-color: #00adef;
                 color:#fff
                         }
 
-            .home_feature_button {
+            .home2026_feature_button {
                 margin-top: 10px;
                 padding: 10px 10px;
                 background-color: #fff;
@@ -649,12 +664,12 @@ a.home_feature_button_topic:focus{
                 cursor: pointer;
                 margin-right: 5px;
             }
-                        .home_feature_button:hover {
+                        .home2026_feature_button:hover {
                 background-color: #00adef;
                 color:#fff
                         }
 
-                                            .home_goal_off
+                                            .home2026_goal_off
                         {
                            
                              
@@ -672,7 +687,7 @@ a.home_feature_button_topic:focus{
 
 
 
-                        .home_goal
+                        .home2026_goal
                         {
                             border-radius: 15px;
                              
@@ -688,7 +703,7 @@ a.home_feature_button_topic:focus{
                         }
 
                         
-                                                .home_goal:hover
+                                                .home2026_goal:hover
                         {
                            border-color: #00adef !important;
                            cursor: pointer;
@@ -696,7 +711,7 @@ a.home_feature_button_topic:focus{
 
 
 
-                    .home_goal_title
+                    .home2026_goal_title
                     {
                          color:#fff;
 
@@ -713,7 +728,7 @@ a.home_feature_button_topic:focus{
                         width:100%;
                     }
 
-.home_publication {
+.home2026_publication {
   width: 205px;
   
    display: flex;
@@ -728,7 +743,7 @@ a.home_feature_button_topic:focus{
   flex-direction: column;
 }
 
-.home_publication_cover {
+.home2026_publication_cover {
   width: 100%;
   height: 230px;
   background-size: cover;
@@ -740,7 +755,7 @@ a.home_feature_button_topic:focus{
    
 }
 
-.home_publication_title {
+.home2026_publication_title {
   font-size: 20px;
         font-family: Oswald, sans-serif;
                         margin-bottom: 10px;
@@ -748,41 +763,41 @@ a.home_feature_button_topic:focus{
   color: #000;
 }
 
-.home_publication_text {
+.home2026_publication_text {
   font-size: 14px;
 
   margin-bottom: 10px;
   color: #444;
 }
-.home_publication .home_feature_button {
+.home2026_publication .home2026_feature_button {
   margin-top: auto;
   
 }
 
-.home_publication_cta {
+.home2026_publication_cta {
   margin-top: auto;       /* THIS pushes it to the bottom */
   display: block;         /* makes it behave like a block in the column */
   text-decoration: none;  /* optional */
 }
 
 
-.home_feature {
+.home2026_feature {
   display: flex;
   flex-wrap: wrap;
 }
 
-.home_feature {
+.home2026_feature {
   display: flex;
   flex-wrap: wrap;
 }
 
-.home_feature_icon_row {
+.home2026_feature_icon_row {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
 }
-.home_feature_icon_row img {
+.home2026_feature_icon_row img {
   width: 300px;
   max-width: 100%;
   height: auto;
@@ -793,7 +808,7 @@ a.home_feature_button_topic:focus{
  
 
 /* only target this icon */
-#home_feature_platform_icon {
+#home2026_feature_platform_icon {
   
  margin-right: 30px;
  margin-bottom: 30px;
@@ -809,21 +824,21 @@ a.home_feature_button_topic:focus{
    ========================= */
 
 /* Stop floats from fighting flex (desktop still fine) */
-.home_feature_image,
-.home_feature_image_large,
-.home_feature_rightside,
-.home_feature_rightside2 {
+.home2026_feature_image,
+.home2026_feature_image_large,
+.home2026_feature_rightside,
+.home2026_feature_rightside2 {
   float: none;
 }
 
 /* Make images behave like flex items */
-.home_feature_image,
-.home_feature_image_large {
+.home2026_feature_image,
+.home2026_feature_image_large {
   flex: 0 0 auto;
 }
 
 /* Registries intro row responsiveness */
-.home_feature_intro {
+.home2026_feature_intro {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -831,26 +846,26 @@ a.home_feature_button_topic:focus{
   gap: 20px;
 }
 
-#home_feature_platform_icon {
+#home2026_feature_platform_icon {
   float: none;
   flex: 0 0 300px;
   width: 300px;
   margin-left: auto;
 }
 
-.home_feature_intro_text {
+.home2026_feature_intro_text {
   flex: 1 1 320px;
   min-width: 260px;
 }
 
 /* Ensure cards wrap cleanly */
-.home_publication {
+.home2026_publication {
    display: flex;
   flex-direction: column;
 
 }
 
-.home_publication_cta {
+.home2026_publication_cta {
   margin-top: auto;
   display: inline-block;   /* so padding works like a button */
   text-align: center;
@@ -861,99 +876,13 @@ a.home_feature_button_topic:focus{
 
 /* ---------- Tablet and below ---------- */
 @media (max-width: 1200px) {
-  .home_feature {
+  .home2026_feature {
     gap: 16px;
   }
 
-  .home_feature_image,
-  .home_feature_image_large {
-    width: 100%;
-    height: 260px;
-    margin-right: 0;
-  }
-
-  .home_feature_rightside,
-  .home_feature_rightside2 {
-    width: 100%;
-    padding: 0;
-  }
-
-  .home_feature_title {
-    font-size: 28px;
-    line-height: 34px;
-    margin-bottom: 12px;
-  }
-
-  /* Make cards larger + fewer per row */
-  .home_publication {
-    width: calc(50% - 20px);
-    margin-right: 0;
-  }
-}
-
-/* ---------- Mobile ---------- */
-@media (max-width: 600px) {
-  .home_feature {
-    padding-top: 14px;
-    padding-bottom: 14px;
-  }
-
-  .home_feature_image,
-  .home_feature_image_large {
-    height: 220px;
-  }
-
-  .home_feature_title {
-    font-size: 24px;
-    line-height: 30px;
-  }
-
-  /* Full-width cards on mobile */
-  .home_publication {
-    width: 100%;
-  }
-
-  .home_publication_cover {
-    height: 200px;
-  }
-
-  /* Buttons: easier tap targets */
-  .home_feature_button,
-  .home_feature_button_on {
-    width: 100%;
-    text-align: center;
-    margin-right: 0;
-  }
-
-   .home_big_button {
-    width: 100%;
-    padding:20px;
-    
-  }
 
 
-  /* Registries icon stacks above text */
-  #home_feature_platform_icon {
-    flex: 1 1 100%;
-    width: 100%;
-    max-width: 300px;
-    margin-left: 0;
-  }
-
-  #home_feature_platform_icon img {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    display: block;
-  }
-
-  .home_feature_intro_text {
-    flex: 1 1 100%;
-    min-width: 0;
-  }
-
-
-                          .home_goal
+                          .home2026_goal
                         {
                            
                     
@@ -966,6 +895,98 @@ a.home_feature_button_topic:focus{
                         }
 
 
+  .home2026_feature_image,
+  .home2026_feature_image_large {
+    width: 100%;
+    height: 260px;
+    margin-right: 0;
+  }
+
+  .home2026_feature_rightside,
+  .home2026_feature_rightside2 {
+    width: 100%;
+    padding: 0;
+  }
+
+  .home2026_feature_title {
+    font-size: 28px;
+    line-height: 34px;
+    margin-bottom: 12px;
+  }
+
+  /* Make cards larger + fewer per row */
+  .home2026_publication {
+    width: calc(50% - 20px);
+    margin-right: 0;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+
+
+  .home2026_feature {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .home2026_feature_image,
+  .home2026_feature_image_large {
+    height: 220px;
+  }
+
+  .home2026_feature_title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  /* Full-width cards on mobile */
+  .home2026_publication {
+    width: 100%;
+  }
+
+  .home2026_publication_cover {
+    height: 200px;
+  }
+
+  /* Buttons: easier tap targets */
+  .home2026_feature_button,
+  .home2026_feature_button_on {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+  }
+
+   .home2026_big_button {
+    width: 100%;
+    padding:20px;
+    
+  }
+
+
+  /* Registries icon stacks above text */
+  #home2026_feature_platform_icon {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 300px;
+    margin-left: 0;
+  }
+
+  #home2026_feature_platform_icon img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    display: block;
+  }
+
+  .home2026_feature_intro_text {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+
+
+
 }
 
 
@@ -975,14 +996,14 @@ a.home_feature_button_topic:focus{
  
  
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image_large"
+  <div class="home2026_feature_image_large"
        style="background-image: url('https://hesicommunity.org/homepics/home.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside2">
+  <div class="home2026_feature_rightside2">
 
-    <div class="home_feature_title_big">Science, Technology and Innovation</div>
+    <div class="home2026_feature_title_big">Science, Technology and Innovation</div>
 
     Science, technology and innovation (STI) are essential for advancing the SDGs, enabling evidence-based decision-making, accelerating implementation, and scaling solutions to complex global challenges. 
     <p></p>
@@ -990,136 +1011,139 @@ a.home_feature_button_topic:focus{
     On 6-7 May 2026, the eleventh annual Multi-Stakeholder Forum on Science, Technology and Innovation for the SDGs (STI Forum) will take place at United Nations Headquarters in New York.
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button_on" href="https://sdgs.un.org/tfm/STIForum2026">STI Forum in 2026</a>
+    <a class="home2026_feature_button_on" href="/tfm/STIForum2026">STI Forum in 2026</a>
   
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/science">More on Science</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/technology">More on Technology</a>
+    <a class="home2026_feature_button" href="/topics/science">More on Science</a>
+    <a class="home2026_feature_button" href="/topics/technology">More on Technology</a>
 
+    
   </div>
 </div>
 
 
-<div class="home_feature">
 
 
-       <div class="home_feature_title">Sustainable Development Goals</div>
+<div class="home2026_feature">
 
-<a href="https://sdgs.un.org/goals/goal1">
-  <div class="home_goal" style="background: var(--sdg1);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 1: No Poverty</div>
+
+       <div class="home2026_feature_title">Sustainable Development Goals</div>
+
+<a href="/goals/goal1">
+  <div class="home2026_goal" style="background: var(--sdg1);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-01.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 1: No Poverty</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal2">
-  <div class="home_goal" style="background: var(--sdg2);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-02.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 2: Zero Hunger</div>
+<a href="/goals/goal2">
+  <div class="home2026_goal" style="background: var(--sdg2);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-02.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 2: Zero Hunger</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal3">
-  <div class="home_goal" style="background: var(--sdg3);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-03.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 3: Good Health and Well-Being</div>
+<a href="/goals/goal3">
+  <div class="home2026_goal" style="background: var(--sdg3);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-03.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 3: Good Health and Well-Being</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal4">
-  <div class="home_goal" style="background: var(--sdg4);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 4: Quality Education</div>
+<a href="/goals/goal4">
+  <div class="home2026_goal" style="background: var(--sdg4);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-04.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 4: Quality Education</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal5">
-  <div class="home_goal" style="background: var(--sdg5);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 5: Gender Equality</div>
+<a href="/goals/goal5">
+  <div class="home2026_goal" style="background: var(--sdg5);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-05.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 5: Gender Equality</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal6">
-  <div class="home_goal" style="background: var(--sdg6);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-06.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 6: Clean Water and Sanitation</div>
+<a href="/goals/goal6">
+  <div class="home2026_goal" style="background: var(--sdg6);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-06.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 6: Clean Water and Sanitation</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal7">
-  <div class="home_goal" style="background: var(--sdg7);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-07.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 7: Affordable and Clean Energy</div>
+<a href="/goals/goal7">
+  <div class="home2026_goal" style="background: var(--sdg7);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-07.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 7: Affordable and Clean Energy</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal8">
-  <div class="home_goal" style="background: var(--sdg8);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-08.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 8: Decent Work and Economic Growth</div>
+<a href="/goals/goal8">
+  <div class="home2026_goal" style="background: var(--sdg8);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-08.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 8: Decent Work and Economic Growth</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal9">
-  <div class="home_goal" style="background: var(--sdg9);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 9: Industry, Innovation and Infrastructure</div>
+<a href="/goals/goal9">
+  <div class="home2026_goal" style="background: var(--sdg9);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-09.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 9: Industry, Innovation and Infrastructure</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal10">
-  <div class="home_goal" style="background: var(--sdg10);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 10: Reduced Inequalities</div>
+<a href="/goals/goal10">
+  <div class="home2026_goal" style="background: var(--sdg10);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-10.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 10: Reduced Inequalities</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal11">
-  <div class="home_goal" style="background: var(--sdg11);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-11.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 11: Sustainable Cities and Communities</div>
+<a href="/goals/goal11">
+  <div class="home2026_goal" style="background: var(--sdg11);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-11.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 11: Sustainable Cities and Communities</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal12">
-  <div class="home_goal" style="background: var(--sdg12);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-12.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 12: Responsible Consumption and Production</div>
+<a href="/goals/goal12">
+  <div class="home2026_goal" style="background: var(--sdg12);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-12.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 12: Responsible Consumption and Production</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal13">
-  <div class="home_goal" style="background: var(--sdg13);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-13.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 13: Climate Action</div>
+<a href="/goals/goal13">
+  <div class="home2026_goal" style="background: var(--sdg13);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-13.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 13: Climate Action</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal14">
-  <div class="home_goal" style="background: var(--sdg14);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-14.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 14: Life Below Water</div>
+<a href="/goals/goal14">
+  <div class="home2026_goal" style="background: var(--sdg14);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-14.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 14: Life Below Water</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal15">
-  <div class="home_goal" style="background: var(--sdg15);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-15.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 15: Life on Land</div>
+<a href="/goals/goal15">
+  <div class="home2026_goal" style="background: var(--sdg15);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-15.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 15: Life on Land</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal16">
-  <div class="home_goal" style="background: var(--sdg16);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 16: Peace, Justice and Strong Institutions</div>
+<a href="/goals/goal16">
+  <div class="home2026_goal" style="background: var(--sdg16);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-16.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 16: Peace, Justice and Strong Institutions</div>
   </div>
 </a>
 
-<a href="https://sdgs.un.org/goals/goal17">
-  <div class="home_goal" style="background: var(--sdg17);">
-    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg" id="goal_icon">
-    <div class="home_goal_title">Goal 17: Partnerships for the Goals</div>
+<a href="/goals/goal17">
+  <div class="home2026_goal" style="background: var(--sdg17);">
+    <img src="/sites/default/files/goals/E_SDG_Icons-17.jpg" id="goal_icon">
+    <div class="home2026_goal_title">Goal 17: Partnerships for the Goals</div>
   </div>
 </a>
 
@@ -1128,16 +1152,16 @@ a.home_feature_button_topic:focus{
  
 
 
- <div class="home_goal_off">
+ <div class="home2026_goal_off">
     
   
-  <a class="home_big_button" href="https://sdgs.un.org/goals">Explore Goals</a>
+  <a class="home2026_big_button" href="/goals">Explore Goals</a>
   </div>
 
- <div class="home_goal_off">
+ <div class="home2026_goal_off">
     
   
-  <a class="home_big_button" href="https://sdgs.un.org/2030agenda">2030 Agenda</a>
+  <a class="home2026_big_button" href="/2030agenda">2030 Agenda</a>
   </div>
 
 
@@ -1155,42 +1179,47 @@ a.home_feature_button_topic:focus{
 </div>
 
 
- <div class="home_feature">
+ <div class="home2026_feature">
 
-  <div class="home_feature_title">Calendar of Events</div>
+  <div class="home2026_feature_title">Calendar of Events</div>
 
-  <div class="home_feature_intro">
+  <div class="home2026_feature_intro">
 
  
 
   </div>
 
-    <div class="home_publication">
+
+
  
-    <div class="home_publication_title">ECOSOC Partnership Forum, 27 Jan 2026</div>
-    <div class="home_publication_text">A key moment to mobilize commitments and actions to advance the 2030 Agenda for Sustainable Development.    </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/2026ECOSOCPartnershipForum">View</a>
+
+
+    <div class="home2026_publication">
+ 
+    <div class="home2026_publication_title">ECOSOC Partnership Forum, 27 Jan 2026</div>
+    <div class="home2026_publication_text">A key moment to mobilize commitments and actions to advance the 2030 Agenda for Sustainable Development.    </div>
+    <a class="home2026_feature_button home2026_publication_cta" href="/2026ECOSOCPartnershipForum">View</a>
   </div>
 
 
 
  
-  <div class="home_publication">
+  <div class="home2026_publication">
     
-    <div class="home_publication_title">STI Forum, 6-7 May 2026</div>
-    <div class="home_publication_text">
+    <div class="home2026_publication_title">STI Forum, 6-7 May 2026</div>
+    <div class="home2026_publication_text">
      The eleventh annual Multi-Stakeholder Forum on Science, Technology and Innovation for the SDGs (STI Forum) at UNHQ, a key part of the Technology Facilitation Mechanism (TFM).
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/tfm/STIForum2026">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/tfm/STIForum2026">View</a>
   </div>
 
  
-  <div class="home_publication">
+  <div class="home2026_publication">
 
-    <div class="home_publication_title">HLPF, 7-15 July 2026</div>
-    <div class="home_publication_text">
+    <div class="home2026_publication_title">HLPF, 7-15 July 2026</div>
+    <div class="home2026_publication_text">
 Held under the theme “Transformative, equitable, innovative and coordinated actions for the 2030 Agenda for Sustainable Development and its Sustainable Development Goals for a sustainable future for all”.     </div>
-    <a class="home_feature_button home_publication_cta" href="https://hlpf.un.org/2026">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="https://hlpf.un.org/2026">View</a>
   </div>
 
 
@@ -1198,63 +1227,87 @@ Held under the theme “Transformative, equitable, innovative and coordinated ac
 
 
      
-  <div class="home_publication">
+  <div class="home2026_publication">
  
-    <div class="home_publication_title">2026 United Nations Water Conference, 2-4 Dec 2026</div>
-    <div class="home_publication_text">
-Achieving Sustainable Development Goal (SDG) 6 on Clean Water and Sanitation is an essential end in itself and is also critical to progress on the 2030 Agenda as a whole.    </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/conferences/water2026">View</a>
+    <div class="home2026_publication_title">2026 United Nations Water Conference, 2-4 Dec 2026</div>
+    <div class="home2026_publication_text">
+Achieving Sustainable Development Goal 6 on Clean Water and Sanitation is an essential end in itself and is also critical to progress on the 2030 Agenda as a whole.    </div>
+    <a class="home2026_feature_button home2026_publication_cta" href="/conferences/water2026">View</a>
   </div>
 
 
 
  
-  <div class="home_publication">
-    
+ 
+ 
+   <div class="home2026_publication">
+ 
   
-  <a class="home_big_button" href="https://sdgs.un.org/events">More events</a>
-  </div>
-
-
-
-
-    <div class="flex-break"></div>
-
-  
-
+  <a class="home2026_feature_button_on home2026_publication_cta" href="/events">More events</a>
+ 
+</div>
 
 </div>
 
- 
 
- <div class="home_feature">
 
-  <div class="home_feature_image"
+
+<div class="home2026_feature">
+
+  <div class="home2026_feature_image"
+       style="background-image: url('/sites/default/files/universal/banner-images/sebastian-pichler-0Ebrm0d-G_E-unsplash_crop.jpg');background-size: cover;background-position: center center;"></div>
+
+  <div class="home2026_feature_rightside">
+
+    <div class="home2026_feature_title">Global Sustainable Development Report</div>
+
+The Global Sustainable Development Report (GSDR) is a United Nations publication aiming to strengthen the science-policy interface, produced once every four years to inform the quadrennial SDG review deliberations.
+
+    <p></p>
+
+The next report is scheduled for release in September 2027 ahead of the High-level Political Forum on sustainable development to be held under the auspices of the General Assembly (SDG Summit). 
+
+    <div id="platform_clear"></div>
+
+    <a class="home2026_feature_button" href="/gsdr">Global Sustainable Development Report</a>
+  
+    <a class="home2026_feature_button" href="/gsdr2027">GSDR in 2027</a>
+      <a class="home2026_feature_button" href="/gsdr2023">GSDR in 2023</a>
+  
+      
+  </div>
+</div>
+
+
+
+ <div class="home2026_feature">
+
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/energy.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Energy</div>
+    <div class="home2026_feature_title">Energy</div>
 
 Achieving SDG7 will open a new world of opportunities for millions of people through new economic opportunities and jobs, empowered women, children and youth, better education and health, more sustainable, equitable and inclusive communities, and greater protections from, and resilience to, climate change. 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://www.un.org/en/energycompacts">Energy Compacts</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/energy">More on Energy</a>
+    <a class="home2026_feature_button" href="https://www.un.org/en/energycompacts">Energy Compacts</a>
+    <a class="home2026_feature_button" href="/topics/energy">More on Energy</a>
 
   </div>
 </div>
 
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/transport.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Sustainable Transport</div>
+    <div class="home2026_feature_title">Sustainable Transport</div>
 
     While there is no single dedicated Sustainable Development Goal for transport, it is reflected in several SDG targets and recognized as an enabler for achieving many of the goals.
     <p></p>
@@ -1263,21 +1316,21 @@ Achieving SDG7 will open a new world of opportunities for millions of people thr
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/un-decade-sustainable-transport-2026-2035">UN Decade of Sustainable Transport 2026 – 2035</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/sustainable-transport">More on Sustainable Transport</a>
+    <a class="home2026_feature_button" href="/un-decade-sustainable-transport-2026-2035">UN Decade of Sustainable Transport 2026 – 2035</a>
+    <a class="home2026_feature_button" href="/topics/sustainable-transport">More on Sustainable Transport</a>
 
   </div>
 </div>
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/water.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Water</div>
+    <div class="home2026_feature_title">Water</div>
 
     Water is fundamental to sustainable development, underpinning health, food security, energy, ecosystems, and economic growth. Ensuring universal access to safe drinking water and sanitation, improving water quality, strengthening water management, and enhancing resilience to water-related risks are essential for achieving the Sustainable Development Goals and addressing climate change impacts.
 
@@ -1287,21 +1340,21 @@ Achieving SDG7 will open a new world of opportunities for millions of people thr
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/conferences/water2026">2026 UN Water Conference</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/water-and-sanitation">More on Water and Sanitation</a>
+    <a class="home2026_feature_button" href="/conferences/water2026">2026 UN Water Conference</a>
+    <a class="home2026_feature_button" href="/topics/water-and-sanitation">More on Water and Sanitation</a>
 
   </div>
 </div>
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/ocean.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Oceans</div>
+    <div class="home2026_feature_title">Oceans</div>
 
     SDG 14: Life Below Water aims to conserve and sustainably use the world's oceans, seas, and marine resources by 2030. Key targets include reducing marine pollution, protecting ecosystems, ending overfishing, and minimizing ocean acidification. It is critical for managing climate change, biodiversity, and coastal livelihoods.
 
@@ -1312,23 +1365,23 @@ Achieving SDG7 will open a new world of opportunities for millions of people thr
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/conferences/ocean2025">2025 UN Ocean Conference</a>
-     <a class="home_feature_button" href="https://sdgs.un.org/sites/default/files/2025-06/A-CONF.230-2025-14%20%28Note%20by%20the%20Sect-%20political%20declaration%29.pdf">UNOC3 Political Declaration</a>
+    <a class="home2026_feature_button" href="/conferences/ocean2025">2025 UN Ocean Conference</a>
+     <a class="home2026_feature_button" href="/sites/default/files/2025-06/A-CONF.230-2025-14%20%28Note%20by%20the%20Sect-%20political%20declaration%29.pdf">UNOC3 Political Declaration</a>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/oceans-and-seas">More on Oceans &amp; Seas</a>
+    <a class="home2026_feature_button" href="/topics/oceans-and-seas">More on Oceans &amp; Seas</a>
 
   </div>
 </div>
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/sids.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Small Island Developing States</div>
+    <div class="home2026_feature_title">Small Island Developing States</div>
 
     Small Island Developing States (SIDS) face unique and interrelated challenges, including climate change impacts, ocean degradation, limited resources, and structural vulnerabilities, while also demonstrating leadership and innovation in advancing sustainable development. Strengthening partnerships, mobilizing finance, and enhancing capacity-building are essential to support SIDS in achieving the Sustainable Development Goals and ensuring that no one is left behind.
 
@@ -1338,29 +1391,29 @@ Achieving SDG7 will open a new world of opportunities for millions of people thr
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/conferences/sids2024">4th Conference on SIDS</a>
-    <a class="home_feature_button" href="https://docs.un.org/en/A/RES/78/317">ABAS</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/small-island-developing-states/sids-partnership-framework">SIDS Partnership Framework</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/small-island-developing-states">More on SIDS</a>
+    <a class="home2026_feature_button" href="/conferences/sids2024">4th Conference on SIDS</a>
+    <a class="home2026_feature_button" href="https://docs.un.org/en/A/RES/78/317">ABAS</a>
+    <a class="home2026_feature_button" href="/topics/small-island-developing-states/sids-partnership-framework">SIDS Partnership Framework</a>
+    <a class="home2026_feature_button" href="/topics/small-island-developing-states">More on SIDS</a>
 
   </div>
 </div>
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/stake.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Stakeholder Engagement</div>
+    <div class="home2026_feature_title">Stakeholder Engagement</div>
 
     Stakeholder engagement is central to advancing the 2030 Agenda for Sustainable Development. The High-level Political Forum on Sustainable Development (HLPF) serves as the United Nations’ main platform for inclusive dialogue, bringing together governments, civil society, the private sector, academia, and other stakeholders to share experiences, build partnerships, and strengthen implementation of the Sustainable Development Goals.
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/stakeholders">More information</a>
+    <a class="home2026_feature_button" href="/stakeholders">More information</a>
 
   </div>
 </div>
@@ -1368,14 +1421,14 @@ Achieving SDG7 will open a new world of opportunities for millions of people thr
 
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/partner.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Partnerships for the SDGs</div>
+    <div class="home2026_feature_title">Partnerships for the SDGs</div>
 
     Partnerships are critical for accelerating progress towards the Sustainable Development Goals by bringing together governments, civil society, the private sector, academia, and the UN system. Effective multi-stakeholder partnerships help mobilize resources, scale innovative solutions, and strengthen implementation across sectors and levels.
 
@@ -1385,57 +1438,57 @@ Achieving SDG7 will open a new world of opportunities for millions of people thr
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/2026ECOSOCPartnershipForum/">2026 ECOSOC Partnership Forum</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/partnerships">SDG Actions Platform</a>
-    <a class="home_feature_button" href="https://partnershipaccelerator.org/">Partnership Accelerator</a>
+    <a class="home2026_feature_button" href="/2026ECOSOCPartnershipForum/">2026 ECOSOC Partnership Forum</a>
+    <a class="home2026_feature_button" href="/partnerships">SDG Actions Platform</a>
+    <a class="home2026_feature_button" href="https://partnershipaccelerator.org/">Partnership Accelerator</a>
 
-        <a class="home_feature_button home_feature_button" href="https://sdgs.un.org/partnerships/action-networks/acceleration-actions">SDG Acceleration Actions</a>
+        <a class="home2026_feature_button home_feature_button" href="/partnerships/action-networks/acceleration-actions">SDG Acceleration Actions</a>
 
 
 
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/multi-stakeholder-partnerships">More on Partnerships</a>
+    <a class="home2026_feature_button" href="/topics/multi-stakeholder-partnerships">More on Partnerships</a>
 
   </div>
 </div>
 
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/hlpf.webp');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">High-level Political Forum on Sustainable Development</div>
+    <div class="home2026_feature_title">High-level Political Forum on Sustainable Development</div>
 
     The High-level Political Forum on Sustainable Development (HLPF) is the central United Nations platform for the follow-up and review of the 2030 Agenda for Sustainable Development and its 17 Sustainable Development Goals (SDGs).
 
     <p></p>
 
-    The 2026 HLPF will be convened from Monday, 6 July, to Wednesday, 15 July 2026, under the auspices of the Economic and Social Council (ECOSOC). This includes the three-day ministerial segment of the forum from Monday, 13 July, to Wednesday, 15 July 2026, as part of the High-level Segment of ECOSOC. The last day of the High-level Segment of ECOSOC will take place on 16 July.
+    The 2026 HLPF will be convened from Tuesday, 7 July, to Wednesday, 15 July 2026, under the auspices of the Economic and Social Council (ECOSOC). This includes the three-day ministerial segment of the forum from Monday, 13 July, to Wednesday, 15 July 2026, as part of the High-level Segment of ECOSOC. The last day of the High-level Segment of ECOSOC will take place on 16 July.
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://hlpf.un.org/">HLPF in 2026</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal6">Goal 6</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal7">Goal 7</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal9">Goal 9</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal11">Goal 11</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/goals/goal17">Goal 17</a>
+    <a class="home2026_feature_button" href="https://hlpf.un.org/">HLPF in 2026</a>
+    <a class="home2026_feature_button" href="/goals/goal6">Goal 6</a>
+    <a class="home2026_feature_button" href="/goals/goal7">Goal 7</a>
+    <a class="home2026_feature_button" href="/goals/goal9">Goal 9</a>
+    <a class="home2026_feature_button" href="/goals/goal11">Goal 11</a>
+    <a class="home2026_feature_button" href="/goals/goal17">Goal 17</a>
 
   </div>
 </div>
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_image"
+  <div class="home2026_feature_image"
        style="background-image: url('https://hesicommunity.org/homepics/cap.jpg');background-size: cover;background-position: center center;"></div>
 
-  <div class="home_feature_rightside">
+  <div class="home2026_feature_rightside">
 
-    <div class="home_feature_title">Capacity Development</div>
+    <div class="home2026_feature_title">Capacity Development</div>
 
     Capacity development is essential for advancing sustainable development, enabling governments and stakeholders to strengthen skills, institutions, data systems, and partnerships needed to design, implement, and monitor integrated solutions across the economic, social, and environmental dimensions of the 2030 Agenda.
 
@@ -1451,11 +1504,11 @@ The Division’s capacity development activities advance the implementation of t
 
     <div class="flex-break"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/topics/capacity-development/msmes">Micro-, Small and Medium-sized Enterprises (MSMEs)</a>
-    <a class="home_feature_button" href="https://sdgs.un.org/events/un-portugal-ocean-fellowship-capacity-building-program-sustainable-ocean-governance-and-blue">UN-Portugal Ocean Fellowship</a>
-    <a class="home_feature_button" href="https://partnershipaccelerator.org/">Partnership Accelerator</a>
+    <a class="home2026_feature_button" href="/topics/capacity-development/msmes">Micro-, Small and Medium-sized Enterprises (MSMEs)</a>
+    <a class="home2026_feature_button" href="/events/un-portugal-ocean-fellowship-capacity-building-program-sustainable-ocean-governance-and-blue">UN-Portugal Ocean Fellowship</a>
+    <a class="home2026_feature_button" href="https://partnershipaccelerator.org/">Partnership Accelerator</a>
 
-       <a class="home_feature_button" href="https://sdgs.un.org/topics/capacity-development">More on Capacity Development</a>
+       <a class="home2026_feature_button" href="/topics/capacity-development">More on Capacity Development</a>
 
 
   </div>
@@ -1463,20 +1516,23 @@ The Division’s capacity development activities advance the implementation of t
 
 
 
+ 
 
-<div class="home_feature">
 
-  <div class="home_feature_title">SDG Registries &amp; Databases</div>
 
-  <div class="home_feature_intro">
+<div class="home2026_feature">
 
-    <div id="home_feature_platform_icon">
+  <div class="home2026_feature_title">SDG Registries &amp; Databases</div>
+
+  <div class="home2026_feature_intro">
+
+    <div id="home2026_feature_platform_icon">
       <img src="https://hesicommunity.org/homepics/actions.png" alt="SDG Actions Platform">
       <p></p>
-      <a class="home_feature_button_on"   href="https://sdgs.un.org/partnerships">Visit the SDG Actions Platform</a>
+      <a class="home2026_feature_button_on"   href="/partnerships">Visit the SDG Actions Platform</a>
     </div>
 
-    <div class="home_feature_intro_text">
+    <div class="home2026_feature_intro_text">
       Over the years, UN DESA has developed and maintained a range of SDG registries and databases that capture commitments, partnerships, and actions by governments, the United Nations system, and a wide range of stakeholders. These platforms support transparency, accountability, and knowledge-sharing, and help track progress and implementation across the 2030 Agenda.
 
       <p></p>
@@ -1486,67 +1542,71 @@ The Division’s capacity development activities advance the implementation of t
 
   </div>
 
+
+
+
+  
   <!-- Ocean Commitments -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/ocean2.jpg');"></div>
-    <div class="home_publication_title">Ocean Commitments</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/ocean2.jpg');"></div>
+    <div class="home2026_publication_title">Ocean Commitments</div>
+    <div class="home2026_publication_text">
       A registry of voluntary commitments by governments, the UN system, and stakeholders to support implementation of SDG 14.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/ocean-commitments">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/partnerships/action-networks/ocean-commitments">View</a>
   </div>
 
   <!-- Water Action Agenda -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/water2.jpg');"></div>
-    <div class="home_publication_title">Water Action Agenda</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/water2.jpg');"></div>
+    <div class="home2026_publication_title">Water Action Agenda</div>
+    <div class="home2026_publication_text">
       A collection of commitments and initiatives launched in support of the Water Action Agenda, highlighting actions by governments and stakeholders to advance sustainable water management, sanitation, and water-related resilience.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/water">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/partnerships/action-networks/water">View</a>
   </div>
 
 
     <!-- Acceleration -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/accactions.jpg');"></div>
-    <div class="home_publication_title">SDG Acceleration Actions</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/accactions.jpg');"></div>
+    <div class="home2026_publication_title">SDG Acceleration Actions</div>
+    <div class="home2026_publication_text">
 The SDG Acceleration Actions online database is a tool to help inspire and mobilize actions around the world to promote the implementation of the SDGs.    </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/acceleration-actions">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/partnerships/action-networks/acceleration-actions">View</a>
   </div>
 
 
   <!-- SIDS Partnership Database -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/sids2.jpg');"></div>
-    <div class="home_publication_title">SIDS Partnership Database</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/sids2.jpg');"></div>
+    <div class="home2026_publication_title">SIDS Partnership Database</div>
+    <div class="home2026_publication_text">
       A dedicated database highlighting partnerships and initiatives supporting Small Island Developing States.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/partnerships/action-networks/sids-partnerships">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/partnerships/action-networks/sids-partnerships">View</a>
   </div>
 
   <!-- UN System Implementation Database -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/un.jpg');"></div>
-    <div class="home_publication_title">UN System Implementation Database</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/un.jpg');"></div>
+    <div class="home2026_publication_title">UN System Implementation Database</div>
+    <div class="home2026_publication_text">
       UN family’s repository of actions, initiatives and plans on the implementation of the 2030 Agenda and the sustainable development goals (SDGs). 
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/UNSDGimplementation">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/UNSDGimplementation">View</a>
   </div>
 
 
 
   <!-- 
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/vnr.png');"></div>
-    <div class="home_publication_title">Voluntary National Review Database</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/vnr.png');"></div>
+    <div class="home2026_publication_title">Voluntary National Review Database</div>
+    <div class="home2026_publication_text">
       Repository of Voluntary National Reviews presented by countries at the High-level Political Forum, documenting progress, challenges, and lessons learned in implementing the SDGs.
     </div>
-    <a class="home_feature_button home_publication_cta" target="_blank" href="https://hlpf.un.org/countries">View</a>
+    <a class="home2026_feature_button home2026_publication_cta" target="_blank" href="https://hlpf.un.org/countries">View</a>
   </div>
 
   VNR Database -->
@@ -1555,68 +1615,68 @@ The SDG Acceleration Actions online database is a tool to help inspire and mobil
 
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_title">Publications</div>
+  <div class="home2026_feature_title">Publications</div>
   <div class="flex-break"></div>
 
   <!-- SDG Report -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/2025-report-cover.jpg');"></div>
-    <div class="home_publication_title">2025 Sustainable Development Goals Report</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/2025-report-cover.jpg');"></div>
+    <div class="home2026_publication_title">2025 Sustainable Development Goals Report</div>
+    <div class="home2026_publication_text">
       The UN’s annual flagship report tracking global and regional progress toward the SDGs, highlighting gaps, trends, and priority areas for accelerated action.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://unstats.un.org/sdgs/report/2025/" target="_blank" rel="noopener">Read</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="https://unstats.un.org/sdgs/report/2025/" target="_blank" rel="noopener">Read</a>
   </div>
 
   <!-- GSDR -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/gsdr.jpeg');"></div>
-    <div class="home_publication_title">Global Sustainable Development Report</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/gsdr.jpeg');"></div>
+    <div class="home2026_publication_title">Global Sustainable Development Report</div>
+    <div class="home2026_publication_text">
       A quadrennial, science-based assessment strengthening the science–policy interface and informing decision-making at the High-level Political Forum.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/gsdr">Read</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/gsdr">Read</a>
   </div>
 
   <!-- Partnership Snapshot -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/partnership-snapshot.png');"></div>
-    <div class="home_publication_title">2026 Partnership Snapshot</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('https://hesicommunity.org/homepics/partnership-snapshot.png');"></div>
+    <div class="home2026_publication_title">2026 Partnership Snapshot</div>
+    <div class="home2026_publication_text">
       A curated snapshot of high-impact partnerships, showcasing implementation experiences and opportunities to scale solutions for the SDGs.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/2026/PartnershipSnapshot">Read</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/2026/PartnershipSnapshot">Read</a>
   </div>
 
   <!-- 
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://sdgs.un.org/sites/default/files/2025-11/a_decade_of_learning_training_and_practice_for_the_sdgs.png');"></div>
-    <div class="home_publication_title">A Decade of Learning, Training and Practice for the SDGs</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('/sites/default/files/2025-11/a_decade_of_learning_training_and_practice_for_the_sdgs.png');"></div>
+    <div class="home2026_publication_title">A Decade of Learning, Training and Practice for the SDGs</div>
+    <div class="home2026_publication_text">
       For ten years, the SDGs in Practice series has provided a dedicated space for skills-building and collaboration to advance the SDGs.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/publications/decade-learning-training-and-practice-sustainable-development-goals-60381">Read</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/publications/decade-learning-training-and-practice-sustainable-development-goals-60381">Read</a>
   </div>
 
   SDGs in Practice -->
 
   <!-- SIDS Brief -->
-  <div class="home_publication">
-    <div class="home_publication_cover" style="background-image: url('https://sdgs.un.org/sites/default/files/2025-12/cover.png');"></div>
-    <div class="home_publication_title">2025 SIDS Partnership Brief</div>
-    <div class="home_publication_text">
+  <div class="home2026_publication">
+    <div class="home2026_publication_cover" style="background-image: url('/sites/default/files/2025-12/cover.png');"></div>
+    <div class="home2026_publication_title">2025 SIDS Partnership Brief</div>
+    <div class="home2026_publication_text">
       The Brief introduces the three winners and the other six finalists of the SIDS Partnership Awards, serving as a resource to inspire stronger, more impactful collaborations that advance SIDS priorities.
     </div>
-    <a class="home_feature_button home_publication_cta" href="https://sdgs.un.org/publications/2025-sids-partnership-brief-60516">Read</a>
+    <a class="home2026_feature_button home2026_publication_cta" href="/publications/2025-sids-partnership-brief-60516">Read</a>
   </div>
 
 
-    <div class="home_publication">
+    <div class="home2026_publication">
     
   
-  <a class="home_big_button" href="https://sdgs.un.org/publications">More publications</a>
+  <a class="home2026_big_button" href="/publications">More publications</a>
   </div>
 
 
@@ -1630,12 +1690,12 @@ The SDG Acceleration Actions online database is a tool to help inspire and mobil
   
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
  
 
 
-    <div class="home_feature_title">About the Division for Sustainable Development Goals, UN DESA</div>
+    <div class="home2026_feature_title">About the Division for Sustainable Development Goals, UN DESA</div>
 
   
  
@@ -1646,18 +1706,18 @@ The Division for Sustainable Development Goals (DSDG) in the United Nations Depa
 
     <div id="platform_clear"></div>
 
-    <a class="home_feature_button" href="https://sdgs.un.org/topics">About us</a>
+    <a class="home2026_feature_button" href="/about">About us</a>
 
  
 </div>
 
 
-<div class="home_feature">
+<div class="home2026_feature">
 
-  <div class="home_feature_title">Explore more</div>
+  <div class="home2026_feature_title">Explore more</div>
 
 
-  <div class="home_feature_intro">
+  <div class="home2026_feature_intro">
  
     Explore key topics and related events on sustainable development and the 2030 Agenda for Sustainable Development.
   
@@ -1667,9 +1727,9 @@ The Division for Sustainable Development Goals (DSDG) in the United Nations Depa
  <div class="flex-break"></div>
 
 
-  <a class="home_feature_button" href="https://sdgs.un.org/events">Calendar of events</a>
+  <a class="home2026_feature_button" href="/events">Calendar of events</a>
 
-  <a class="home_feature_button" href="https://sdgs.un.org/topics">Key topics</a>
+  <a class="home2026_feature_button" href="/topics">Key topics</a>
 
 </div>
 
