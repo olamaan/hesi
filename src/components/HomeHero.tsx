@@ -1,5 +1,6 @@
 // src/components/HomeHero.tsx
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { publicClient as client } from '@/sanity/lib/client'
 
 type Item = {
@@ -49,6 +50,11 @@ function getAllowedHomeParams(current: SearchParams) {
   }
 }
 
+function hasBlockedHomeParams(current: SearchParams) {
+  const blockedParams = ['region', 'sort']
+  return blockedParams.some((key) => key in current)
+}
+
 function clearSearchHref(current: SearchParams) {
   const safe = getAllowedHomeParams(current)
   return buildHrefWithParams({ ...safe, q: undefined, page: undefined })
@@ -69,6 +75,10 @@ export default async function HomeHero({
 }) {
   const sp = searchParams ?? {}
   const safeParams = getAllowedHomeParams(sp)
+
+  if (hasBlockedHomeParams(sp)) {
+    notFound()
+  }
 
   // Search by org & country (q)
   const q = safeParams.q ?? ''
