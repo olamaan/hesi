@@ -11,6 +11,8 @@ type Item = {
   regionTitle?: string
 }
 
+type SearchParams = { [key: string]: string | string[] | undefined }
+
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n)
 
 const formatYear = (iso?: string) => {
@@ -21,17 +23,35 @@ const formatYear = (iso?: string) => {
 
 function buildHrefWithParams(nextParams: Record<string, string | string[] | undefined>) {
   const sp = new URLSearchParams()
+
   for (const [k, v] of Object.entries(nextParams)) {
     if (v == null) continue
-    if (Array.isArray(v)) v.forEach((val) => sp.append(k, val))
-    else sp.set(k, v)
+    if (Array.isArray(v)) {
+      for (const val of v) {
+        if (val) sp.append(k, val)
+      }
+    } else if (v) {
+      sp.set(k, v)
+    }
   }
+
   const qs = sp.toString()
   return qs ? `/?${qs}` : '/'
 }
 
-function clearSearchHref(current: { [k: string]: string | string[] | undefined }) {
-  return buildHrefWithParams({ ...current, q: undefined, page: undefined })
+function getAllowedHomeParams(current: SearchParams) {
+  const q = Array.isArray(current.q) ? current.q[0] : current.q
+  const page = Array.isArray(current.page) ? current.page[0] : current.page
+
+  return {
+    q: q?.trim() ? q.trim() : undefined,
+    page: page?.trim() ? page.trim() : undefined,
+  }
+}
+
+function clearSearchHref(current: SearchParams) {
+  const safe = getAllowedHomeParams(current)
+  return buildHrefWithParams({ ...safe, q: undefined, page: undefined })
 }
 
 /* ------------------------------------------------------------------
@@ -45,19 +65,18 @@ function clearSearchHref(current: { [k: string]: string | string[] | undefined }
 export default async function HomeHero({
   searchParams,
 }: {
-  searchParams?: { [key: string]: string | string[] | undefined }
+  searchParams?: SearchParams
 }) {
   const sp = searchParams ?? {}
+  const safeParams = getAllowedHomeParams(sp)
 
   // Search by org & country (q)
-  const qRaw = Array.isArray(sp.q) ? sp.q[0] : sp.q
-  const q = (qRaw || '').trim()
+  const q = safeParams.q ?? ''
   const qPattern = q ? `*${q.toLowerCase()}*` : null
 
   // pagination
   const perPage = 30
-  const pageParam = Array.isArray(sp.page) ? sp.page[0] : sp.page
-  const page = Math.max(1, Number.parseInt(pageParam ?? '1', 10) || 1)
+  const page = Math.max(1, Number.parseInt(safeParams.page ?? '1', 10) || 1)
   const start = (page - 1) * perPage
   const end = start + perPage
 
@@ -105,9 +124,15 @@ export default async function HomeHero({
     },
   )
 
-  const shownTo = start + items.length
   const totalPages = Math.max(1, Math.ceil(total / perPage))
-  const pageHref = (p: number) => buildHrefWithParams({ ...sp, page: p > 1 ? String(p) : undefined })
+  const currentPage = Math.min(page, totalPages)
+  const shownTo = Math.min(start + items.length, total)
+
+  const pageHref = (p: number) =>
+    buildHrefWithParams({
+      q: safeParams.q,
+      page: p > 1 ? String(p) : undefined,
+    })
 
   return (
     <>
@@ -213,8 +238,8 @@ export default async function HomeHero({
           {/* TOP PAGER */}
           <div className="pager3 pager3--top">
             <div className="pager3__prev">
-              {page > 1 ? (
-                <Link href={pageHref(page - 1)} prefetch={false} className="btn-pager" aria-label="Previous page">
+              {currentPage > 1 ? (
+                <Link href={pageHref(currentPage - 1)} prefetch={false} className="btn-pager" aria-label="Previous page">
                   ← Previous
                 </Link>
               ) : (
@@ -229,11 +254,12 @@ export default async function HomeHero({
                 const max = 7
                 const windowSize = 2
                 let list: (number | string)[] = []
+
                 if (totalPages <= max) {
                   list = Array.from({ length: totalPages }, (_, i) => i + 1)
                 } else {
-                  const startN = Math.max(2, page - windowSize)
-                  const endN = Math.min(totalPages - 1, page + windowSize)
+                  const startN = Math.max(2, currentPage - windowSize)
+                  const endN = Math.min(totalPages - 1, currentPage + windowSize)
                   list = [1]
                   if (startN > 2) list.push('…')
                   for (let i = startN; i <= endN; i++) list.push(i)
@@ -246,7 +272,7 @@ export default async function HomeHero({
                     <span key={`e${idx}`} className="pagination__ellipsis">
                       …
                     </span>
-                  ) : p === page ? (
+                  ) : p === currentPage ? (
                     <span key={p} className="pagination__link is-active" aria-current="page">
                       {p}
                     </span>
@@ -260,8 +286,8 @@ export default async function HomeHero({
             </nav>
 
             <div className="pager3__next">
-              {shownTo < total ? (
-                <Link href={pageHref(page + 1)} prefetch={false} className="btn-pager" aria-label="Next page">
+              {currentPage < totalPages ? (
+                <Link href={pageHref(currentPage + 1)} prefetch={false} className="btn-pager" aria-label="Next page">
                   Next →
                 </Link>
               ) : (
@@ -283,8 +309,6 @@ export default async function HomeHero({
                       <div className="row-summary__left">
                         <div className="row-summary__title">{it.title}</div>
                       </div>
-
-                      {/* Badges removed */}
                     </summary>
 
                     <div className="row-details__body">
@@ -315,8 +339,6 @@ export default async function HomeHero({
                         </div>
                       </div>
 
-                      {/* Activities removed */}
-
                       <div style={{ marginTop: 12 }}>
                         <Link href={detailsHref} prefetch={false} className="btn-pager">
                           View full profile →
@@ -332,8 +354,8 @@ export default async function HomeHero({
           {/* BOTTOM PAGER */}
           <div className="pager3 pager3--bottom">
             <div className="pager3__prev">
-              {page > 1 ? (
-                <Link href={pageHref(page - 1)} prefetch={false} className="btn-pager" aria-label="Previous page">
+              {currentPage > 1 ? (
+                <Link href={pageHref(currentPage - 1)} prefetch={false} className="btn-pager" aria-label="Previous page">
                   ← Previous
                 </Link>
               ) : (
@@ -348,11 +370,12 @@ export default async function HomeHero({
                 const max = 7
                 const windowSize = 2
                 let list: (number | string)[] = []
+
                 if (totalPages <= max) {
                   list = Array.from({ length: totalPages }, (_, i) => i + 1)
                 } else {
-                  const startN = Math.max(2, page - windowSize)
-                  const endN = Math.min(totalPages - 1, page + windowSize)
+                  const startN = Math.max(2, currentPage - windowSize)
+                  const endN = Math.min(totalPages - 1, currentPage + windowSize)
                   list = [1]
                   if (startN > 2) list.push('…')
                   for (let i = startN; i <= endN; i++) list.push(i)
@@ -365,7 +388,7 @@ export default async function HomeHero({
                     <span key={`e${idx}`} className="pagination__ellipsis">
                       …
                     </span>
-                  ) : p === page ? (
+                  ) : p === currentPage ? (
                     <span key={p} className="pagination__link is-active" aria-current="page">
                       {p}
                     </span>
@@ -379,8 +402,8 @@ export default async function HomeHero({
             </nav>
 
             <div className="pager3__next">
-              {shownTo < total ? (
-                <Link href={pageHref(page + 1)} prefetch={false} className="btn-pager" aria-label="Next page">
+              {currentPage < totalPages ? (
+                <Link href={pageHref(currentPage + 1)} prefetch={false} className="btn-pager" aria-label="Next page">
                   Next →
                 </Link>
               ) : (
